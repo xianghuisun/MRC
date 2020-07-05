@@ -1,0 +1,321 @@
+\documentclass{article}
+%\documentclass{ctexart}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+%\documentclass{ctexart}
+\usepackage{ctex}%中文
+\usepackage{graphicx}
+\usepackage{zhlipsum}
+\usepackage{cuted}
+\graphicspath{{picture/}}
+\usepackage[left=2.5cm,right=1.97cm,top=2.5cm,bottom=2.5cm]{geometry}%设置页边距
+\renewcommand{\baselinestretch}{1.25}%行间距
+\usepackage[hidelinks,urlcolor=black,linkcolor=black]{hyperref}%引入超链接包，否则会出现Undefined sequence
+%[colorlinks,urlcolor=black,linkcolor=black]去除超链接中的颜色框
+\usepackage{amssymb}%数学符号
+\usepackage{amsmath}%数学公式
+\usepackage{booktabs}%设置三线表的线粗细
+\usepackage{array}%table
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\usepackage{cite}
+% \ctexset{section={format={\zihao{3} \heiti \bfseries}},
+% bibname={\zihao{-4} \heiti \bfseries 参考文献}}
+
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+
+\title{\heiti \zihao{2} 基于深度学习的机器阅读理解技术研究综述}%黑体2号 在标题那页插入脚注
+
+
+
+\author{\kaishu \zihao{-4} 孙相会\\
+\songti \zihao{-5} 学号：1971654}%-4就是小四号
+\date{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+    \maketitle %生成title,author,date
+
+        \input{abstract_part.tex}
+    what
+    \url{https://blog.csdn.net/
+    }
+%----------------------正文-----------------------
+\begin{multicols}{2}
+    \section{引言}
+
+%\vspace{10cm}在垂直方向上，两行之间的距离
+机器阅读理解(MRC)是自然语言处理领域十分重要也是具有挑战性的研究方向，这项任务的目的是衡量计算机理解自然语言文本的能力。具体的就是
+给定一篇文章和相关的问题，要求计算机通过阅读理解这篇文章后能够正确的回答这些问题。早期的MRC系统主要是基于规则和模式匹配的方法，
+而且数据集规模比较小，系统难以获得期望的性能也不能实际的应用。随着深度学习的兴起，词嵌入技术的发展，注意力机制应用在NLP领域\cite{neural machine translation by jointly learning to align and translate}以及
+大规模阅读理解数据集如（CNN/Daily Mail\cite{Teaching Machines to Read and Comprehend}，SQuAD\cite{SQuAD1}，
+RACE\cite{RACE}，MS MARCO\cite{MS marco}，CoQA\cite{CoQA}等）的发布，
+这些推动了MRC领域的发展，越来越多的学者采用神经网络构建MRC模型，也叫神经机器阅读理解，效果上显著的优于传统的机器学习方法并且在
+SQuAD\cite{SQuAD1}数据集上逐渐的接近人类的阅读理解水平。
+
+自2018年，随着ELMo\cite{ELMo}、GPT\cite{GPT}、BERT\cite{BERT}等预训练语言模型的出现，再一次提升了机器阅读理解的水平，
+特别是BERT\cite{BERT}在SQuAD数据集上首次超过了人类的表现。
+
+本篇论文主要从具体任务，数据集，经典的神经机器阅读理解模型，目前流行的基于预训练的模型，对于不同任务的不同的评估指标以及MRC领域
+目前新的趋势几方面对机器阅读理解领域做阐述。
+
+\end{multicols}
+%在你想要分栏的段落上下加上begin end columns{2}
+%\input{dataset.tex}
+
+%\includegraphics[]{Deep_lstm.png}
+
+% \begin{table}
+%     \caption{自动加表号}
+%     \centering
+%     \begin{tabular}{l l l}
+%         \toprule
+%         a&b&c
+%         \midrule
+%         value1&value2&value3
+%         \bottomrule
+        
+%     \end{tabular}
+% \end{table}
+
+
+
+
+\begin{multicols}{2}
+%\input{Introduction.tex}
+\input{dataset.tex}
+%\input{pre_train.tex}
+\section{神经机器阅读理解模型}
+随着大规模机器阅读理解数据集如CNN\&Daily Mail\upcite{Teaching Machines to Read and Comprehend}，SQuAD 1.1\upcite{SQuAD1}等的发布以及
+深度学习技术的发展，神经机器阅读理解模型的性能显著的超过传统的基于规则和特征的模型，随着NLP领域预训练模型的发展，基于预训练模型
+来做MRC任务的模型性能再一次的提升。用于MRC任务的深度学习模型的整体框架主要包括如下几个层：词嵌入层、语义编码层、语义交互层、答案预测层。
+
+1）词嵌入层：如何将文本有效的表示成计算机可以处理的形式同时可以有效地利用单词之间的语义一直的NLP领域
+的重点问题。分布式表示是将单词用一个低维度的稠密向量表示，即将单词嵌入到一个低维稠密空间中，因此这种表示方式也叫词嵌入。
+从早期的one-hot形式编码到词袋模型再到分布式表示技术最后到基于上下文的词嵌入技术，每一种技术的出现都证明了一个好的文本表示方法可以
+极大地提升模型的性能。
+
+2）语义编码层：这一层的目的是在词嵌入层的基础上通过对词嵌入层的输入文本做特征提取，进一步获得句子层面的语义信息。常用的特征提取器
+有基于RNN的变体如LSTM\upcite{lstm}和GRU\cite{s}等。但由于梯度消失问题不能解决长距离依赖问题，使得其
+特征提取能力始终受限。Transformer\upcite{Transformer}通过利用自注意力机制取代RNN那种序列式的计算方式，通过自注意力机制不仅可以做到
+单词之间的全局交互同时其并行计算使得模型训练时间大幅减少。实验证明在大规模数据集上transformer的特征提取能力要强于
+基于RNN的编码器，目前几乎所有的NLP预训练模型都是利用transformer作为特征提取器。
+
+3）语义交互层：在预测答案时需要将问题的语义信息与文章的语义信息关联，这样模型在预测答案时才能知道文章中哪一部分是问题的答案。
+通常利用注意力机制实现这一目标，注意力机制就是让模型关注到重点的部分，不同的注意力计算方式很大程度上的影响模型性能，
+后面将详细介绍基于注意力机制的模型以及它们不同的计算方式。
+
+4）答案预测层：这是整个模型架构的最后一层，用来输出预测的答案。如前面所提到的MRC任务大致分成四类，因此这一层的设计需要
+考虑到答案形式。对于填空型任务，答案的输出是文章中的一个单词。对于多项选择任务，答案的输出是从多个候选答案中选择出正确的选项。
+对于片段选择型任务，答案的输出是文章中某段连续的文本。对于自由答案型任务，答案的输出不限固定的文本，而是根据文章中的单词生成的答案。
+此外还有不可回答的问题，此时模型的输出还要考虑到问题是否可以回答。
+
+下面介绍神经机器阅读理解模型中基于注意力机制的模型和基于预训练模型的模型。
+%\input{embedding_layer.tex}
+
+
+
+
+\input{interaction_layer.tex}
+
+
+\input{pre_train.tex}
+%\input{model.tex}
+
+
+\input{output_layer.tex}
+
+
+
+
+
+
+\end{multicols}
+
+
+
+
+
+
+
+
+
+
+
+\begin{thebibliography}{99}
+    \bibitem{lstm}Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory. Neural computation, 9(8):
+    1735–1780, 1997.
+
+    \bibitem{BLEU}Kishore Papineni, Salim Roukos, Todd Ward, and Wei-Jing Zhu. Bleu: a method for au-
+    tomatic evaluation of machine translation. In Proceedings of the 40th Annual Meeting on
+    Association for Computational Linguistics, pages 311–318. Association for Computational
+    Linguistics, 2002.
+    \bibitem{ROUGE}Chin-Yew Lin. Rouge: A package for automatic evaluation of summaries. Text Summariza-
+    tion Branches Out, 2004.
+
+    \bibitem{Maxout Network}Goodfellow, I.J., Warde-Farley, D., Mirza, M., Courville, A., Bengio, Y.: Maxout networks.
+    arXiv preprint arXiv:1302.4389 (2013)
+
+    \bibitem{word2vec}Mikolov T，Sutskever I，Chen K，et al.Distributed represen-
+    tations of words and phrases and their compositionality[C]//
+    Advances in Neural Information Processing Systems，
+    2013：3111-3119.
+
+    \bibitem{GloVe}Jeffrey Pennington, Richard Socher, and Christopher D. Manning. Glove: Global vectors for
+    word//w representation. In Empirical Methods in Natural Language Processing (EMNLP), pp.
+    1532–1543, 2014.
+
+    \bibitem{neural machine translation by jointly learning to align and translate}Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural machine translation by jointly
+    learning to align and translate. ICLR, 2015.
+
+    \bibitem{memory network}J. Weston, S. Chopra, and A. Bordes. Memory networks. In International Conference on
+    Learning Representations (ICLR), 2015.
+
+    \bibitem{Highway Network}Srivastava, R.K., Greff, K., Schmidhuber, J.: Highway networks.
+    arXiv preprint
+    arXiv:1505.00387 (2015)
+
+    \bibitem{MemN2N}Sainbayar Sukhbaatar, Jason Weston, Rob Fergus, et al. End-to-end memory networks. In
+    Advances in neural information processing systems, pages 2440–2448, 2015.
+
+    \bibitem{Teaching Machines to Read and Comprehend}Hermann, K.M., Kocisky, T., Grefenstette, E., Espeholt, L., Kay, W., Suleyman, M., Blun-
+    som, P.: Teaching machines to read and comprehend. In: Advances in Neural Information
+    Processing Systems, pp. 1693–1701 (2015)
+
+    \bibitem{AR}Danqi Chen, Jason Bolton, and Christopher D Manning. A thorough examination of the
+    cnn/daily mail reading comprehension task. In Proceedings of the 54th Annual Meeting of
+    the Association for Computational Linguistics (Volume 1: Long Papers), volume 1, pages
+    2358–2367, 2016.
+
+    \bibitem{ASR}Rudolf Kadlec, Martin Schmid, Ondřej Bajgar, and Jan Kleindienst. Text understanding
+    with the attention sum reader network. In Proceedings of the 54th Annual Meeting of the
+    Association for Computational Linguistics (Volume 1: Long Papers), volume 1, pages 908–
+    918, 2016.
+
+    \bibitem{IAReader}Alessandro Sordoni, Philip Bachman, Adam Trischler, and Yoshua Bengio. Iterative alternat-
+    ing neural attention for machine reading. arXiv preprint arXiv:1606.02245, 2016.
+
+    \bibitem{SQuAD1}Pranav Rajpurkar, Jian Zhang, Konstantin Lopyrev, and Percy Liang. SQuAD: 100,000+ questions
+    for machine comprehension of text. In Proceedings of the Conference on Empirical Methods in
+    Natural Language Processing, 2016.
+
+    \bibitem{sentinel vector}Merity, S., Xiong, C., Bradbury, J., Socher, R.: Pointer sentinel mixture models. arXiv
+    preprint arXiv:1609.07843 (2016)
+
+    \bibitem{Machine comprehension using match-lstm and answer pointer}Wang, S., Jiang, J.: Machine comprehension using match-lstm and answer pointer. arXiv
+    preprint arXiv:1608.07905 (2016)
+
+    \bibitem{Dynamic coattention networks for question answering}Xiong, C., Zhong, V., Socher, R.: Dynamic coattention networks for question answering.
+    arXiv preprint arXiv:1611.01604 (2016)
+
+    \bibitem{Bidirectional attention flow for machine comprehension}Seo, M., Kembhavi, A., Farhadi, A., Hajishirzi, H.: Bidirectional attention flow for machine
+    comprehension. arXiv preprint arXiv:1611.01603 (2016)
+    
+    \bibitem{RNet}Wang, W., Yang, N., Wei, F., Chang, B., Zhou, M.: Gated self-matching networks for
+    reading comprehension and question answering. In: Proceedings of the 55th Annual Meet-
+    ing of the Association for Computational Linguistics (Volume 1: Long Papers), vol. 1, pp.
+    189–198 (2017)
+
+    \bibitem{Reasonet}Shen, Y., Huang, P.S., Gao, J., Chen, W.: Reasonet: Learning to stop reading in machine
+    comprehension. In: Proceedings of the 23rd ACM SIGKDD International Conference on
+    Knowledge Discovery and Data Mining, pp. 1047–1055. ACM (2017)
+
+    \bibitem{GAReader}Bhuwan Dhingra, Hanxiao Liu, Zhilin Yang, William Cohen, and Ruslan Salakhutdinov.
+    Gated-attention readers for text comprehension. In Proceedings of the 55th Annual Meeting
+    of the Association for Computational Linguistics (Volume 1: Long Papers), pages 1832–1846,
+    2017.
+
+    \bibitem{MatchLSTM}Shuohang Wang and Jing Jiang. Learning natural language inference with LSTM. In Proceedings of
+    the Conference on the North American Chapter of the Association for Computational Linguistics,
+    2016.
+    \bibitem{Pointer Networks}Oriol Vinyals, Meire Fortunato, and Navdeep Jaitly. Pointer networks. In Proceedings of the Con-
+    ference on Advances in Neural Information Processing Systems, 2015.
+    \bibitem{RACE}Guokun Lai, Qizhe Xie, Hanxiao Liu, Yiming Yang, and Eduard Hovy. Race: Large-scale
+    reading comprehension dataset from examinations. In Proceedings of the 2017 Conference
+    on Empirical Methods in Natural Language Processing, pages 785–794, 2017.
+    \bibitem{SQuAD2}Rajpurkar, P., Jia, R., Liang, P.: Know what you don’t know: Unanswerable questions for
+    squad. arXiv preprint arXiv:1806.03822 (2018)
+    \bibitem{CBT}Hill, F., Bordes, A., Chopra, S., Weston, J.: The goldilocks principle: Reading children’s
+    books with explicit memory representations. arXiv preprint arXiv:1511.02301 (2015)
+    \bibitem{QANet}Yu, A.W., Dohan, D., Luong, M.T., Zhao, R., Chen, K., Norouzi, M., Le, Q.V.: Qanet:
+    Combining local convolution with global self-attention for reading comprehension. arXiv
+    preprint arXiv:1804.09541 (2018)
+    \bibitem{CoQA}Siva Reddy, Danqi Chen, and Christopher D Manning. Coqa: A conversational question answering
+    challenge. arXiv preprint arXiv:1808.07042, 2018.
+    \bibitem{MS marco}Nguyen, T., Rosenberg, M., Song, X., Gao, J., Tiwary, S., Majumder, R., Deng, L.:
+    Ms marco: A human generated machine reading comprehension dataset. arXiv preprint
+    arXiv:1611.09268 (2016)
+    \bibitem{NarrativeQA}Kočiskỳ, T., Schwarz, J., Blunsom, P., Dyer, C., Hermann, K.M., Melis, G., Grefenstette,
+    E.: The narrativeqa reading comprehension challenge. Transactions of the Association of
+    Computational Linguistics 6, 317–328 (2018)
+    \bibitem{Transformer}Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez,
+    Lukasz Kaiser, and Illia Polosukhin. Attention is all you need. In Neural Information Processing
+    Systems, 2017b.
+
+    \bibitem{Deepwise Separable convolution}François Chollet. Xception: Deep learning with depthwise separable convolutions.
+    abs/1610.02357, 2016.
+    \bibitem{ELMo}Peters, M.E., Neumann, M., Iyyer, M., Gardner, M., Clark, C., Lee, K., Zettlemoyer, L.:
+    Deep contextualized word representations. arXiv preprint arXiv:1802.05365 (2018)
+    \bibitem{GPT}Radford, A., Narasimhan, K., Salimans, T., Sutskever, I.: Improving language understand-
+    ing with unsupervised learning. Tech. rep., Technical report, OpenAI (2018)
+    \bibitem{BERT}Devlin, J., Chang, M.W., Lee, K., Toutanova, K.: Bert: Pre-training of deep bidirectional
+    transformers for language understanding. arXiv preprint arXiv:1810.04805 (2018)
+    \bibitem{ALBERT}Zhenzhong Lan, Mingda Chen, Sebastian Goodman,
+    Kevin Gimpel, Piyush Sharma, and Radu Soricut.
+    2020. ALBERT: A lite BERT for self-supervised
+    learning of language representations. In ICLR.
+    \bibitem{VQACo}Jiasen Lu, Jianwei Yang, Dhruv Batra, and Devi Parikh. Hierarchical question-image co-attention
+    for visual question answering. arXiv preprint arXiv:1606.00061, 2016.
+    \bibitem{UNILM}Li Dong, Nan Yang, Wenhui Wang, Furu Wei, Xiaodong Liu,
+    Yu Wang, Jianfeng Gao, Ming Zhou, and Hsiao-Wuen Hon.
+    Unified language model pre-training for natural language un-
+    derstanding and generation. In NeurIPS, pages 13042–13054,
+    2019.
+    \bibitem{Co-matching}Shuohang Wang, Mo Yu, Jing Jiang, and Shiyu Chang.
+    2018. A Co-Matching Model for Multi-choice
+    Reading Comprehension. In Proceedings of the 56th
+    Annual Meeting of the Association for Computa-
+    tional Linguistics (Volume 2: Short Papers), pages
+    746–751. Association for Computational Linguis-
+    tics.
+    \bibitem{PGNet}Abigail See, Peter J. Liu, and Christopher D.
+    Manning. 2017. Get to the point: Summa-
+    rization with pointer-generator networks. In
+    Annual Meeting of the Association for Compu-
+    tational Linguistics (ACL), pages 1073–1083.
+    Vancouver, Canada.
+    \bibitem{SNet}Chuanqi Tan, Furu Wei, Nan Yang, Bowen Du, Weifeng Lv, and Ming Zhou. S-net: From
+    answer extraction to answer synthesis for machine reading comprehension. In Thirty-Second
+    AAAI Conference on Artificial Intelligence, 2018.
+    \bibitem{DrQA}Danqi Chen, Adam Fisch, Jason Weston, and
+    Antoine Bordes. 2017. Reading Wikipedia
+    to answer open-domain questions. In Asso-
+    ciation for Computational Linguistics (ACL),
+    pages 1870–1879. Vancouver, Canada.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{thebibliography}
+
+
+
+
+
+
+
+
+\end{document}

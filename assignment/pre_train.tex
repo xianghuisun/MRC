@@ -1,0 +1,257 @@
+\subsection{基于预训练模型的模型}
+% 使用预训练模型可以解决缺少标注数据的问题，因为预训练的模型已经在大量的无标签数据集上学习到了一些重要的特征等，因此应用到
+% 具体任务时不需要大量的标注数据，也不需要长时间的训练即可达到很好的效果。
+% 语言模型是NLP领域一个非常基础但同时也是非常
+% 重要的一项任务，语言模型的目标就是根据一个单词的上下文预测出这个单词。
+% 按照预测方式的不同可分为自回归语言模型和自编码语言模型，主要区别在于训练方式上是基于自回归形式还是自编码形式。
+预训练模型近年来NLP领域获得了极大的关注度，基于预训练模型的方法在NLP几乎所有的任务上都要优于之前的模型。
+预训练方式源自于迁移学习的概念: 首先在其它相关任务上预训练模型，使得模型已经学习到一些知识，然后在目标任务上做进一步优化，
+实现模型所学知识的迁移。
+对于NLP领域来讲，预训练过程就是在大量的文本数据上学习到通用的语言表示。在应用到下游任务时，预训练所学习到的知识提供了一个很好的
+初始化点，从而加快模型的收敛并且提高模型的性能。此外预训练也对模型起到正则化的作用，使得模型避免在数据不充分的数据集上过拟合。
+目前最流行的几个预训练模型如ELMo\cite{ELMo}，
+GPT\cite{GPT}，BERT\cite{BERT}以及基于BERT改进的预训练模型UNILM\upcite{UNILM}，\upcite{ALBERT}等
+等全都是基于语言模型做预训练，因此也叫预训练语言模型。
+预训练的模型根据迁移方式的不同可以分为两种方式基于特征的方式（Feature-based）
+和基于微调的方式（Fine-tuning）。
+基于特征的方式是指对于预训练好的模型，应用到具体任务时固定模型的参数，将具体任务的数据通过预训练的模型得到数据的表示
+特征然后输入到根据具体任务设计的具体模型中。基于微调的方式是广泛采用的一种预训练模型的使用方式如计算机视觉领域的
+经典模型VGG\upcite{VGG},ResNet\upcite{ResNet}，具体的做法是在预训练模型的基础上加上少量的网络层，然后利用具体任务的
+标注数据训练整个网络模型。本节将主要概述NLP领域一些流行的预训练语言模型以及它们在MRC任务上的应用和效果对比。
+
+\subsubsection{预训练模型}
+ELMo\upcite{ELMo}是较早提出的一种预训练语言模型。
+传统的词嵌入模型如word2vec\upcite{word2vec},GloVe\upcite{GloVe}属于
+静态的词向量，训练好模型后一个单词的表示
+向量就是固定的，没有考虑上下文的信息，因此无法解决多义词问题。
+ELMo提出一个三层网络的模型
+，第一层就是词嵌入层用来提取单词特征，随后是两层BiLSTM网络分别提取
+单词的词性特征和语义特征。前向LSTM的目标是根据前$k-1$个词预测第$k$个词，从而计算出
+一个句子的概率，如公式（１）。反向LSTM的目标是根据最后的单词直到第$k+1$个单词预测第$k$个单词，
+具体如公式（２）。
+\begin{gather}
+    p(t_1,t_2,\cdots,t_N)=\prod_{k=1}^{N}p(t_k|t_1,t_2,\cdots,t_{k-1})\\
+    p(t_1,t_2,\cdots,t_N)=\prod_{k=1}^{N}p(t_k|t_{k+1},t_{k+2},\cdots,t_{N})
+\end{gather}
+最后的目标函数是最大化联合的前向和后向最大似然：
+\begin{equation}
+    \begin{split}
+    L(\Theta)&=\sum_{k=1}^{N}(\log p(t_1,\cdots,t_{k-1};\Theta)) \\
+        &+\log p(t_{k+1},\cdots,t_N;\Theta)
+    \end{split}
+\end{equation}
+在做阅读理解任务时，将文章和问题输入到模型中，每一层都会得到句子的语义表示，
+然后将每一层的特征加权求和作为ELMo的输出，此时得到的每一个单词的
+向量表示都是考虑了上下文的，将其作为下游模型嵌入层的输入。
+利用ELMo+BiDAF\upcite{Bidirectional attention flow for machine comprehension}
+结构超过之前单模型8.3个百分点。可以看出ELMo属于自回归语言模型，模型的迁移方式是基于特征的方式。
+\begin{table*}[!ht]
+    \caption{预训练语言模型对比}
+    \centering
+    \vspace{10pt}
+    %表格超出页边距用resizebox
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{c c c c}
+        \toprule
+        模型&任务&模型结构&介绍 \\
+        \midrule
+        ELMo&单向LM&LSTM&\tabincell{c}{拼接两个单向语言模型的语义信息，\\ 基于特征形式迁移} \\
+        \midrule
+        GPT&单向LM&Transformer&首次采用预训练＋微调形式 \\
+        \midrule
+        BERT&双向LM＋NSP&Transformer&利用掩码语言模型和预测下一个句子共同作为训练任务 \\
+        \midrule
+        UNILM&单向LM+双向LM+Seq2SeqLM&Transformer&\tabincell{c}{同时训练三种语言模型，\\ 采用掩码机制解决不同语言模型的约束问题} \\
+        \midrule
+        ALBERT&双向LM+SOP&Transformer&\tabincell{c}{对比BERT采用矩阵分解和共享参数减少模型的参数量，\\ 同时用句子顺序预测取代下一个句子预测} \\
+        \bottomrule
+    \end{tabular}
+    }
+\end{table*}
+
+
+
+%\subsubsection{GPT}
+GPT\upcite{GPT}首先提出两阶段的训练方式，先利用大规模无监督语料库训练语言模型，
+然后在下游任务的少量监督数据集上微调模型，因此
+GPT也是一种半监督学习方式。
+由于Transformer\upcite{Transformer}在处理长期依赖性方面比LSTM的性能更强同时并行计算
+的快于LSTM，因此GPT包括后来的大规模预训练模型都采用Transformer作为特征提取器。
+由于采用单向语言模型作为训练的任务，因此没有用完整的Transformer结构而且利用掩码机制约束
+模型。在预训练阶段的目标函数就是标准的单向语言模型的目标函数：
+\begin{equation}
+    L(\Theta)=\sum_{k=1}^{N}(\log p(t_1,\cdots,t_{k-1};\Theta))
+\end{equation}
+GPT与ELMo的共同点是它们都属于自回归语言模型，
+而最大的不同之处在于迁移的设计上并不是像ELMo那种基于特征方式的迁移。GPT有统一的输入数据表示形式，
+而且在输入层并不需要继续设计复杂的网络模型而仅仅只需要简单的结构，在训练时整个网络模型的参数共同训练。
+这种基于微调的迁移方式被后续的其它预训练模型广泛采用。
+利用GPT在RACE\upcite{RACE}数据集上微调后达到的效果比之前最好的模型提高了5.7个百分点。
+GPT是NLP领域首先提出的一种基于fine-tune的通用式网络结构，不仅仅在MRC领域，在很多其它的NLP领域都取得了很大的
+进步。
+%\end{multicols}
+% \begin{center}
+%     \textbf{表２　预训练语言模型对比}\\
+%     \vspace{10pt}
+%     \begin{tabular}{c c c c}
+%         \toprule
+%         模型&任务&模型结构&介绍 \\
+%         \midrule
+%         ELMo&单向LM&LSTM&拼接两个单向语言模型的语义信息，
+                
+%         基于特征形式迁移 \\
+%         \midrule
+%         GPT&单向LM&Transformer&首次采用预训练＋微调形式
+        
+%         的两阶段任务，特征提取器采用transformer \\
+%         \midrule
+%         BERT&双向LM＋NSP&Transformer&利用掩码语言模型和预测下一个句子共同作为训练任务 \\
+%         \midrule
+%         UNILM&单向LM+双向LM+Seq2SeqLM&Transformer&同时训练三种语言模型，采用掩码机制解决不同语言模型的约束问题 \\
+%         \midrule
+%         ALBERT&双向LM+SOP&Transformer&对比BERT采用矩阵分解和共享参数减少模型的参数量同时用句子顺序预测取代下一个句子预测 \\
+%         \bottomrule
+%     \end{tabular}
+% \end{center}
+
+
+%\subsubsection{BERT}
+BERT\upcite{BERT}与ELMo和GPT最本质的不同在于预训练方式上采用的自编码语言模型。
+自回归语言模型的缺点就是由于自回归的性质使得它不能同时利用一个单词的
+上下文信息预测这个单词，ELMo虽然利用双向LSTM来预测单词但是这也只是两个单向的语言
+模型的拼接并不能当做双向语言模型。
+BERT在整个预训练的流程上采用GPT的方式，即预训练然后微调。
+但是BERT采用降噪自编码（DAE）的方式训练，具体的就是在输入数据中加入噪声，也就是随机掩盖
+掉一些单词，让模型根据掩盖掉单词的上下文预测这个单词，这种训练方式也叫掩码语言模型（MLM)。
+对比ELMo和GPT的目标函数，BERT的掩码语言模型的目标函数为：
+\begin{equation}
+    \begin{split}
+        L(\Theta)=\sum_{i=1}^{N}\log P(t_k|t_1,t_2,\cdots,t_{k-1},t_{k+1},\cdots,t_{N})
+    \end{split}
+\end{equation}
+此外利用下一个句子预测（NSP）任务使得模型
+在诸如文本蕴含、问答这类需要判断两个句子关系的下游任务表现更好。
+BERT的预训练过程实质上是
+一个多任务学习的过程，通过同时训练掩码语言模型和下一个句子预测两个
+提高了预训练模型的语义表达能力。
+BERT在SQuADv1.1\upcite{SQuAD1}数据集上的效果超过了人类的水平，在其它的NLP任务上也都有提升。
+%\subsubsection{UNILM}
+
+UNILM\upcite{UNILM}扩展了BERT预训练的任务，由于双向语言模型的性质使得BERT在生成任务上效果不好，
+因此UNILM利用掩码机制同时训练单向语
+言模型（包括从左到右和从右到左）、双向语言模型以及Seq2Seq语言模型，使用掩码机制来解决不同的语言模型
+约束问题。虽然是三个不同的语言模型作为训练任务但是共享同一个网络结构，也就是利用三个任务来联合的优化
+模型的参数。这种多任务学习的方式缓解了模型在某一个单一任务上容易出现过拟合的问题，
+使得预训练后的模型不仅在原有的自然语言理解任务上效果进一步提升，
+同时在自然语言生成任务上也达到了很好的效果。
+在微调阶段，对于自然语言理解任务（如文本分类、抽取式问答等）同BERT的微调方式一样，对于自然语言
+生成任务（如自动化摘要、生成式问答等）采用与预训练阶段Seq2Seq语言模型类似的方式在目标序列中
+随机的掩盖掉一些单词从而让模型根据源序列生成目标序列的单词达到生成任务的目的。
+UNILM不仅在抽取式QA数据集（如SQuAD）上超过BERT，在生成式QA数据集（如CoQA）上的表现远超过最初的基准模型。
+% \begin{multicols}{2}
+
+%     \textbf{预训练模型效果对比}
+%     \\
+%     \centering
+%     \vspace{10pt}
+%     %表格超出页边距用resizebox
+%     \begin{tabular}{l c c c c}
+%         \toprule
+%         &SQuAD 1.1&SQuAD 2.0&RACE&CoQA \\
+%         \midrule
+%         ELMo+BiDAF&85.8&-&-&- \\
+%         \bottomrule
+%     \end{tabular}
+% \end{multicols}
+
+% %\subsubsection{ALBERT}
+% \begin{center}
+% \resizebox{\textwidth}{15mm}{
+%     \begin{tabular}{l c c c c}
+%     \toprule
+%     &SQuAD 1.1&SQuAD 2.0&RACE&CoQA \\
+%     \midrule
+%     ELMo+BiDAF&85.8&-&-&- \\
+%     \bottomrule
+% \end{tabular}
+% }
+% \end{center}
+
+ALBERT\upcite{ALBERT}通过在BERT的基础上进行了如下几点改进:
+\begin{enumerate}
+    \item BERT的词嵌入矩阵的大小是$V\times H$，其中$V$代表词汇表的词汇数量，
+    主要的缺陷是由于输入的词是以独热形式编码的，因此词嵌入矩阵会有大量的参数在模型训练时不会被更新，此外词嵌入矩阵中的参数仅仅表达了单词
+    自身词向量的特征，没有上下文语义，因此通过矩阵分解的方式将$V\times H$分解为$V\times E+E\times H$，其中$E<<H$，
+    这样便减少了模型在词嵌入层
+    的参数。
+    \item 虽然BERT利用12层的transformer结构，但是由实验观察得到，这12层的所学习到的参数内容很相似，因此ALBERT采用参数共享方式，
+    使得12层的transformer共享同一组参数，这极大地减少了模型参数的数量。
+    \item BERT的NSP任务包含了两个子任务，来源于同一篇文章的两个连续的句子判别为正例，来源于不同文章的句子判别为负例，
+    这使得模型不能集中于判断两个句子之间的顺序反而更加关注句子所表达的主题是否一致。因此ALBERT中用
+    SOP(sentence-order prediction)取代NSP任务，SOP是指句子顺序预测，两个句子都是
+    来源于同一篇文章的连续的句子，调换顺序后便是负例，这使得模型集中于预测句子之间的顺序，
+    实验表明SOP任务使得模型的效果提升一个百分点。
+\end{enumerate}
+ALBERT的改进机制使得模型的预训练后的效果更好，在RACE\upcite{RACE}，SQuAD 2.0\upcite{SQuAD2}等
+机器阅读理解数据集上的准确率超过BERT以及其它的预训练模型。
+
+% \subsection{小结}
+% 传统的静态的预训练词向量虽然可以给模型性能带来一定程度的提升，但是这种提升非常有限。主要原因是
+% 其静态的性质无法解决多义词的
+% 问题而且所学习到的语义信息也是浅层的，仍然需要模型在标注数据集上从头学习。
+% ELMo的出现使得静态词向量的问题得以解决，并且这种利用语言模型作为训练任务的方式也被后续的其它
+% 预训练模型采用。GPT首次提出预训练过程结合微调过程的这种两阶段方式，使得不需要设计复杂的网络模型即可在
+% 多个NLP任务上达到显著地提升。BERT是NLP预训练史上重要的里程碑模型，后续的其它更加优秀的
+% 预训练模型如ALBERT、UNILM也都是在BERT的基础上进行进一步优化如：引入生成任务、改进训练方式等。
+
+
+
+
+
+% \begin{center}
+%     \begin{tabular}{l c}
+%         \toprule
+%         单模型&EM/F1 \\
+%         \midrule
+%         MatchLSTM with Pointer Network& 64.7/73.7 \\
+%         \midrule
+%         Dynamic Coattention Network& 66.2/75.9 \\
+%         \midrule
+%         BiDAF&68.0/77.3 \\
+%         \midrule
+%         R-Net&72.3/80.7 \\
+%         \midrule
+%         QANet(data augmentation x3)& 76.2/84.6\\
+%         \midrule
+%         ELMo+BiDAF&78.6/85.8\\
+%         \midrule
+%         $\text{BERT}_{large}$(+TriviaQA)& 85.1/91.8 \\
+%         \bottomrule
+%     \end{tabular}
+% \end{center}
+% \begin{table*}[!hp]
+%     \centering
+%     \begin{tabular}{l c c c c}
+%         \toprule
+%         &SQuAD 1.1(F1)&SQuAD 2.0(F1)&RACE(Acc)&CoQA \\
+%         \midrule
+%         ELMo+BiDAF&85.8&-&-&- \\
+%         GPT1&
+%         \bottomrule
+%     \end{tabular}
+% \end{table*}
+
+% \begin{table}
+%     \begin{tabular}{l c}
+%         \toprule
+%         训练任务&目标函数 \\
+%         \midrule
+%         前向语言模型&$P(t_1,t_2,\cdots,t_N)=\prod_{k=1}^{N} P(t_k|t_1,t_2,\cdots,t_{k-1})$ \\
+%         \midrule
+%         反向语言模型&$P(t_1,t_2,\cdots,t_N)=\prod_{k=1}^{N} P(t_k|t_{k+1},t_{k+2},\cdots,t_N)$ \\
+%         \midrule
+%         掩码语言模型&$P(t_1,t_2,\cdots,t_N)=\prod_{k=1}^{N} P(t_k|t_1,t_2,\cdots,t_{k-1},t_{k+1},t_{k+2},\cdots,t_N)$ \\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+\subsubsection{基于预训练模型的相关模型}
