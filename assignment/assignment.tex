@@ -7,6 +7,7 @@
 \usepackage{ctex}%中文
 \usepackage{graphicx}
 \usepackage{zhlipsum}
+\usepackage{multirow}
 \usepackage{cuted}
 \graphicspath{{picture/}}
 \usepackage[left=2.5cm,right=1.97cm,top=2.5cm,bottom=2.5cm]{geometry}%设置页边距
@@ -116,26 +117,62 @@ SQuAD\cite{SQuAD1}数据集上逐渐的接近人类的阅读理解水平。
 
 
 
-\input{interaction_layer.tex}
+% \input{interaction_layer.tex}
 
 
-\input{pre_train.tex}
-%\input{model.tex}
+% \input{pre_train.tex}
+% %\input{model.tex}
 
 
-\input{output_layer.tex}
+% \input{output_layer.tex}
+\subsection{小结}
+本章是论文的核心部分，首先介绍了神经机器阅读理解模型的结构，
+涉及的技术如注意力机制以及相关的模型。
+然后介绍了目前流行的几种预训练模型，最后对于不同的MRC任务分别介绍了各自输出层的
+设计。
+
+在预训练模型的基础上利用具体任务的数据微调模型，
+即只需要稍微添加简单的输出层即可达到很好的效果。但是预训练模型只是给了更好的初始化参数，
+如果想要进一步提升模型的性能还需要在其基础上根据具体的任务设计一个更好的模型。如文献\cite{DCMN}
+利用BERT作为编码器同时采用文献\cite{Co-matching}提出的co-matching方法提出了DCMN模型，在RACE\upcite{RACE}
+数据集上达到了很高的准确率。文献\cite{DCMN+}在原有的DCMN模型的基础上提出了DCMN+模型，主要是增加了
+句子选择模块和答案交互模块，再一次提升了模型的性能。文献\cite{Retrospective}提出一种
+回顾式阅读器（Retropective Reader，Retro-Reader）模型，
+以ALBERT作为编码器。Retro-Reader分为两个模块，略读模块和精读模块，主要目的就是模仿人类阅读习惯：
+略读模块先阅读文章和问题然后给出初步判断问题是否可以回答，精读模块用于鉴定可回答性，
+在可回答的前提下给出答案，在SQuAD 2.0\upcite{SQuAD2}数据集上显著优于其它模型。
+
+因此可以看到如何利用预训练模型结合具体任务改进模型的结构是至关重要的。
+%\end{multicols}
 
 
 
 
 
+\section{总结与展望}
+本文从机器阅读理解任务的定义出发，首先介绍了不同任务下的数据集以及相应的评估标准。
+然后对神经机器阅读理解模型进行了分析与研究，主要涉及模型
+的整体框架以及所用到的方法如注意力机制、推理结构等。同时也总结了
+目前一些主流的预训练模型，分析了它们之间的差异，列举了一些在预训练模型的基础上改进
+的模型。通过各个模型的实验对比结果可以看到基于预训练模型的模型性能要显著的优于传统的仅仅基于
+注意力机制的模型。
 
-\end{multicols}
+机器阅读理解赋予了计算机阅读理解文本的能力，在搜索、对话、医疗以及教育领域都有着广阔的应用空间。
+但是目前机器阅读理解仍然存在一些难题，
+1）基于注意力机制的匹配模型大多是浅层的语义匹配模型，基于多跳结构的推理模式还过于单一，而
+阅读理解是需要深层次的推理过程才能更好的理解文章，让模型具有较强的推理能力至关重要。
 
+2）目前机器阅读理解领域的数据集大多是通用领域方向的，而设计专业领域数据集也尤为重要，更重要的是
+这些适用于通用领域数据集的模型未必在专业领域有一样的性能。
 
+3）生成答案的技术还需要进一步提升，回顾目前机器阅读理解领域的数据集以及相应的模型，
+大多集中于片段选择式问答且模型准确度很高甚至超过人类水平。
+而对于自由答案型这种需要生成答案的模型效果很差，有些模型直接将生成式问题转为抽取式问题，主要原因
+在于生成答案模块对模型要求变得更高。
 
-
-
+4）目前机器阅读理解主要集中于非结构化的文本领域，而
+还有许多其它结构，不同模态的数据如表格、视频、音频、图片等，
+多模态阅读理解模型也是未来的发展方向之一。
 
 
 
@@ -225,6 +262,16 @@ SQuAD\cite{SQuAD1}数据集上逐渐的接近人类的阅读理解水平。
     of the Association for Computational Linguistics (Volume 1: Long Papers), pages 1832–1846,
     2017.
 
+    \bibitem{DrQA}Danqi Chen, Adam Fisch, Jason Weston, and
+    Antoine Bordes. 2017. Reading Wikipedia
+    to answer open-domain questions. In Asso-
+    ciation for Computational Linguistics (ACL),
+    pages 1870–1879. Vancouver, Canada.
+
+    \bibitem{FusionNet}Hsin-Yuan Huang, Chenguang Zhu, Yelong Shen, Weizhu Chen.
+    FusionNet: Fusing via Fully-Aware Attention with Application to Machine Comprehension. In Proceedings of the 
+    Sixth International Conference on Learning Representations (ICLR), 2018.
+
     \bibitem{MatchLSTM}Shuohang Wang and Jing Jiang. Learning natural language inference with LSTM. In Proceedings of
     the Conference on the North American Chapter of the Association for Computational Linguistics,
     2016.
@@ -260,6 +307,15 @@ SQuAD\cite{SQuAD1}数据集上逐渐的接近人类的阅读理解水平。
     ing with unsupervised learning. Tech. rep., Technical report, OpenAI (2018)
     \bibitem{BERT}Devlin, J., Chang, M.W., Lee, K., Toutanova, K.: Bert: Pre-training of deep bidirectional
     transformers for language understanding. arXiv preprint arXiv:1810.04805 (2018)
+
+    \bibitem{XLNet}Zhilin Yang, Zihang Dai, Yiming Yang, Jaime Carbonell, Ruslan Salakhutdinov, and Quoc V
+    Le. XLNet: Generalized autoregressive pretraining for language understanding. arXiv preprint
+    arXiv:1906.08237, 2019.
+
+    \bibitem{RoBERTa}Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike
+    Lewis, Luke Zettlemoyer, and Veselin Stoyanov. RoBERTa: A robustly optimized BERT pre-
+    training approach. arXiv preprint arXiv:1907.11692, 2019.
+
     \bibitem{ALBERT}Zhenzhong Lan, Mingda Chen, Sebastian Goodman,
     Kevin Gimpel, Piyush Sharma, and Radu Soricut.
     2020. ALBERT: A lite BERT for self-supervised
@@ -287,22 +343,6 @@ SQuAD\cite{SQuAD1}数据集上逐渐的接近人类的阅读理解水平。
     \bibitem{SNet}Chuanqi Tan, Furu Wei, Nan Yang, Bowen Du, Weifeng Lv, and Ming Zhou. S-net: From
     answer extraction to answer synthesis for machine reading comprehension. In Thirty-Second
     AAAI Conference on Artificial Intelligence, 2018.
-    \bibitem{DrQA}Danqi Chen, Adam Fisch, Jason Weston, and
-    Antoine Bordes. 2017. Reading Wikipedia
-    to answer open-domain questions. In Asso-
-    ciation for Computational Linguistics (ACL),
-    pages 1870–1879. Vancouver, Canada.
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -310,6 +350,7 @@ SQuAD\cite{SQuAD1}数据集上逐渐的接近人类的阅读理解水平。
 
 
 \end{thebibliography}
+\end{multicols}
 
 
 
