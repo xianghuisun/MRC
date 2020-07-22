@@ -1,14 +1,14 @@
-\subsection{答案预测层的设计}
+\subsection{答案预测层的设计}\label{output}
 如前所述，答案预测层的设计要依据答案的形式而设计，下面介绍
 各个模型在四类不同的MRC任务上的输出层设计。
 
-1）填空型：这类任务答案的形式是预测问题中缺失的单词，而且缺失的答案来源于文章中。文献\cite{Teaching Machines to Read and Comprehend}
+1）填空型：这类任务答案的形式是预测问题中缺失的单词，而且缺失的答案来源于文章中。文献\cite{Hermann}
 最早提出将问题的语义向量与关注了问题的文章的语义向量拼接成一个向量然后映射到整个词典中预测那个缺失的单词。
 这种方法存在的一个问题就是不能够确保预测的单词一定是文章中的词汇，因为它是将最后的输出向量映射到整个词典中，
-这就使得模型的预测准确率受到影响。指针网络（Pointer networks\upcite{Pointer Networks}）模型由seq2seq模型演变而来，主要就是
+这就使得模型的预测准确率受到影响。指针网络（Pointer networks\upcite{Ptr}）模型由seq2seq模型演变而来，主要就是
 为了解决输出源自于输入的问题，实现方式是利用计算的注意力的权重分布直接输出预测结果，而这种机制正适合
 填空型任务以及片段选择型任务。
-文献\cite{as}提出AS Reader模型正是受到指针网络的启发，对于计算得到的注意力权重分布，将其中相同单词的注意力
+文献\cite{ASR}提出AS Reader模型正是受到指针网络的启发，对于计算得到的注意力权重分布，将其中相同单词的注意力
 权值相加，最后输出具有最大权值的单词最为答案。
 填空型任务模型的损失函数可以写
 为$L(\theta)=-\displaystyle\frac{1}{N}\sum_{i=1}^{N}\log P_{y_i}$。
@@ -36,34 +36,76 @@ $L(\theta)=-\displaystyle\frac{1}{N}\sum_{i=1}^{N}\sum_{j=1}^{m}\log P_{y_{j}^i}
 因此可以利用指针网络仅仅预测答案的起始位置和终止位置。所预测答案的概率
 是预测这两个位置概率的乘积，这种方式相比于
 第一种更加的简单而且测试结果表明更加高效。
+%\begin{table*}[ht]
+%    \centering
+%    \caption{模型对比（acc代表准确率）}
+%    \vspace{10pt}
+%    \begin{tabular}{l c c c}
+%        \toprule
+%        \multirow{2}{*}{模型}&SQuAD 1.1\upcite{SQuAD1}& SQuAD 2.0\upcite{SQuAD2} & RACE\upcite{RACE}\\
+%        \cmidrule(lr){2-2} \cmidrule(lr){3-3} \cmidrule(lr){4-4}
+%        &EM/F1&EM/F1& acc \\
+%        \midrule
+%        Match-LSTM\upcite{MatchLSTM}& 64.7/73.7 & -&-\\
+%        \midrule
+%        DCN\upcite{Dynamic coattention networks for question answering}& 66.2/75.9 &-&-\\
+%        \midrule
+%        ReasoNet\upcite{Reasonet}&70.6/79.4 &-&-\\
+%        \midrule
+%        BiDAF\upcite{Bidirectional attention flow for machine comprehension}&68.0/77.3 &-&-\\
+%        \midrule
+%        R-Net\upcite{RNet}&72.3/80.7 &-&-\\
+%        \midrule
+%        QANet(data augmentation x3)\upcite{QANet}& 76.2/84.6&-&-\\
+%        \midrule
+%        ELMo+BiDAF\upcite{ELMo}&78.6/85.8&-&-\\
+%        \midrule
+%        GPT-v1\upcite{GPT}&-&-&59.0\\
+%        \midrule
+%        $\text{BERT}_{large}$(+TriviaQA)\upcite{BERT}& 85.1/91.8 &80.0/83.1&72.0\\
+%        \midrule
+%        XLNet\upcite{XLNet}&-&86.4/89.1 &81.8\\
+%        \midrule
+%        DCMN+\upcite{DCMN+}&-&-&82.8\\
+%        \midrule
+%        RoBERTa\upcite{RoBERTa}&-&86.8/89.8 &83.2\\
+%        \midrule
+%        ALBERT\upcite{ALBERT}&-&88.1/90.9 &86.5\\
+%        \midrule
+%        Retro-Reader over ALBERT\upcite{Retrospective}&-&88.1/91.4&-\\
+%        \bottomrule
+%    \end{tabular}
+%\end{table*}
 
-\noindent 边界式模型的这种设计思想也被后来很多MRC模型采纳。如RNet\upcite{RNet}采用几乎一样的边界式
+边界式模型的这种设计思想也被后来很多MRC模型采纳。如R-Net\upcite{RNet}采用几乎一样的边界式
 模型，只不过解码端的初始状态
 采用的是对问题的语义向量加权求和。尽管边界式模型简单有效，但是在文章中可能有些文本片段与标准答案相似，比如初始位置一样，
-那么边界式模型有可能陷入极值的情况从而提取错误的文本片段。为了处理这个问题，DCN\upcite{Dynamic coattention networks for question answering}
+那么边界式模型有可能陷入局部极值的情况从而提取错误的文本片段。为了处理这个问题，DCN\upcite{DCN}
 模型提出一种动态迭代的指针网络作为解码端，利用上一次预测的答案的起始位置和终止位置以及解码端当前的状态来重新评估
 下一次预测答案的起始位置和终止位置。多次迭代后选取所有迭代次数中概率最大的情形作为预测答案。
 片段选择任务模型的损失函数可以写为
 $L(\theta)=-\displaystyle\frac{1}{N}\sum_{i=1}^{N}\log P_{y_i^s}^S+\log P_{y_i^e}^E$。
 其中$\theta$为模型参数，$N$代表样本数目，$y_i^s$表示第$i$个样本中标准答案的起始位置在文章中的位置，
 $y_i^e$表示第$i$个样本中标准答案的终止位置在文章中的位置。
-如果考虑到不可回答的问题，如数据集SQuAD 2.0\upcite{SQuAD2}，还需要额外在输出层加上一个输出维度是1的全连接层。
+如果考虑到不可回答的问题，最简单的方式是额外在输出层加上一个输出维度是1的全连接层。
 此时的损失函数可以写为
-$L(\theta)=-\displaystyle\frac{1}{N}\sum_{i=1}^{N}\log P_{y_i^s}^S+\log P_{y_i^e}^E+\log P_{y_i^u}^U$。
-其中$y_i^u$表示第$i$个样本中的问题是不可回答的问题
+$L(\theta)=-\displaystyle\frac{1}{N}\sum_{i=1}^{N}(\log P_{y_i^s}^S+\log P_{y_i^e}^E)+\log P_{y_i^u}^U$。
+其中$y_i^u$表示第$i$个样本中的问题是不可回答的问题。关于带有不可回答问题的阅读理解任务细节见\ref{unknown}节。
 
-4）自由答案型：这类任务的答案形式已经不再是原文中某段文本，而是需要根据文章和问题生成符号语法规范的答案语句。
-这类任务对答案生成模块的能力要求较高。
-文献\cite{CoQA}采用三种模型在在CoQA数据集上进行实验。
-第一种是传统的seq2seq模型，第二种是Pointer-Generator Network\cite{PGNet}，简称PGNet。
-这个模型最早提出来用在文本摘要领域，模型结合了seq2seq的生成机制以及
-指针网络的拷贝机制，使得模型既能生成单词又能在原文中拷贝单词，实验结果表明该模型的效果优于传统的seq2seq模型。
-第三种是DrQA+PGNet模型，其中DrQA\cite{DrQA}是类似于上述
-BiDAF\upcite{Bidirectional attention flow for machine comprehension}，
-RNet\upcite{RNet}等模型的片段抽取模块。整个模型的思想是
-先利用片段提取模块从文章中提取中与问题最相关的一段文本，然后利用答案生成模块在这个被抽取出来的文本上
-生成答案。这种（提取模块+生成模块）模型在其它的生成模型中如SNet\upcite{SNet}等广泛使用。
-实验结果也表明这种模型的效果是最好的。
+4）自由答案型：这类任务的答案形式已经不再是原文中某段文本，而是需要根据文章和问题生成符合语法规范的文本。
+这类任务对答案生成模块的能力要求较高。处理生成任务典型的架构是seq2seq模型，文献\cite{PGNet}提出
+一种指针生成网络模型（Pointer-Generator Network，PGNet）。这个模型最早提出来用在文本摘要领域，模型结合了seq2seq的
+生成机制以及指针网络的拷贝机制，使得模型既能从词典中生成单词又能在原文中拷贝单词，实验结果表明该模型的效果优于传统的seq2seq模型。
+% 文献\cite{CoQA}采用三种模型在在CoQA数据集上进行实验。
+% 第一种是传统的seq2seq模型，第二种是Pointer-Generator Network\cite{PGNet}，简称PGNet。
+% 这个模型最早提出来用在文本摘要领域，模型结合了seq2seq的生成机制以及
+% 指针网络的拷贝机制，使得模型既能生成单词又能在原文中拷贝单词，实验结果表明该模型的效果优于传统的seq2seq模型。
+% 第三种是DrQA+PGNet模型，其中DrQA\cite{DrQA}是类似于上述
+% BiDAF\upcite{Bidirectional attention flow for machine comprehension}，
+% RNet\upcite{RNet}等模型的片段抽取模块。整个模型的思想是
+% 先利用片段提取模块从文章中提取中与问题最相关的一段文本，然后利用答案生成模块在这个被抽取出来的文本上
+% 生成答案。这种（提取模块+生成模块）模型在其它的生成模型中如SNet\upcite{SNet}等广泛使用。
+% 实验结果也表明这种模型的效果是最好的。
 
 
 

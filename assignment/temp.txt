@@ -1,0 +1,38 @@
+\begin{table}
+    %\text{基于注意力机制的模型对比}
+    \centering
+    \caption{基于注意力机制的模型对比}
+    \vspace{10pt}
+    %\resizebox{\linewidth}{!}{
+        \begin{tabular}{c c c c}
+            \toprule
+            模型&注意力方向&注意力维度&推理模式 \\
+            \midrule
+            Attentive Reader\upcite{Teaching Machines to Read and Comprehend}&Q2C&one-dim&one-hop \\
+            \midrule
+            Impatient Reader\upcite{Teaching Machines to Read and Comprehend}&Q2C&two-dim&multi-hop \\
+            \midrule
+            Standford Reader\upcite{AR}&Q2C&one-dim&one-hop \\
+            \midrule
+            AS Reader\upcite{ASR}&Q2C&one-dim&one-hop \\
+            \midrule
+            IA Reader\upcite{IAReader}&Q2C&one-dim&multi-hop \\
+            \midrule
+            GA Reader\upcite{GAReader}&C2Q&two-dim&multi-hop \\
+            \midrule
+            Match-LSTM\upcite{MatchLSTM}&C2Q&two-dim&multi-hop \\
+            \midrule
+            DCN\upcite{Dynamic coattention networks for question answering}&\tabincell{c}{C2Q \\
+                                                                                  Q2C}&two-dim&one-hop \\           
+            \midrule
+            BiDAF\upcite{Bidirectional attention flow for machine comprehension}&\tabincell{c}{C2Q\\ Q2C}&two-dim&one-hop \\
+            \midrule
+            ReasoNet\upcite{Reasonet}&\tabincell{c}{C2Q\\ Q2C}&two-dim&multi-hop\\
+            \midrule
+            R-Net\upcite{RNet}&C2Q&two-dim&multi-hop \\
+            \midrule
+            QANet\upcite{QANet}&\tabincell{c}{C2Q\\ Q2C}&two-dim&one-hop\\
+            \bottomrule
+        \end{tabular}
+        %}
+\end{table}

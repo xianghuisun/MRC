@@ -1,4 +1,4 @@
-\subsection{预训练模型}
+\subsection{预训练模型}\label{pretrain}
 % 使用预训练模型可以解决缺少标注数据的问题，因为预训练的模型已经在大量的无标签数据集上学习到了一些重要的特征等，因此应用到
 % 具体任务时不需要大量的标注数据，也不需要长时间的训练即可达到很好的效果。
 % 语言模型是NLP领域一个非常基础但同时也是非常
@@ -9,26 +9,60 @@
 实现模型所学知识的迁移。
 对于NLP领域来讲，预训练过程就是在大量的文本数据上学习到通用的语言表示。在应用到下游任务时，预训练所学习到的知识提供了一个很好的
 初始化点，从而加快模型的收敛并且提高模型的性能。此外预训练也对模型起到正则化的作用，使得模型避免在数据不充分的数据集上过拟合。
-目前最流行的几个预训练模型如ELMo\cite{ELMo}，
-GPT\cite{GPT}，BERT\cite{BERT}以及基于BERT改进的预训练模型UNILM\upcite{UNILM}，\upcite{ALBERT}等
-等全都是基于语言模型做预训练，因此也叫预训练语言模型。
+目前最流行的几个预训练模型如ELMo\upcite{ELMo}，
+GPT\upcite{GPT}，BERT\upcite{BERT}以及基于BERT改进的预训练模型RoBERTa\upcite{RoBERTa}，UNILM\upcite{UNILM}，ALBERT\upcite{ALBERT}等
+全都是基于语言模型做预训练，因此也叫预训练语言模型。
 预训练的模型根据迁移方式的不同可以分为两种方式基于特征的方式（Feature-based）
 和基于微调的方式（Fine-tuning）。
 基于特征的方式是指对于预训练好的模型，应用到具体任务时固定模型的参数，将具体任务的数据通过预训练的模型得到数据的表示
-特征然后输入到根据具体任务设计的具体模型中。基于微调的方式是广泛采用的一种预训练模型的使用方式如计算机视觉领域的
-经典模型VGG\upcite{VGG},ResNet\upcite{ResNet}，具体的做法是在预训练模型的基础上加上少量的网络层，然后利用具体任务的
+特征然后输入到根据具体任务设计的具体模型中。基于微调的方式是广泛采用的一种预训练模型的使用方式，具体的做法是在预训练模型的基础上加上少量的网络层，然后利用具体任务的
 标注数据训练整个网络模型。本节将主要概述NLP领域一些流行的预训练语言模型以及它们在MRC任务上的应用和效果对比。
 
+\subsubsection{Transformer}\label{transformer}
+鉴于目前几乎所有的预训练模型都采用transformer\upcite{Transformer}结构或者其变体作为模型的特征提取器，因此本节介绍transformer结构。
+Transformer是由Vaswani等人提出了一种用于机器翻译的encoder-decoder结构。
+Encoder端由六个相同的层堆叠而成，每一层有两个子层，第一个子层采用多头（multi-head）自注意力机制，第二个子层采用前馈神经网络（Feed-Forward Network，FFN）构成。
+之所以用自注意力机制是因为它既可以捕获句子中每一个单词的全局依赖关系而不受距离影响又可以并行计算。
+对比公式（1），自注意力机制下$Q=K=V$，transformer中采用的计算方式如下：
+\begin{equation}
+\text{Attention}(Q,K,V)=\text{softmax}(\frac{QK^T}{\sqrt{d_k}})V
+\end{equation}
+其中$\sqrt{d_k}$代表张量维度。此外transformer采用的是多头（multi-head）自注意力机制，将$Q,K,V$三个张量线性映射成多份，每一份之间做注意力的运算最后拼接。
+\begin{gather}
+	\text{head}_i=\text{Attention}(QW_i^Q,KW_i^K,VW_i^V) \notag \\
+	\text{Multi-head}(Q,K,V)=\text{concat}(\text{head}_1,\text{head}_2,\cdots,\text{head}_h)W^o
+\end{gather}
+其中$h$代表头的数目，是一个超参数，$W_i^Q,W_i^K,W_i^V,W^o$都是训练参数。
+
+采用multi-head的目的是让模型联合关注序列中不同位置单词的不同表示子空间的信息，可以类比于卷积神经网络中利用多个卷积核做特征提取，目的同样是使得不同的卷积核关注的不同的特征。
+此外
+每一个子层都利用层正则化（layer normalization\upcite{layerNormal}）和
+残差连接（residual connection\upcite{RL}）机制。
+Decoder端与Encoder端类似，区别在于每一层额外添加了encoder-decoder注意力。
+
+%Transformer的整体架构
+%通过利用自注意力（self-attention）机制取代RNN那种序列式的计算方式，
+%对于一个句子中的两个单词不考虑单词之间顺序的关系，直接计算它们之间的相关度，例如计算两个单词向量表示的内积。
+%自注意力机制可以捕获句子中长距离依赖的特征关系，
+%解决了循环神经网络固有的序列式传递信息导致后面的单词与前面的单词
+%之间达不到有效的信息传递问题。
+%通过自注意力机制不仅可以做到
+%单词之间的全局交互同时其并行计算使得模型训练时间大幅减少。
+Transformer的encoder端和decoder端都可以做特征提取器如BERT\upcite{BERT}用encoder端特征提取，GPT\upcite{GPT}用decoder端特征提取，实验证明在大规模数据集上transformer的特征提取能力要强于
+基于RNN变体的编码器，目前几乎所有的NLP预训练模型都是利用transformer作为特征提取器。
+
+
+\subsubsection{相关模型}
 %\subsubsection{相关预训练模型}
 ELMo\upcite{ELMo}是在2018年提出的一种预训练语言模型。
-传统的词嵌入模型如word2vec\upcite{word2vec},GloVe\upcite{GloVe}属于
+传统的词嵌入模型如Word2Vec\upcite{word2vec},GloVe\upcite{GloVe}属于
 静态的词向量，训练好模型后一个单词的表示
 向量就是固定的，没有考虑上下文的信息，因此无法解决多义词问题。
 ELMo提出一个三层网络的模型
 ，第一层就是词嵌入层用来提取单词特征，随后是两层BiLSTM网络分别提取
 单词的词性特征和语义特征。前向LSTM的目标是根据前$k-1$个词预测第$k$个词，从而计算出
-一个句子的概率，如公式（１）。反向LSTM的目标是根据最后的单词直到第$k+1$个单词预测第$k$个单词，
-具体如公式（２）。
+一个句子的概率，如公式（10）。反向LSTM的目标是根据最后的单词直到第$k+1$个单词预测第$k$个单词，
+具体如公式（11）。
 \begin{gather}
     p(t_1,t_2,\cdots,t_N)=\prod_{k=1}^{N}p(t_k|t_1,t_2,\cdots,t_{k-1})\\
     p(t_1,t_2,\cdots,t_N)=\prod_{k=1}^{N}p(t_k|t_{k+1},t_{k+2},\cdots,t_{N})
@@ -43,42 +77,17 @@ ELMo提出一个三层网络的模型
 在做阅读理解任务时，将文章和问题输入到模型中，每一层都会得到句子的语义表示，
 然后将每一层的特征加权求和作为ELMo的输出，此时得到的每一个单词的
 向量表示都是考虑了上下文的，将其作为下游模型嵌入层的输入。
-利用ELMo+BiDAF\upcite{Bidirectional attention flow for machine comprehension}
+利用ELMo+BiDAF\upcite{BiDAF}
 结构超过之前单模型8.3个百分点。可以看出ELMo属于自回归语言模型，模型的迁移方式是基于特征的方式。
-\begin{table*}[!ht]
-    \caption{预训练语言模型对比}
-    \centering
-    \vspace{10pt}
-    %表格超出页边距用resizebox
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{c c c c}
-        \toprule
-        模型&任务&模型结构&介绍 \\
-        \midrule
-        ELMo&单向LM&LSTM&\tabincell{c}{拼接两个单向语言模型的语义信息，\\ 基于特征形式迁移} \\
-        \midrule
-        GPT&单向LM&Transformer&首次采用预训练＋微调形式 \\
-        \midrule
-        BERT&双向LM＋NSP&Transformer&利用掩码语言模型和预测下一个句子共同作为训练任务 \\
-        \midrule
-        UNILM&单向LM+双向LM+Seq2SeqLM&Transformer&\tabincell{c}{同时训练三种语言模型，\\ 采用掩码机制解决不同语言模型的约束问题} \\
-        \midrule
-        ALBERT&双向LM+SOP&Transformer&\tabincell{c}{对比BERT采用矩阵分解和共享参数减少模型的参数量，\\ 同时用句子顺序预测取代下一个句子预测} \\
-        \bottomrule
-    \end{tabular}
-    }
-\end{table*}
+
 
 
 
 %\subsubsection{GPT}
-GPT\upcite{GPT}首先提出两阶段的训练方式，先利用大规模无监督语料库训练语言模型，
+OpenAI提出一种生成式预训练模型GPT\upcite{GPT}，使用多层的transformer\upcite{Transformer}的解码端作为特征提取器。模型采用两阶段的训练方式，先利用大规模无监督语料库训练语言模型，
 然后在下游任务的少量监督数据集上微调模型，因此
 GPT也是一种半监督学习方式。
-由于Transformer\upcite{Transformer}在处理长期依赖性方面比LSTM的性能更强同时并行计算
-的快于LSTM，因此GPT包括后来的大规模预训练模型都采用Transformer作为特征提取器。
-由于采用单向语言模型作为训练的任务，因此没有用完整的Transformer结构而且利用掩码机制约束
-模型。在预训练阶段的目标函数就是标准的单向语言模型的目标函数：
+采用单向语言模型作为训练的任务，预训练阶段的目标函数就是标准的单向语言模型的目标函数：
 \begin{equation}
     L(\Theta)=\sum_{k=1}^{N}(\log p(t_1,\cdots,t_{k-1};\Theta))
 \end{equation}
@@ -87,7 +96,7 @@ GPT与ELMo的共同点是它们都属于自回归语言模型，
 而且在输入层并不需要继续设计复杂的网络模型而仅仅只需要简单的结构，在训练时整个网络模型的参数共同训练。
 这种基于微调的迁移方式被后续的其它预训练模型广泛采用。
 利用GPT在RACE\upcite{RACE}数据集上微调后达到的效果比之前最好的模型提高了5.7个百分点。
-GPT是NLP领域首先提出的一种基于fine-tune的通用式网络结构，不仅仅在MRC领域，在很多其它的NLP领域都取得了很大的
+GPT是NLP领域首先提出的一种基于微调（fine-tune）的通用式网络结构，不仅仅在MRC领域，在很多其它的NLP领域都取得了很大的
 进步。
 %\end{multicols}
 % \begin{center}
@@ -134,7 +143,7 @@ BERT在整个预训练的流程上采用GPT的方式，即预训练然后微调�
 BERT的预训练过程实质上是
 一个多任务学习的过程，通过同时训练掩码语言模型和下一个句子预测两个
 提高了预训练模型的语义表达能力。
-BERT在SQuADv1.1\upcite{SQuAD1}数据集上的效果超过了人类的水平，在其它的NLP任务上也都有提升。
+BERT在SQuAD 1.1\upcite{SQuAD1}数据集上的效果超过了人类的水平，在其它的NLP任务上也都有提升。
 %\subsubsection{UNILM}
 
 BERT这种降噪自编码的方式虽然可以达到双向的利用上下文信息，但是由于其在预训练过程中对输入数据加入掩码而在微调时又不会加入掩码，导致
@@ -142,7 +151,7 @@ BERT这种降噪自编码的方式虽然可以达到双向的利用上下文信�
 预训练模型XLNet，它是一种可以获得双向的上下文信息的自回归语言模型，克服了传统的自回归语言模型和自编码语言模型各自的问题。XLNet采用的是
 排列语言模型（Permutation Language Model，PLM），自回归模型中利用文本的前向或者后向序列的最大似然来建模，而PLM排列这个文本所有可能
 的序列顺序，仍然利用自回归语言模型的目标函数，但是综合所有可能的排列后每一个单词都可以获得双向的上下文信息。此外XLNet
-借鉴transformer-XL\cite{transformer-XL}中的片段循环机制引入循环机制可以捕获更长的句子依赖关系。
+借鉴transformer-XL\upcite{Transformer-XL}中的片段循环机制引入循环机制可以捕获更长的句子依赖关系。
 
 文献\cite{RoBERTa}提出一种基于BERT改进其训练方式的预训练模型RoBERTa，其改进的方式包括：使用动态掩码替换静态掩码、去除NSP任务、使用更大的batch、
 更多的训练语料以及更长的训练时间。
@@ -167,34 +176,9 @@ UNILM同时训练单向语
 生成任务（如自动化摘要、生成式问答等）采用与预训练阶段Seq2Seq语言模型类似的方式在目标序列中
 随机的掩盖掉一些单词从而让模型根据源序列生成目标序列的单词达到生成任务的目的。
 UNILM不仅在抽取式QA数据集（如SQuAD）上超过BERT，在生成式QA数据集（如CoQA）上的表现远超过最初的基准模型。
-% \begin{multicols}{2}
 
-%     \textbf{预训练模型效果对比}
-%     \\
-%     \centering
-%     \vspace{10pt}
-%     %表格超出页边距用resizebox
-%     \begin{tabular}{l c c c c}
-%         \toprule
-%         &SQuAD 1.1&SQuAD 2.0&RACE&CoQA \\
-%         \midrule
-%         ELMo+BiDAF&85.8&-&-&- \\
-%         \bottomrule
-%     \end{tabular}
-% \end{multicols}
 
-% %\subsubsection{ALBERT}
-% \begin{center}
-% \resizebox{\textwidth}{15mm}{
-%     \begin{tabular}{l c c c c}
-%     \toprule
-%     &SQuAD 1.1&SQuAD 2.0&RACE&CoQA \\
-%     \midrule
-%     ELMo+BiDAF&85.8&-&-&- \\
-%     \bottomrule
-% \end{tabular}
-% }
-% \end{center}
+
 
 ALBERT\upcite{ALBERT}改进了BERT的NSP任务，BERT的NSP任务包含了两个子任务，来源于同一篇文章的两个连续的句子判别为正例，来源于不同文章的句子判别为负例，
 这使得模型不能集中于判断两个句子之间的顺序反而更加关注句子所表达的主题是否一致。因此ALBERT中用
@@ -203,7 +187,7 @@ SOP(sentence-order prediction)取代NSP任务，SOP是指句子顺序预测，�
 实验表明SOP任务使得模型的效果提升一个百分点。
 ALBERT的改进机制使得模型的预训练后的效果更好，在RACE\upcite{RACE}，SQuAD 2.0\upcite{SQuAD2}等
 机器阅读理解数据集上的准确率超过BERT以及其它的预训练模型。
-
+表7从预训练任务、模型采用的特征提取器等详细对比了本文介绍的所有预训练模型。
 % \subsection{小结}
 % 传统的静态的预训练词向量虽然可以给模型性能带来一定程度的提升，但是这种提升非常有限。主要原因是
 % 其静态的性质无法解决多义词的
@@ -213,7 +197,33 @@ ALBERT的改进机制使得模型的预训练后的效果更好，在RACE\upcite
 % 多个NLP任务上达到显著地提升。BERT是NLP预训练史上重要的里程碑模型，后续的其它更加优秀的
 % 预训练模型如ALBERT、UNILM也都是在BERT的基础上进行进一步优化如：引入生成任务、改进训练方式等。
 
-
+\begin{table}[ht]
+	\caption{预训练模型对比\\ Table 7 Comparison of pre-trained model}
+	\centering
+	%\vspace{10pt}
+	%表格超出页边距用resizebox
+	\resizebox{\textwidth}{!}{
+		\begin{tabular}{c c c c}
+			\toprule
+			模型&任务&模型结构&介绍 \\
+			\midrule
+			ELMo\upcite{ELMo}&\tabincell{c}{前向LM \\ 反向LM}&LSTM&\tabincell{c}{拼接两个单向语言模型的语义信息，\\ 基于特征形式迁移} \\
+			\midrule
+			GPT\upcite{GPT}&前向LM&Transformer&首次采用预训练＋微调形式 \\
+			\midrule
+			BERT\upcite{BERT}&\tabincell{c}{MLM\\ NSP}&Transformer&利用掩码语言模型（MLM）和下一个句子预测（NSP）共同作为训练任务 \\
+			\midrule
+			XLNet\upcite{XLNet}&PLM&Transformer-XL&\tabincell{c}{采用排列语言模型（PLM），\\使得模型以自回归方式训练但是基于上下文预测} \\
+			\midrule
+			RoBERTa\upcite{RoBERTa}&MLM&Transformer&采用动态掩码机制，去除NSP任务 \\
+			\midrule
+			UNILM\upcite{UNILM}&\tabincell{c}{前向LM，反向LM\\ MLM\\ Seq2SeqLM}&Transformer&\tabincell{c}{同时训练多种语言模型，\\ 采用掩码机制解决不同语言模型的约束问题} \\
+			\midrule
+			ALBERT\upcite{ALBERT}&双向LM+SOP&Transformer&\tabincell{c}{对比BERT采用矩阵分解和共享参数减少模型的参数量，\\ 同时用句子顺序预测任务（SOP）取代下一个句子预测任务（NSP）} \\
+			\bottomrule
+		\end{tabular}
+	}
+\end{table}
 
 
 
