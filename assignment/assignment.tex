@@ -18,6 +18,7 @@
 \usepackage{ctex}%中文
 \usepackage{graphicx}
 \usepackage{zhlipsum}
+\usepackage{color}
 \usepackage{multirow}
 \usepackage{biblatex}%biber才可以
 \addbibresource{ass.bib}
@@ -74,22 +75,41 @@
 %\vspace{10cm}在垂直方向上，两行之间的距离
 机器阅读理解（Machine Reading Comprehension，MRC）作为一项衡量计算机阅读理解文本能力的任务，是自然语言处理领域（Natural Language Processing，NLP）
 十分重要也是具有挑战性的研究方向。通常情况下，MRC任务就是
-给定一篇或多篇文章，要求模型阅读这些文章后回答相关的问题。
+给定一篇或多篇段落文本（passage），要求模型阅读这些段落后回答相关的问题（question）。
 早期的MRC系统主要是基于规则和模式匹配的方法，或者通过概率统计的方式计算问题与文章之间的相似程度。这很难达到深层次的理解文本，
 而且数据集规模比较小，系统难以获得期望的性能也不能实际的应用。
-随着深度学习的兴起以及NLP领域出现的一些经典方法
-如Mikolov等人\upcite{word2vec}提出的word2vec，Bahdanau等人\upcite{Bahdanau}将注意力机制应用在NLP领域的机器翻译任务上等。这些技术的发展使得研究人员开始利用神经网络
+随着深度学习的兴起以及NLP领域出现的一些经典技术
+如Word2Vec\upcite{word2vec}以及注意力（Attention）机制在NLP领域的应用\upcite{Bahdanau}等，这些技术的发展使得研究人员开始利用神经网络
 构建机器阅读理解模型，
-因此也叫神经机器阅读理解。Hermann等人\upcite{Hermann}在2015年发布了规模比以往数据集都要大的阅读理解数据集CNN\&Daily Mail，并且提出两个基于神经网络和注意力机制构建的模型（Attentive Reader，Impatinent Reader），这项工作可以视为机器阅读理解领域的奠基性工作。此后越来越多的学者在这两个模型的基础上构建更加复杂效果更好的神经机器阅读理解模型，而且规模越来越大，形式越来越复杂的数据集（如SQuAD\upcite{SQuAD1}，RACE\upcite{RACE}，MS MARCO\upcite{MSmarco}）也相继发布。
-这使得MRC领域快速发展，模型的性能也逐渐提高。
+因此也叫神经机器阅读理解。
+
+Hermann等人\upcite{Hermann}在2015年发布了规模比以往数据集都要大的阅读理解数据集CNN\&Daily Mail，并且提出两个基于神经网络和注意力机制构建的模型（Attentive Reader，Impatient Reader），这项工作可以视为机器阅读理解领域的奠基性工作。此后越来越多的学者在这两个模型的基础上构建效果更好的神经机器阅读理解模型，
+Chen等人\upcite{AR}使用双线性函数以及Kadlec等人\upcite{ASR}采用点积运算的计算方式取代Attentive Reader的加法形式。Sordoni等人\upcite{IAReader}提出IA Reader模型利用循环神经网络的循环计算机制以及Dhingra等人\upcite{GAReader}提出的GA Reader模型通过加深网络的层次达到Impatient Reader模型多步推理的效果。
+
+%而且规模越来越大，形式越来越复杂的数据集也相继发布。
+SQuAD\upcite{SQuAD1}是由斯坦福大学在2016年发布的大规模数据集，问题的答案来源于原文中某一片段而不像CNN\& Daily Mail数据集仅仅是某个实体单词。
+SQuAD数据集的发布极大地推动了MRC领域的发展，很多经典的神经机器阅读理解模型都是在SQuAD数据集上构建出来的。Wang等人\upcite{MatchLSTM}提出Match-LSTM模型，通过计算段落到问题的注意力将问题的语义融合到段落文本中，并且利用指针网络的机制预测答案在原文中的位置。在这之后很多模型受到Match-LSTM的启发，如Wang等人\upcite{RNet}在其基础上添加一层自注意力机制用来加强模型对段落的理解，Xiong等人\upcite{DCN}采用一种动态迭代指针网络的机制来多次迭代预测答案的位置。在2018年
+斯坦福大学又发布了SQuAD 2.0\upcite{SQuAD2}数据集，在SQuAD的基础上增加了五万多个不可回答的问题。
+
+
+在SQuAD发布不久后微软研究院发布了来源于真实场景下的数据集MS MARCO\upcite{MSmarco}，数据集的问题来源于必应搜索日志上用户搜索的问题，从必应搜索的返回结果中选取10篇最相关的段落作为问题的答案依据，答案是人工生成的而不限于某段文本，因此数据集难度更大。类似的数据集还有TriviaQA\upcite{TriviaQA}，DuReader\upcite{DuReader}等。针对这种多段落自由答案形式的任务，Tan等人\upcite{SNet}提出S-Net模型,先
+通过片段抽取模块提取出一段文本作为答案的预测依据,然后利用生成模块生成答案。
+
+然而以上大部分的数据集，与问题相关的答案通常集中在单个句子的局部上下文
+这类数据集对模型的推理能力要求不高。
+为了考察模型的推理能力，HotpotQA\upcite{HotpotQA}，WIKIHOP\upcite{WIKIHOP}，Narrative\upcite{NarrativeQA}等数据集相继发布，这些数据集中的问题要求模型从多个段落中逐步检索推理才能找到答案。此外还有多轮对话形式的阅读理解任务，相关的数据集如CoQA\upcite{CoQA}，QuAC\upcite{QuAC}等。
+
+每一个新的数据集都会在原有数据集的基础上增加各种各样的难度,从而不得不设计更加优秀的模型处理这些任
+务，MRC领域也因此快速发展。
 自2018年随着ELMo\upcite{ELMo}、GPT\upcite{GPT}、BERT\upcite{BERT}等预训练模型的出现，
 再一次提升了机器阅读理解模型的性能，甚至在某些数据集上模型的表现超过人类水平。
+%目前几乎所有数据集上表现最好的模型都是基于预训练模型的。
 
 本文主要从MRC的具体任务概述出发，总共分5章，结构安排如下：
 第2章介绍机器阅读理解的具体任务以及相应的评估指标；第3章
-介绍经典神经机器阅读理解模型，对比它们的差异以及优缺点。同时介绍
-近年来NLP领域最受关注的预训练模型以及如何应用在MRC任务上。
-第4章针对更加复杂的机器阅读理解任务做概述。
+介绍神经机器阅读理解模型，包括经典的基于抽取式任务的MRC模型，复杂任务下的MRC模型以及基于预训练模型的MRC模型，对比它们的差异以及优缺点。
+%同时介绍近年来NLP领域最受关注的预训练模型以及如何应用在MRC任务上。
+第4章主要讨论MRC领域的发展历史和目前MRC领域存在的主要问题。
 第5章对MRC领域做总结与展望。
 
 % \end{multicols}
@@ -101,30 +121,64 @@
 \input{dataset.tex}
 
 \section{神经机器阅读理解模型}
-随着大规模机器阅读理解数据集如CNN\&Daily Mail\upcite{CNNDailyMail}，SQuAD 1.1\upcite{SQuAD1}等的发布以及
-深度学习技术的发展，神经机器阅读理解模型的性能显著的超过传统的基于规则和特征的模型，随着NLP领域预训练模型的发展，基于预训练模型
-来做MRC任务的模型性能再一次的提升。
-本章安排如下：3.1节简述基于深度学习的MRC模型通用框架，3.2节介绍基于注意力机制的模型，3.3节介绍目前流行的预训练模型，3.4节分析不同任务下答案预测层的设计。
-\subsection{模型结构}
-用于MRC任务的深度学习模型的整体框架主要包括如下几个层：词嵌入层、语义编码层、语义交互层、答案预测层。
+%随着大规模机器阅读理解数据集如CNN\&Daily Mail\upcite{CNNDailyMail}，SQuAD\upcite{SQuAD1}等的发布以及
+%深度学习技术的发展，神经机器阅读理解模型的性能显著的超过传统的基于规则和特征的模型，随着NLP领域预训练模型的发展，基于预训练模型
+%来做MRC任务的模型性能再一次的提升。
+Hermann等人\upcite{Hermann}发布的CNN\&Daily Mail数据集以及他们所设计的两个基于神经网络和注意力机制的模型可以看作是MRC领域的奠基性工作，开创了神经机器阅读理解模型。Rajpurkar等人\cite{SQuAD1}在2016年发布的SQuAD数据集是MRC领域里程碑式的数据集，在2016-2018年期间掀起了一阵热潮，很多的神经机器阅读理解模型都是在此期间构建出来的。
+填空式数据集本质上可以认为是抽取式数据集的简化形式，而后续的很多任务如对话形式、开放领域形式、多段落形式的阅读理解任务也都是在抽取式任务的形式上设计模型。因此抽取式阅读理解任务是MRC领域的核心，本章主要以抽取式任务的MRC模型为出发点，
+安排如下：3.1节分析经典的基于抽取式任务的MRC模型通用架构，3.2节介绍复杂任务下的MRC模型，3.3节介绍目前流行的预训练模型以及如何利用预训练模型设计性能更强大的MRC模型。
+\subsection{基于抽取式任务的经典MRC模型}
+想让机器能够阅读理解文本需要解决以下几个问题：
+\begin{enumerate}
+	\item 如何将段落和问题这种文本形式的无结构数据表示为计算机可以处理的形式；
+	\item 如何根据问题检索出段落中与问题最相关的部分；
+	\item 如何从检索出来的文章片段中归纳得到答案。
+\end{enumerate}
+用于MRC任务的深度学习模型的整体框架主要包括如下几个层：词嵌入层、编码层、交互层、答案输出层，如图1所示。
+词嵌入层的作用是将段落和问题嵌入到低维的向量空间中，用每一个向量表示每一个单词。
+编码层的作用是编码段落和问题中单词的语义信息，使得每一个单词可以关注到它的上下文。交互层的作用是
+将段落的语义信息与问题的语义信息融合，让模型学习到段落中与问题最相关的部分。
+答案输出层的作用是从段落中查找出问题的答案。
+\begin{figure}
+	\centering
+	\includegraphics[width=8cm,height=7cm]{generic.png}
+\end{figure}
+
 \subsubsection{词嵌入层}
 如何将文本有效的表示成计算机可以处理的形式同时可以有效地利用单词之间的语义一直的NLP领域
 的重点问题。早期的one-hot形式编码用一个二值向量表示单词，但是存在数据稀疏并且随着单词个数的增加出现维度灾难的问题，此外这种形式的编码也不能够表示出单词之间的语义关系。
 
 Rumelhart等人\upcite{Rumelhart}最早提出分布式表示的概念，
 分布式表示是将单词用一个低维度的稠密向量表示，即将单词嵌入到一个低维向量空间中，因此这种表示方式也叫词嵌入。语义相近的单词在向量空间中距离也相近，因此这种词表示方法解决了one-hot编码的很多问题。
-最流行的生成分布式词向量的技术如Word2Vec\upcite{word2vec}和GloVe\upcite{GloVe}。
+Bengio等人\cite{NNLM}最早将深度学习的思想融入到语言模型中提出神经网络语言模型（Neural Network Language Model，NNLM）模型，模型的第一层映射矩阵就是学习到的词向量，Mikolov等人\upcite{word2vec}受到这种思想的启发提出Word2Vec。Word2Vec提出两种模型CBOW和Skip-gram来学习单词的分布式表示，CBOW使用中心词的上下文来预测这个单词而Skip-gram利用中心词来预测其周围的单词。但是无论是CBOW还是Skip-gram都只是考虑了单词局部上下文的信息，GloVe\upcite{GloVe}利用单词共现矩阵考虑了全局统计信息。
 
-但是这两种技术所训练出来的词向量是
+
+%最流行的生成分布式词向量的技术如Word2Vec\upcite{word2vec}和GloVe\upcite{GloVe}。
+大量实验表明利用Word2Vec或者GloVe预训练好的词向量作为下游任务文本的词表征来初始化下游任务模型的第一层可以显著地提升模型的效果。
+除了词嵌入方法外，还有很多细粒度的嵌入方式。如Seo等人\upcite{BiDAF}提出在词嵌入的基础上结合单词的字符嵌入，以缓解NLP领域常见的OOV（out-of-vocabulary）问题。Chen等人\upcite{DrQA}提出引入单词的语义特征来增强嵌入表示，如段落单词与问题单词之间的完全匹配特征、词性特征以及单词的命名实体特征等。
+
+然而Word2Vec和GloVe训练出来的词向量是
 静态的词向量，即训练好模型后一个单词的表示
 向量就是固定的，没有考虑上下文的信息，因此无法解决多义词问题。为了解决这个问题，Peters等人\cite{ELMo}提出一种动态的基于上下文的词嵌入模型ELMo，每一个单词的词向量都是根据它所在的上下文语义表示的，很好的解决了一词多义的问题。关于ELMo以及预训练模型的细节见\ref{pretrain}节。
 
 从早期的one-hot形式编码到分布式表示技术最后到基于上下文的词嵌入技术，每一种技术的出现都证明了一个好的文本表示方法可以
 极大地提升模型的性能。
-\subsubsection{语义编码层}
-这一层的目的是在词嵌入层的基础上通过对词嵌入层的输入文本做特征提取，进一步获得句子层面的语义信息。常用的特征提取器
-有基于RNN的变体如LSTM\upcite{LSTM}和GRU\upcite{GRU}等，因为这种循环结构适合处理文本这类序列数据以及非常适合作为语言模型的编码器。但也正是这种序列式的结构使得计算不能并行，训练耗时，更重要的是由于梯度消失问题不能解决单词之间长距离依赖问题，使得其
-特征提取能力始终受限。Vaswani等人\upcite{Transformer}提出了一种用于机器翻译的encoder-decoder结构transformer，舍弃了常用的循环神经网络结构，完全的基于自注意力机制构建模型。实验表明transformer的特征提取能力强于循环神经网络而且可以并行计算。关于自注意力机制的细节见\ref{attention}节，关于transformer的细节见\ref{transformer}节。
+\subsubsection{编码层}
+这一层的目的是在词嵌入层的基础上通过对词嵌入层的输入文本做特征提取，进一步获得句子层面的语义信息。
+NLP领域最为常用的特征提取器
+是基于循环神经网络（RNNs）的变体如LSTM\upcite{LSTM}和GRU\upcite{GRU}等，因为这种循环结构适合处理文本这类序列数据，绝大部分的MRC模型编码层都是利用RNNs作为特征提取器。
+但也正是这种序列式的结构使得计算不能并行，训练耗时，更重要的是由于梯度消失所以不能解决单词之间长距离依赖问题，使得其
+特征提取能力始终受限。Vaswani等人\upcite{Transformer}提出了一种用于机器翻译的encoder-decoder结构transformer，舍弃了常用的循环神经网络结构，完全的基于自注意力机制构建模型，实验表明transformer的特征提取能力强于循环神经网络而且可以并行计算加快训练。
+文献\cite{QANet}提出一种网络模型QANet，不像之前的那些模型几乎都是用RNNs来做编码器，
+QANet提出一种新颖的编码结构，利用卷积结合transformer\upcite{Transformer}中的
+多头注意力结构
+。
+卷积方式采用的是文献\cite{DSC}提出的深度可分离卷积（depthwise 
+separable convolutions），
+相比传统的卷积计算方式深度可分离卷积可以减少运算次数。
+整个结构的思想是先利用卷积操作建模局部特征的交互，再用自注意力机制建模全局交互，
+实验结果表明这种架构不仅加快训练速度同时在SQuAD数据集上模型性能优于那些利用RNNs作为编码器的模型。
+关于transformer的细节介绍见\ref{transformer}节。
 
 
 %每一层由多头自注意力和前馈网络（FN）构成。Transformer的整体架构
@@ -137,29 +191,585 @@ Rumelhart等人\upcite{Rumelhart}最早提出分布式表示的概念，
 %单词之间的全局交互同时其并行计算使得模型训练时间大幅减少。Transformer的encoder端和decoder端都可以做特征提取器如BERT\upcite{BERT}用encoder端特征提取，GPT\upcite{GPT}用decoder端特征提取，实验证明在大规模数据集上transformer的特征提取能力要强于
 %基于RNNs\footnote{用RNNs来统一表示RNN的变体，如LSTM，GRU等\label{RNNs}}的编码器，目前几乎所有的NLP预训练模型都是利用transformer作为特征提取器。
 
-\subsubsection{语义交互层}
-在预测答案时需要将问题的语义信息与文章的语义信息关联，这样模型在预测答案时才能知道文章中哪一部分是问题的答案。
-通常利用注意力机制实现这一目的，注意力机制就是让模型关注到重点的部分，不同的注意力计算方式很大程度上影响模型性能，
-后面将详细介绍基于注意力机制的模型以及它们不同的计算方式。
+\subsubsection{交互层}
+%在预测答案时需要将问题的语义信息与文章的语义信息关联，这样模型在预测答案时才能知道文章中哪一部分是问题的答案。
+%通常利用注意力机制实现这一目的，注意力机制就是让模型关注到重点的部分，不同的注意力计算方式很大程度上影响模型性能，
+%后面将详细介绍基于注意力机制的模型以及它们不同的计算方式。
+交互层是整个网络模型中关键的一层，前面的编码层输出的是问题和文章中每个单词的上下文语义编码，每个单词
+关注了自己所在句子的上下文单词，但是却并没有关注对应的句子。而我们在做阅读理解问题时，通常是带着
+问题去文章中找答案，我们要知道文章中每一个单词和问题之间的相关度。因此交互层的目的就是让文章的语义信息与问题的
+语义信息融合，以此达到对文章更深层次的理解，而交互层中最常用的方法就是注意力机制。
+
+注意力机制可以被视为是一个查询向量（query）和一组键值对向量（key-value pairs）的映射过程。整个过程首先是利用函数$f$衡量query和key之间的相似度，生成一个权重分数向量，然后将权重分数向量归一化（通常利用softmax函数）后对value加权求和得到的结果就是query对key-value pairs的注意力。具体计算公式形式如下：
+
+\begin{gather}
+\alpha_i=\text{softmax}(f(Q,K_i)) \notag \\
+\text{Attention}(Q,K,V)=\sum_{i=1}^{n}\alpha_iV_i
+\end{gather}
+其中$(K_i,V_i)$代表key-value pairs中的第$i$个值，
+函数$f$常采用计算方式有内积函数、二次型函数、
+前馈神经网络，双维度转换函数，分别见如下公式：
+\begin{gather}
+f(p_i,Q)=p_i^TQ \qquad \text{内积函数} \\
+f(p_i,Q)=p_i^TWQ\qquad \text{二次型函数}\\
+f(p_i,Q)=v^T\tanh(Wp_i+UQ)\qquad \text{前馈神经网络} \\
+f(p_i,Q)=p_i^TW^TUQ \qquad \text{双维度转换函数}
+\end{gather}
+
+在NLP领域中$K=V$，简单的来说就是两个序列中其中一个序列为另一个序列的每一个位置生成一个权重值，这个值代表当前位置的单词对另一个序列的重要性。
+如果是自注意力（self attention），那么此时$Q=K=V$，目的是计算序列中某个单词和其它单词之间的相关性从而增强自身的语义表示。
+Bahdanau等人\upcite{Bahdanau}最早将
+注意力机制应用在机器翻译领域，获得了极大的反响，
+为NLP领域的其它任务的模型提供了启发式的思想。
+
+MRC模型做交互注意力运算有两个方向，即从问题到段落（Question-to-Context,Q2C），从段落到问题（Context-to-Question，C2Q）这两个方向。从Q2C的注意力是指
+将问题看做是$Q$，段落看做$K,V$。利用问题去和文章做注意力计算，
+%得到问题对文章的注意力权值，它代表问题对文章每一个单词的关注程度，利用它对段落的表示向量加权求和得到的就是问题的一个新的表示向量。
+%以Q2C的注意力计算过程为例，
+定义$C=[c_1,c_2,\cdots,c_n] \in R^{n\times d}$代表段落的表示向量，其中$n$代表段落长度，$d$代表向量维度，
+$Q\in R^{d}$代表整个问题的表示向量
+%每一个
+%$p_i$代表文章中单词的语义向量表示，$Q$代表整个问题的语义信息。
+Q2C的注意力计算步骤如下：
+\begin{gather}
+\alpha_i=\text{softmax}(f(c_i,Q)) \notag \\
+\text{Attention}(C,Q)=\sum_{i=1}^{n}\alpha_{i}c_i \notag 
+\end{gather}
+%就是利用问题
+%的语义信息和文章中每一个单词的向量表示计算它们之间的相关性，最后得到一组注意力权重$\alpha=[\alpha_1,\alpha_2,\cdots,\alpha_n]$
+%表示文章与问题之间的相关程度，利用$\alpha$对文章加权求和就可以提取出来文章中与问题最相关的单词，
+%这些单词对于回答问题是至关重要的。
+C2Q注意力类似，此时段落看作是$Q$，问题看做$K,V$。
+%拿段落和问题做注意力计算，段落的每一个单词都会
+%关注到问题，然后利用注意力权值对问题加权求和从而计算得到段落的新的表示向量。
+
+上面的式子是将问题压缩成一个固定维度的向量，得到的注意力权重$\alpha$也是一维的，因此也称为一维注意力。
+一维注意力方法所关注的是问题序列的整体对文章的注意力，没有考虑问题序列的不同单词之间对文章的关注程度差异。
+与其相对应的是二维注意力，即对于问题序列中的
+每一个单词都会和段落做注意力计算，得到的注意力权重是二维向量。
+
+%段落到问题注意力可以看做是带着文章阅读问题，问题到段落则可以看做是带着问题阅读文章。
+C2Q和Q2C这两种都属于交互的计算注意力，然而这种注意力机制可能导致只重视文章中与问题相关度高的单词，而忽视了文章所强调自身的语义信息。在文章上利用自注意力机制则可以看做是反复的阅读文章，从而加深对文章语义信息的理解。
+
+
+
+
+
+
+
+
+如果按照注意力的计算次数上区分，
+又可以分为one-hop和multi-hop形式。one-hop，也叫“单跳结构”是指仅仅通过一次计算得到注意力权值然后加权求和得到注意力结果，这也是一种
+静态的计算形式。与之对应的是multi-hop，也叫“多跳结构”。one-hop形式下仅仅只做一次交互计算，而注意力机制虽然可以提取相关的重要信息，但是
+它仍然是基于浅层语义信息的相似度计算。在机器阅读理解任务中，
+对于复杂的问题通常是不能在一个句子中找出答案，需要多步推理才能寻找答案，如表6所示
+%\begin{figure}[ht]
+%	\centering
+%	\includegraphics[width=0.5\textwidth]{end2end.png}
+%	\caption{MemN2N\upcite{MemN2N}提出的多步推理的一个样例 \\ Figure 1 An example of multi-hop reasoning from MemN2N}
+%\end{figure}
+
+\begin{table}[ht]
+	\centering
+	\caption{WIKIHOP\upcite{WIKIHOP}多跳推理的样例}
+    \begin{tabular}{l p{15.0cm}<{\raggedright}}
+	\toprule
+	文章1：&\tabincell{l}{The Hanging Gardens, in \textcolor{blue}{[Mumbai]}, also known as Pherozeshah
+		Mehta Gardens, are terraced gardens …  \\
+		They provide sunset views
+		over the \textcolor{red}{[Arabian Sea]} …} \\
+
+	文章2：&\tabincell{l}{\textcolor{blue}{Mumbai} (also known as Bombay, the official name until 1995) is the
+		capital city of the Indian state of Maharashtra. \\It is the most
+		populous city in \textcolor{green}{India} …}\\
+	%\cmidrule(l){2-3}
+	文章10：&\tabincell{l}{The \textcolor{red}{Arabian Sea} is a region of the northern Indian Ocean bounded
+		on the north by \textcolor{magenta}{Pakistan} and \textcolor{magenta}{Iran}, \\ on the west by northeastern
+		\textcolor{magenta}{Somalia} and the Arabian Peninsula, and on the east by India …}\\
+	\hline
+	问题：&Hanging gardens of Mumbai, country,? \\
+	%\cmidrule(l){2-3}
+	\midrule
+	答案：&{Iran, \textcolor{green}{India}, Pakistan, Somalia} \\
+	\bottomrule
+\end{tabular}
+\end{table}                     
+% \begin{figure*}
+%     \includegraphics[]{multihop.png}
+% \end{figure*}
+%当前时刻计算的注意力结果要保留到下一时刻，即每一时刻都要计算注意力，是一种动态的计算形式，典型的代表是Bahdanau注意力\cite{neural machine translation by jointly learning to align and translate}。
+我们可以看到想要得到最终的答案需要在多个段落中进行多次推理，在每一个推理过程中都会变换注意力关注的对象，显然one-hop结构是不能实现多步推理的。
+
+鉴于目前多数模型交互层所使用的注意力机制较为复杂，很难按照上述形式完全的区分开每一个模型，本文按照Liu等人\cite{Survey}的思路按照注意力计算的方向以及次数划分各个模型。
+\vspace{1ex}
+
+\noindent\textbf{单向注意力} \quad Hermann等人\cite{Hermann}最早利用神经网络模型并且融入注意力机制做MRC任务。
+文中提出两种不同的单向注意力机制Attentive Reader
+和Impatient Reader，均是计算问题到文章的注意力。
+Attentive Reader是将问题表示为一个固定长度的向量然后与文章中每一个单词做注意力计算，然后利用注意力权重对文章
+中的单词的向量表示加权求和得到一个固定长度的
+向量即为注意力运算后的结果，然后与问题联合预测答案，其中注意力的运算方式采用前馈神经网络（公式4）。
+%可见这种注意力的计算方式仅仅只计算一次，因此属于one-hop类型。
+Chen等人\cite{AR}在Attentive Reader的基础上利用双线性项（公式3）取代原有的前馈神经网络（公式4）并且直接将
+对段落加权求和后得到的向量作为预测答案的输入而不是联合问题$Q$的语义信息，实验证明这种简化反而提高了模型的准确度。文献\cite{MatchLSTM}提出一种Match-LSTM模型，
+与之前的模型不同，Match-LSTM计算的方向是段落到问题的注意力，将问题的语义信息融入到Match-LSTM中。
+具体计算过程如下：
+\begin{gather}
+s_t=v^T\tanh(W^QH^Q+W^Ph_t^P+W_rh_{t-1}^r) \notag \\
+\alpha_{t}=\text{softmax}(s_t)
+%c_t=\sum_{i=1}^{m}a_i^tu_i^Q
+\end{gather}
+其中$H^Q$是问题通过编码层的输出，$h_t^P$是段落的第$t$个单词通过编码层的输出，$h_{t-1}^r$是Match-LSTM上一时刻
+的隐藏状态。
+$\alpha_{t}$是
+段落的第$t$个单词与问题的每一个单词之间的注意力权重。
+计算得到的注意力权重对问题的语义表示加权求和，然后与段落当前时刻单词的上下文表示拼接作为
+Match-LSTM当前时刻的输入。
+\begin{gather}
+z_t=[h_t^p;\alpha_tH^q] \notag \\
+h_{t}^r=\text{LSTM}(z_t,h_{t-1}^r)
+\end{gather}
+此外为了使得段落从后向前的对问题做关注，模型将段落序列翻转再次按照上述方式计算，最后将两个方向的计算结果
+拼接作为交互层的输出。
+\vspace{1ex}
+
+\noindent \textbf{双向注意力} \quad 上述的模型全都属于单方向注意力，要么仅计算C2Q方向的注意力或者仅计算Q2C方向的注意力。
+Xiong等人\cite{DCN}提出Dynamic Co-attention Network（DCN）模型，
+在交互层中采用协同注意力机制，
+协同注意力同步的计算文章对问题的注意力以及问题对文章的注意力。
+最后按照公式(8）融合两个方向的注意力作为交互层的输出。
+\begin{equation}
+\widetilde{C}=\beta[Q,\alpha C]
+\end{equation}
+其中$\alpha$和$\beta$分别表示段落与问题之间的注意力权重，$\widetilde{C}$同时融合了问题的语义信息和段落的语义信息。
+文献\cite{BiDAF}提出（Bidirectionl Attention Flow，BiDAF）模型。
+同样计算两个方向（C2Q和Q2C）的注意力，但是与之前模型不同的是BiDAF将之前的段落语义表示和交互层计算得到的问题感知的段落语义表示一起流向后面的层，这样一定程度上避免了过早的对段落语义信息概括而导致
+信息的损失。模型的简化实验表明C2Q方向的注意力对模型的重要性大于Q2C方向的注意力，一种可能的原因是由于问题序列的长度小于段落文本的长度所以计算得到的段落感知的问题语义向量的信息不够充分。
+\vspace{1ex}
+
+\noindent \textbf{单跳结构} \quad 单跳
+结构是指段落与问题仅仅通过一次计算得到注意力权值然后加权求和得到注意力结果，要么是将问题整体压缩为一个向量与段落计算一次注意力，如Attentive Reader\upcite{Hermann}，AS Reader\upcite{ASR}等，或者问题与段落的的整体表示采用并行化的计算方式，如DCN\upcite{DCN}，BiDAF\upcite{BiDAF}，QANet\upcite{QANet}等。
+\vspace{1ex}
+
+\noindent \textbf{多跳结构} \quad 多跳结构可以视为单跳结构的堆叠，目的是通过多次计算段落与问题的交互信息加深模型对段落和问题的理解，从而达到多步推理的目的。
+实现多步推理这种机制通常有以下几种方式：
+\vspace{1ex}
+
+\noindent 第一种方式是基于之前时间步所计算得到的问题感知的段落语义信息计算下一时间步的段落和问题交互，如Impatient Reader\upcite{Hermann}，并不是像Attentive Reader将
+	问题表示为一个固定长度的向量，而是对于问题中的每一个单词都要和整个段落做注意力计算，而且计算的结果
+	要和下一个单词以及段落共同做注意力计算，最后一个单词的注意力结果作为整个Impatient Reader计算注意力过程的输出。
+	这种方式类似于人在阅读过程中不断的在问题和文章之间做关注。
+\vspace{1ex}
+
+\noindent
+第二种方式是利用RNNs这种基于上一时刻隐藏状态更新下一时刻隐藏状态的循环特性来达到多步推理，Sordoni等人\upcite{IAReader}提出Iterative Attention Reader（IA Reader）模型，利用BiGRU存储每一次
+迭代计算得到的问题和段落的交互信息。在每一时间步上，首先利用上一次的BiGRU的状态与问题做一维注意力匹配提取出问题的语义信息，
+然后再结合上一次的BiGRU的状态与段落再做一维注意力匹配从而提取出段落的语义信息。将问题与段落的语义信息
+通过各自的门控单元作为BiGRU当前时刻的输入，其中门控单元采用前馈神经网络用来解决当前时间步下问题和段落的语义信息提取不充分的问题。
+%基于注意力机制的模型大部分是利用RNN的循环机制来存储每次交互的状态，
+%但是由于RNN的梯度消失问题可能会丢失语义信息，因此文献\cite{memory network}提出一种记忆网络架构（memory network），
+%通过外部记忆模块来存储语义信息，但是这种记忆网络并不能端到端的训练。
+%为了处理这个问题，文献\cite{MemN2N}提出一种端到端的记忆网络（MemN2N）。
+%利用记忆槽存储文档中每一个句子的嵌入矩阵，记忆槽的状态以及问题的语义信息会随着与文档的多次交互不断更新。
+Shen等人\upcite{Reasonet}提出一种动态决定推理次数的模型ReasoNet，不同于IA Reader模型在整个推理过程中有着固定的推理次数。这种固定推理次数的缺点就是不考虑问题的复杂性，
+对于复杂的问题往往需要模型多次的推理，因此不同题目难度需要不同的推理次数，应当让模型学会什么时候终止推理。为了达到这一目的，
+ReasoNet模型利用一个终止门产生二元值输出来动态的决定是否继续推理。ReasoNet模型大致分为外部记忆单元模块、内部控制器模块、终止门模块以及答案输出模块。
+具体的，将段落和问题通过Bi-GRU编码后的语义表示作为
+外部的记忆单元$M$，利用内部控制器（采用GRU）当前时刻的状态与$M$做二维注意力匹配，得到注意力结果输入到内部控制器中
+更新内部控制器的状态。终止门模块以当前时刻内部注意力的状态作为输入来判断是否需要继续推理。由于产生了二元离散输出值，
+使得模型不能用梯度下降法训练，因此模型引入强化学习机制训练。
+%其它的multi-hop结构的模型如Match-LSTM\upcite{MatchLSTM}，R-Net\upcite{RNet}，等。
+\vspace{1ex}
+%
+
+\noindent
+第三种方式通过堆叠多个计算注意力的层数达到多步推理的目的，
+Dhingra等人\cite{GAReader}提出Gated Attention Reader（GA Reader）模型，类似于IA Reader模型，同样采用
+BiGRU作为编码模块实现多跳结构。在每一步的推理过程中，首先通过BiGRU得到问题的语义信息，然后对段落的
+每一个单词做注意力的计算得到问题感知的段落表示，同时采用点乘计算的门控机制建模问题感知的段落表示和原来的段落语义向量之间的交互关系，目的是利用问题更新文章的语义表示。这种处理过程
+类比于带着问题反复的阅读文章，每一次都加深对文章的语义理解。
+Wang等人\cite{RNet}提出一种带有门控机制的注意力循环神经网络以及自注意力机制联合的交互层设计模型RNet。RNet在交互层的设计分为两部分。
+第一部分是带有门控机制的注意力循环神经网络，整体计算
+方式类似于Match-LSTM，而且额外加入了门控机制使得模型可以有选择的输出
+语义信息。具体的，在公式（7）中的$z_t$上添加一个门控单元：
+\begin{gather}
+g_t=\text{sigmoid}(W_gz_t)\notag \\
+z_t^{*}=g_t\odot z_t
+\end{gather}
+其中$\odot$表示元素之间的点乘。
+%由于$z_t=[h_t^p;\alpha_tH^q]$，$h_t^p$表示的是文章的第$t$个单词的语义表示，$\alpha_tH^q$表示的是
+%对问题语义表示的融合，因此
+通过添加门控单元使得模型可以有选择的决定哪部分作为重要的语义信息输出。这种机制类似于人在阅读过程中要
+忽略段落中那些与问题无关的信息，凸显出重要的信息才能更加准确的找到答案。
+第二部分是利用自注意机制对段落的语义信息再次交互建模，
+%基于注意力机制的循环神经网络的输出对关注了问题的
+%文章语义表示与原始文章语义表示建模后的输出，而这种计算机制的问题之一是
+%两个距离较远的单词之间交互信息由于梯度消失等原因会变得很弱。因此
+通过自注意机制可以使得段落中每一个单词关注到其余所有的单词，使得模型对段落达到更深层次的理解。
+之前的模型在交互层利用注意力机制融合段落和问题时都是利用句子的高层级别的语义信息而忽略了句子在低层次级别的语义信息如单词级别的词嵌入等。Huang等人\upcite{Fusionnet}提出FusionNet模型，将每一个单词在第一层到后面所有层的向量表示拼接成一个向量，原文中称为单词历史（history of word），因为它包含了一个单词所有层的语义编码。但是随着层数的增加维度会变得越来越大，为了解决维度问题同时不损失单词的历史信息，FusionNet提出全关注注意力机制的概念：即利用段落和问题的单词历史计算得到注意力权重，然后对问题的某一层语义向量加权求和。这种机制使得两个输入向量可以互相关注到对方的历史信息同时压缩维度，文中对注意力权重的计算方式如下：
+\begin{equation}
+\alpha_i=\text{ReLU}(Up_i)^TD\text{ReLU}(Uq_j)
+\end{equation}
+其中$p_i\in R^d$和$q_j\in R^d$分别代表段落第$i$个单词和问题第$j$个单词的单词历史，$U$和$D$是训练的参数。
+%第三种方式是引入额外的记忆单元存储语义信息，目的是希望解决RNN中不能够长期依赖导致信息丢失的问题，典型
+%	的如Weston等\upcite{MN}
+%	提出的记忆网络(memory networks)。
+%
+Hu等人\upcite{RMR}认为在多层架构中，当前层的注意力计算并没有直接考虑到之前层计算得到的注意力信息，这可能导致两个不同但是相关的问题：（1）多层注意力分布集中在相同的文本上导致注意力冗余；（2）多层注意力未能集中在文本的重要部分造成注意力缺乏。针对这两个问题他们提出强化助记阅读器（Reinforced Mnemonic Reader，RMR）模型，利用重关注机制，通过直接利用之前层计算的注意力信息来微调当前层注意力分布的计算。
+
+表7对比了本节介绍的经典的基于抽取式任务的MRC模型之间的差异。其中Q2C代表问题到段落注意力，C2Q代表段落到问题注意力，Bidirectional代表双向注意力，self-attention代表对段落做自注意力运算，one-dim代表一维注意力，two-dim代表二维注意力，one-hop代表单跳结构，multi-hop代表多跳结构。
+\begin{table}[ht]
+	%\text{基于注意力机制的模型对比}
+	\centering
+	\caption{基于注意力机制的模型对比 \\ Table 7 Comparison of models based on attention mechanism}
+	%\vspace{10pt}
+	%\resizebox{\linewidth}{!}{
+	\begin{tabular}{c c c c}
+		\toprule
+		模型&注意力方向&注意力维度&推理模式 \\
+		\midrule
+		Attentive Reader\upcite{Hermann}&Q2C&one-dim&one-hop \\
+		\midrule
+		Impatient Reader\upcite{Hermann}&Q2C&two-dim&multi-hop \\
+		\midrule
+		Standford Reader\upcite{AR}&Q2C&one-dim&one-hop \\
+		\midrule
+		AS Reader\upcite{ASR}&Q2C&one-dim&one-hop \\
+		\midrule
+		IA Reader\upcite{IAReader}&Q2C&one-dim&multi-hop \\
+		\midrule
+		GA Reader\upcite{GAReader}&C2Q&two-dim&multi-hop \\
+		\midrule
+		Match-LSTM\upcite{MatchLSTM}&C2Q&two-dim&multi-hop \\
+		\midrule
+		DCN\upcite{DCN}&Bidirectional&two-dim&one-hop \\           
+		\midrule
+		BiDAF\upcite{BiDAF}&Bidirectional&two-dim&one-hop \\
+		\midrule
+		ReasoNet\upcite{Reasonet}&Bidirectional&two-dim&multi-hop\\
+		\midrule
+		R-Net\upcite{RNet}&C2Q+self-attention&two-dim&multi-hop \\
+		\midrule
+		RMR\upcite{RMR}&Q2C+self-attention&two-dim&multi-hop \\
+		\midrule
+		QANet\upcite{QANet}&Bidirectional&two-dim&one-hop\\
+		\bottomrule
+	\end{tabular}
+	%}
+\end{table}
+
+
+
 \subsubsection{答案预测层}
-这是整个模型架构的最后一层，用来输出预测的答案。如前面所提到的MRC任务大致分成四类，因此这一层的设计需要
-考虑到答案形式。对于填空型任务，答案的输出是文章中的一个单词。对于多项选择任务，答案的输出是从多个候选答案中选择出正确的选项。
-对于片段选择型任务，答案的输出是文章中某段连续的文本。对于自由答案型任务，答案的输出不限固定的文本，而是根据词典中的单词生成文本。
-此外还有不可回答的问题，此时模型的输出还要考虑到问题是否可以回答。答案预测层的设计细节见\ref{output}节。
+这是整个模型架构的最后一层，用来输出预测的答案。MRC任务按照答案形式的不同大致分成四类，因此这一层的设计需要
+考虑到答案形式。
+%对于填空型任务，答案的输出是文章中的一个单词。对于多项选择任务，答案的输出是从多个候选答案中选择出正确的选项。
+%对于片段选择型任务，答案的输出是文章中某段连续的文本。对于自由答案型任务，答案的输出不限固定的文本，而是根据词典中的单词生成文本。
+%此外还有不可回答的问题，此时模型的输出还要考虑到问题是否可以回答。
+%%答案预测层的设计细节见\ref{output}节。
+%
+%答案预测层的设计要依据答案的形式而设计，
+下面介绍
+各个模型在四类不同的MRC任务上的输出层设计。
+
+
+1）填空式：这类任务答案的形式是预测问题中缺失的单词，而且缺失的答案来源于文章中。Hermann等人\cite{Hermann}
+最早提出将问题的语义向量与问题感知的段落语义向量拼接成一个向量然后映射到整个词典中预测那个缺失的单词。
+这种方法存在的一个问题就是不能够确保预测的单词一定是段落中的词汇，
+这就使得模型的预测准确率受到影响。指针网络（Pointer networks\upcite{Ptr}）模型由seq2seq模型演变而来，主要就是
+为了解决输出源自于输入的问题，实现方式是利用计算的注意力的权重分布直接输出预测结果，而这种机制正适合
+填空型任务以及片段选择型任务。
+Kadlec等人\upcite{ASR}提出AS Reader模型正是受到指针网络的启发，对于计算得到的注意力权重分布，将其中相同单词的注意力
+权值相加，最后输出具有最大权值的单词最为答案。
+填空式任务模型的损失函数可以写
+为$L(\theta)=-\displaystyle\frac{1}{N}\sum_{i=1}^{N}\log P_{y_i}$。
+其中$\theta$为模型参数，$N$代表样本数目，$y_i$表示段落中第$i$个样本在段落中标准答案的位置。
+
+2）多项选择式：这类任务是从多个候选答案选项中选择正确的选项。处理这种任务最简单的一种方式就是计算模型输出后的
+段落语义信息和选项之间的相似程度，相似程度最高的作为预测的选项，从而将问题变化为句子之间的语义匹配问题。
+Wang等人\cite{Co-matching}提出将问题、段落、选项一起放在模型中做交互计算输出一个向量作为输出层的输入，
+输出层采用简单的输出维度是1的全连接层，输出的值代表模型对这个选项的打分值，其它的选项类似的处理，值最高的选项作为预测的答案。
+最后对所有选项的打分值
+做归一化作为模型的损失函数。
+多项选择型任务模型的损失函数可以写为
+$L(\theta)=-\displaystyle\frac{1}{N}\sum_{i=1}^{N}\sum_{j=1}^{m}\log P_{y_{j}^i}$。
+其中$\theta$为模型参数，$N$代表样本数目，$m$代表选项个数，$y_{j}^i$表示第$i$个样本中第$j$个选项是正确答案。
+
+3）抽取式：这类任务是从文章中提取出来一段连续的单词作为答案，虽然类似于填空型任务输出来源自输入的性质，但是
+不像填空型任务仅仅只是预测一个单词。因此填空型
+任务答案输出层的设计不能直接用来作为片段选择型任务答案预测层。
+由于提取文本的长度不固定，使得这一任务更具有挑战性。
+Wang等人\upcite{MatchLSTM}受到指针网络的启发提出了两种基于指针网络的输出模型，第一种是序列式模型，利用指针网络以一种序列式的形式生成答案的每一个位置，处理过程类似于seq2seq模型的解码过程，
+这种模型下答案的每一个单词可能出现在文本段落的任何一个位置，
+这是因为指针网络并没有要求从输入中选择的输出具有连续性。由于答案的长度不固定，因此在段落中设置一个特殊的
+位置表示答案的终止点，当预测到这个位置时终止答案的生成。
+第二种是边界式模型，不同于序列式模型那样序列的生成答案的每一个位置，由于要预测的答案是一段连续的文本，
+因此可以利用指针网络仅仅预测答案的起始位置和终止位置。所预测答案的概率
+是预测这两个位置概率的乘积，这种方式相比于
+第一种更加的简单而且测试结果表明更加高效。
+
+
+边界式模型的这种设计思想也被后来很多MRC模型采纳。尽管边界式模型简单有效，
+%但是在文章中可能有些文本片段与标准答案相似，比如初始位置一样，
+但是边界式模型有可能陷入局部极值的情况从而提取错误的文本片段。为了处理这个问题，Xiong等人\upcite{DCN}
+提出一种动态迭代的指针网络作为解码端，利用上一次预测的答案的起始位置和终止位置以及解码端当前的状态来重新评估
+下一次预测答案的起始位置和终止位置。多次迭代后选取所有迭代次数中概率最大的情形作为预测答案。
+抽取式模型的损失函数可以写为
+$L(\theta)=-\displaystyle\frac{1}{N}\sum_{i=1}^{N}\log P_{y_i^s}^S+\log P_{y_i^e}^E$。
+其中$\theta$为模型参数，$N$代表样本数目，$y_i^s$表示第$i$个样本中标准答案的起始位置在文章中的位置，
+$y_i^e$表示第$i$个样本中标准答案的终止位置在文章中的位置。
+如果考虑到不可回答的问题，最简单的方式是额外在输出层加上一个输出维度是1的全连接层。
+此时的损失函数可以写为
+$L(\theta)=-\displaystyle\frac{1}{N}\sum_{i=1}^{N}(\log P_{y_i^s}^S+\log P_{y_i^e}^E)+\log P_{y_i^u}^U$。
+其中$y_i^u$表示第$i$个样本中的问题是不可回答的问题。关于带有不可回答问题的阅读理解任务细节见\ref{unknown}节。
+
+4）自由答案型：这类任务的答案形式已经不再是原文中某段文本，而是需要根据文章和问题生成符合语法规范的文本。
+这类任务对答案生成模块的能力要求较高。处理生成任务典型的架构是seq2seq模型，See等人\upcite{PGNet}提出
+一种指针生成网络模型（Pointer-Generator Network，PGNet），最早用在文本摘要领域，模型结合了seq2seq的
+生成机制以及指针网络的拷贝机制，使得模型既能从词典中生成单词又能在原文中拷贝单词，实验结果表明该模型的效果优于传统的seq2seq模型。
+
+表8对比了经典的基于抽取式任务的MRC模型在SQuAD\upcite{SQuAD1}数据集上的性能\footnote{统计数据源自Yu等人\upcite{QANet}}。
+
+
+\begin{table}[ht]
+	\centering
+	\caption{模型在SQuAD\upcite{SQuAD1}数据集上的对比（acc代表准确率）}
+	%\vspace{10pt}
+	\begin{tabular}{l c}
+		\toprule
+		模型&EM/F1\\
+		%\cmidrule(lr){2-2} \cmidrule(lr){3-3} \cmidrule(lr){4-4}
+		%&EM/F1&EM/F1& acc \\
+		\midrule
+		Match-LSTM\upcite{MatchLSTM}& 64.7/73.7\\
+		\midrule
+		DCN\upcite{DCN}& 66.2/75.9\\
+		\midrule
+		BiDAF\upcite{BiDAF}&68.0/77.3\\
+		\midrule
+		ReasoNet\upcite{Reasonet}&70.6/79.4\\
+		\midrule
+		R-Net\upcite{RNet}&72.3/80.7 \\
+		\midrule
+		RMR\upcite{RMR}&73.2/81.8 \\
+		\midrule
+		QANet\upcite{QANet}& 76.2/84.6\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+\subsection{复杂任务下的MRC模型}
+以上介绍了经典的神经机器阅读理解模型并且详细的对比了各个模型在交互层注意力机制的差异。这些模型大多是
+基于SQuAD\upcite{SQuAD1}数据集设计的。Weissenborn等人\upcite{fastqa}提出的FastQA模型，在编码层的输入中对段落的每一个单词额外的添加了两个特征（binary，weighted）：binary特征表示原文中的词是否出现在问题中，weighted特征表示原文中的单词与问题的相似度。FastQA没有交互层复杂的注意力机制的设计，仅仅依靠这两个特征就在SQuAD数据集上取得了很好的效果。这一方面质疑那些复杂的注意力机制是否真的可以提升模型的效果，另一方面也说明SQuAD数据集难度不高，达不到测验模型推理和理解能力。
+而且抽取式的问答要求答案是原文连续的文本片段，
+显然不接近人类现实世界中的问答。
+本节介绍复杂任务下的MRC模型，与之前的模型不同，在应对复杂的阅读理解任务下模型需要根据任务的特点来设计相应的结构。
+
+% \begin{center}
+%     \begin{figurehere}[ht]
+%         \textbf{图1：CoQA\upcite{CoQA}数据集的一个样例}
+%         \vspace{10pt}
+%         \centering
+%         \includegraphics[width=0.5\textwidth]{coqa.png}
+%     \end{figurehere}
+% \end{center}
+
+\subsubsection{带有不可回答问题的阅读理解任务}\label{unknown}
+之前的MRC数据集全都有一个共同的特点就是默认每一个问题都可以在给定的文本中找到答案，然而一段文本所包含的知识是限的，因此有下述两点是需要考虑的：（1）这段文本不能回答那些与文本表达内容无关的问题；（2）某些问题可能与文本内容类似但是问题含义与文本含义不同，这种问题仍然是不可回答的。
+目前最流行的带有不可回答问题的数据集如SQuAD 2.0\upcite{SQuAD2}，在SQuAD的基础上增加了五万多个不可回答的问题。一个样例如表9所示。
+
+\begin{table}[ht]
+	\centering
+	\caption{SQuAD 2.0的一个样例 \\ Table 9 An example of SQuAD 2.0}
+	%\vspace{5pt}
+	\begin{tabular}{l p{13.2cm}<{\raggedright}}
+		\toprule
+		文章：&\tabincell{l}{Other legislation followed, including the Migratory Bird Conversation Act of 1929, \\ 
+			a \textbf{1937 treaty} prohibiting the hunting
+			of right and gray whales, and the \\ 
+			\textbf{Bald Eagle Protection Act of
+				1940}. These later laws had a low cost to society\\ —the species
+			were relatively rare—and little opposition was raised.}\\
+		%\cmidrule(l){2-3}
+		\midrule
+		问题：&\tabincell{l}{What was the name of the 1937 treaty} \\
+		%\cmidrule(l){2-3}
+		\midrule
+		看似合理的答案：&Bald Eagle Protection Act \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+从表9中可以看出题目问的是1937 treaty的名字，而Bald Eagle Protection Act指的是1940 treaty的名字，这对于模型来说是一个非常迷惑的答案。
+对于这类任务模型必须区分出哪些问题是不可回答的，对于不可回答的问题模型不能再给出``貌似合理"的答案。在3.2节所介绍的模型里，很多模型在SQuAD数据集上表现很好然而在SQuAD 2.0数据集上效果显著下降，这说明很多模型只是基于浅层的语义匹配来寻找答案而不是真正的理解了文章的含义。
+
+因此对于带有不可回答问题的阅读理解任务，模型要分为两个模块：（1）答案抽取模块；（2）判别不可回答问题模块。Clark等\upcite{Clark}尝试在原有的答案抽取模块的基础上额外添加一个专门用来预测不可回答情况的网络层，损失函数定义如下：
+
+\begin{equation}
+L_{joint}=-\log(\displaystyle\frac{(1-\delta)e^z+\delta e^{\alpha_a\beta_b}}{e^z+\sum_{i=1}^{l_p}\sum_{j=1}^{l_p}e^{\alpha_i\beta_j}})
+\end{equation}
+其中$z$表示模型预测该问题是不可回答问题的分数，如果问题是可以回答的则$\delta=1$，反之$\delta=0$。$\alpha$和$\beta$分别表示输出层预测的文章中每一个单词作为答案起始位置和终止位置的概率，$a$和$b$分别代表标准答案在文章中的起始位置和终止位置。
+
+由公式可以看出预测的答案跨度分数$\alpha_a,\beta_b$和不可回答问题的分数$z$是共同归一化的。Hu等人\upcite{ReadVerify}认为两个分数共同归一化会出现冲突，如果模型过分信任预测的答案跨度分数那么就会在预测不可回答问题时产生较低的分数。此外之前的模型并没有验证答案抽取模块预测的答案跨度的合理性。
+%所在的句子\footnote{原文中称为answer sentence}可以蕴含出这段跨度文本。
+为了解决以上问题，他们提出Read+Verify架构。其中Read模块就是指答案抽取模块+判别不可回答问题模块，
+Verify模块用来进一步验证是否答案抽取模块预测的答案跨度所在的句子（原文中称为answer sentence）就是标准答案所在的句子。
+为了解决上面提到的冲突问题，在Read模块中额外增加了两个辅助损失函数：
+\begin{gather}
+L_{indep-span}=-\log(\displaystyle\frac{e^{\widetilde{\alpha}_{\widetilde{a}}\widetilde{\beta}_{\widetilde{b}}}}{\sum_{i=1}^{l_p}\sum_{j=1}^{l_p}\widetilde{\alpha}_{i}\widetilde{\beta}_{j}}) \\
+L_{indep-unknown}=-(1-\delta)\log\sigma(z)-\delta\log(1-\delta(z))
+\end{gather}
+其中$L_{indep-span}$代表答案抽取模块的损失函数，而此时的答案抽取模块是独立的预测答案片段而不考虑问题是否可以回答，$\widetilde{\alpha}_{\widetilde{a}}$和$\widetilde{\beta}_{\widetilde{b}}$表示的就是答案抽取模块所预测出来的答案跨度。
+$L_{indep-unknown}$代表判断问题不可回答的损失函数，同样它是独立于答案抽取模块的。$\sigma$代表sigmoid函数。
+最后整个Read模块的损失函数定义为：
+\begin{equation}
+L_{Read}=L_{joint}+\gamma L_{indep-span}+\lambda L_{indep-unknown}
+\end{equation}
+$\gamma$和$\lambda$是两个超参数。实验表明去掉$L_{indep-unknown}$后模型在判断不可回答问题上的准确率显著下降，证明了上述提出的冲突确实存在。对于验证模块，他们采用三种结构。第一种将预测出来的答案片段连同问题以及answer sentence连接成一个句子送入预训练模型GPT\upcite{GPT}中预测不可回答的概率。第二种采用交互式结构，通过注意力机制计算它们之间的关联。第三种结构是前两个结构的结合，将前两个结构的输出张量拼接，实验证明这种混合结构使得模型效果更好。
+
+%人在做阅读理解问题的时候通常会先带着问题大致的浏览一下这篇文章，对这篇文章的含义有一个大致的了解。之后再根据问题详细的阅读文章寻找答案。受到这种阅读形式的启发，Zhang等人\upcite{Retrospective}提出一种回顾式阅读器（Retrospective Reader，Retro-Reader）模型。整个模型由两个步骤构成：（1）第一步先简要的略读文章，建模文章与问题的大致关联给出初步的判断该问题是否可以回答。（2）第二步是精读模块，目的是验证可回答性并且给出最终判断。模型的编码器采用强大的预训练模型ALBERT\upcite{ALBERT}，Retro-Reader在SQuAD 2.0数据集上显著优于其它模型。
+
+
+
+\subsubsection{多段落型阅读理解任务}
+多段落式阅读理解，即一个问题会对应着
+多个相关的段落，也可以认为是开放领域（Open-domain）问答的一种形式。Open-domain问答目的是从广泛的领域资源（如维基百科，网页搜索等）寻找问题的答案而不限于仅仅在某段文本中，这更贴近于真实场景但同时具有相当大的难度。Chen等人\upcite{DrQA}提出利用检索+阅读（Retrieve+Read）的模式处理open-domain问答。具体的就是先利用检索模块（Document Retriever）从维基百科中获取5个与问题最相关的文章，然后利用阅读器（Document Reader）预测出答案所在的位置。其中Document retriever采用基于TF-IDF权重的词袋向量模型比较问题和文章的关联程度并且在此基础上用bigram哈希优化。
+
+对于open-domain问答任务，检索模块要检索出与问题相关的文章，因此检索模块的性能极大地影响着模型整体的效果。如果简单的增加其检索文章的数量就可能导致有不相关的文章被检索出，仍然影响后续阅读模块。为了解决这个问题，Lee等人\upcite{Ranking}提出段落排序（Paragraph Ranker)机制，利用BiLSTM获得每一篇段落和问题的表示向量，然后计算两个向量的内积作为这篇段落与问题的相似度，目的是从多篇文章中的多个段落选出与问题最相关的几个段落。
+
+
+目前典型的多段落型数据集如MS MARCO\upcite{MSmarco}、TriviaQA\upcite{TriviaQA}，中文的有DuReader\upcite{DuReader}。
+以MS MARCO数据集为例，数据集样例见表4. MS MARCO由微软亚洲研究院发布，问题和文章来源于
+必应搜索，答案由人工生成，因此数据集接近真实应用场景而且答案不在局限于文章中
+。每个问题对应10个由必应搜素引擎返回的文本段落，其中与问题答案相关的段落用$\text{is\_select=1}$标记为1。
+Tan等人\upcite{SNet}提出S-Net模型，
+先通过片段抽取模块提取出
+一段文本作为答案的预测依据，然后利用生成模块生成答案。其中片段抽取模块采用多任务学习策略，
+除了预测文本片段之外还添加一个段落排名任务，
+将标记为$\text{is\_select=1}$的段落视为正例。答案生成模块采用seq2seq模型，
+其中encoder端的输入是问题单词的向量表示以及将片段抽取模块的输出作为额外的特征
+和文章单词的向量表示拼接。实验证明S-Net在MS MSRCO数据集上的效果要显著地优于
+R-Net\upcite{RNet}，ReasoNet\upcite{Reasonet}这些用来做片段抽取任务的模型。
+
+多段落型阅读理解任务复杂的原因之一就是由于有多个段落，不同的段落都有可能会包含与问题语义相近的答案，但是有些答案并不是正确的。基于这个问题，Wang等人\upcite{VNet}提出一种模型使得来自不同段落的候选答案在基于它们所在的上下文内容里互相验证对方的正确性。将每一篇段落中预测出来的答案与其它段落预测的答案做交互验证。这样做的原因是因为相比于错误的答案，正确答案中的单词往往会在多个段落中重复出现，因此通过交互验证可以凸显出正确答案。最后模型在MS MARCO数据集上的效果优于S-Net。
+
+
+\subsubsection{对话型问答任务}\label{cmrc}
+%虽然本节介绍的对话型任务按照答案形式上划分仍然可以划分到那四种类型里面，但是由于对话型问答任务与其它任务在数据集构造方式以及任务形式上有较大不同，因此本节单独列出对话型问答任务。
+%除了按照答案形式上划分还可以根据文章类型划分，如单段落型阅读理解还是多段落型阅读理解。
+%
+%
+%根据问答形式划分，比如上面所介绍的所有数据集都属于单轮对话式问答，
+%即文章所对应的多个问题之间没有联系，每一个问题都是互相独立的。这并不符合
+%现实世界中人与人之间的对话交流，人们是通过多轮对话形式来交流的，每一轮的问题和答案都会影响后面的问答情况。
+无论是单段落型阅读理解还是多段落型阅读理解任务，它们都属于单轮对话问答，即问答的形式只有一轮，后面的问题与前面的问题和答案无关，每一个问题都是互相独立的。
+而在现实世界中人们是通过多轮对话形式来交流的，每一轮的问题和答案都会影响后面的问答情况。
+所以对话型任务来讲，在回答当前轮的问题时不仅需要考虑文章还需要考虑前几轮的问题和答案。
+具体可以表示为：给定$Q_i,D,Q_{i-1},\cdots,Q_{i-k}$以及$A_{i-1},\cdots,A_{i-k}$要求模型给出$A_{i}$。其中$Q_i,A_i$表示第$i$轮的问题和答案，$D$表示文章，$Q_{i-1},\cdots,Q_{i-k}$和$A_{i-1},\cdots,A_{i-k}$分别表示前$k$轮的问题和答案，建模概率：
+\begin{equation}
+P(A_i|D,Q_i,Q_{i-1},\cdots,Q_{i-k},A_{i-1},\cdots,A_{i-k})
+\end{equation}
+
+目前典型的对话型问答数据集有CoQA\upcite{CoQA}以及QuAC\upcite{QuAC}。
+不同之处在于CoQA数据集的答案形式较为简单，类似于SQuAD\upcite{SQuAD1}，但是包含有yes/no以及unknown问题，其中unknown代表不可回答问题，此外还有一定比例的问题是自由答案形式。而QuAC数据集的构造过程中提问者没有看过文章而仅仅了解文章的标题，由回答者根据文章的内容选择出文章的一段文本作为答案，这种数据集构造形式类似于用户在搜素引擎中输入问题查找答案，目的是减少问题和文本之间的依赖，使得模型尽量避免通过浅层的匹配方式获得答案。
+对话型阅读理解数据集的一个样例见表10。
+
+\begin{table}[ht]
+	\centering
+	\caption{CoQA\upcite{CoQA}数据集的一个样例 \\ Table 10 An example of CoQA}
+	%\vspace{10pt}
+	\resizebox{\textwidth}{!}{\begin{tabular}{l p{15.5cm}<{\raggedright}}
+			\toprule
+			\multirow{3}{*}{文章}&Jessica went to sit in her rocking chair. Today was her birthday and she was turning 80. Her granddaughter Annie was coming over in the afternoon and Jessica was very excited to see her. Her daughter Melanie and Melanie's husband Josh were coming as well.\\
+			\cmidrule{2-2}
+			\multirow{3}{*}{第一轮}&$Q_1$: Who had a birthday? \\
+			&$A_1$: Jessica \\
+			&$R_1$: Jessica went to sit in her rocking chair. Today was her birthday and she was turning 80. \\
+			\cmidrule{2-2}
+			\multirow{3}{*}{第二轮}&$Q_2$: How old would \textbf{she} be? \\
+			&$A_2$: 80 \\
+			&$R_2$: she was turning 80. \\
+			\cmidrule{2-2}
+			\multirow{3}{*}{第三轮}&$Q_3$: Did \textbf{she} plan to have any \textbf{visitors}? \\
+			&$A_3$: Yes \\
+			&$R_3$: Her granddaughter Annie was coming over \\
+			\cmidrule{2-2}
+			\multirow{3}{*}{第四轮}&$Q_4$: \textbf{How many?} \\
+			&$A_4$: Three \\
+			&$R_4$: Her granddaughter Annie was coming over in the afternoon and Jessica was very excited to see her. Her daughter Melanie and Melanie's husband Josh were coming as well. \\
+			\cmidrule{2-2}
+			\multirow{3}{*}{第五轮}&$Q_5$: \textbf{Who?} \\
+			&$A_5$: Annie, Melanie and Josh \\
+			&$R_5$: Her granddaughter Annie was coming over in the afternoon and Jessica was very excited to see her. Her daughter Melanie and Melanie's husband Josh were coming as well. \\
+			\toprule  
+	\end{tabular}}
+\end{table}
+
+% \begin{center}
+% \begin{figurehere}
+%     \textbf{图1：CoQA\upcite{CoQA}数据集的一个样例}
+%     \vspace{10pt}
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{coqa.png}
+% \end{figurehere}
+% \end{center}
+其中每一个$Q_i$和$A_i$代表问题和对应的答案，每一个$R_i$表示给出这个答案的依据，用来训练模型。
+测试集中是没有答案依据的。
+%因此对话型问答任务可以描述为给定文章$P$和
+%历史的对话信息$Q_1,A_1,Q_2,A_2,\cdots,Q_{k-1},A_{k-1}$，任务的目的是
+%给出第$k$轮的问题$Q_k$的答案$A_k$。
+从图中可以清楚地看到$Q_2$和$Q_3$中的she指代的是$Q_1$的答案$A_1$，而$Q_4$的How many?以及$Q_5$的Who?所问的
+是$Q_3$中的visitors。显然仅仅靠一轮的问题是无法回答的，对话历史信息在对话型问答任务中尤为重要。
+
+Reddy等人\upcite{CoQA}采用三种模型在CoQA数据集上进行实验。
+第一种是传统的seq2seq模型，decoder用来生成答案。第二种是指针生成网络（Pointer-Generator Network\upcite{PGNet}，PGNet），既可以从词典中生成答案又可以从原文中拷贝单词，很好的解决了OOV（Out Of Vocabulary）问题。
+第三种是DrQA+PGNet模型，其中DrQA\upcite{DrQA}是一个片段抽取模块。整个模型的思想是
+先利用片段提取模块从文章中提取中与问题最相关的一段文本，然后利用答案生成模块在这个被抽取出来的文本上
+生成答案，实验结果表明这种结合模型的效果是优于前两个模型的。为了能够利用历史的对话信息，做法是将前几轮的问题与答案结合到
+文章当中作为上下文来回答当前轮的问题。
+%\begin{center}
+%    \begin{figurehere}
+%        \textbf{图2：CoQA\upcite{CoQA}数据集的一个样例}
+%        \vspace{10pt}
+%        \centering
+%        \includegraphics[width=0.5\textwidth]{coqa.png}
+%    \end{figurehere}
+%\end{center}
+
+Choi等人\upcite{QuAC}利用BiDAF++\upcite{Clark}模型在QuAC数据集上进行实验，为了利用历史的对话信息，在文章中设置一个标记向量用来标记文章中的单词是否出现在历史答案中，在问题向量的基础上添加问题的轮次，这是另一种处理历史对话信息的方式。
+%Yatskar等人\upcite{CompareSQC}采用同样的模型以及同样的历史信息处理方式在CoQA数据集上进行实验，由于CoQA数据集包含有yes/no问题，因此在输出层额外设计预测yes/no的情况。
+
+Huang等人\upcite{FlowQA}认为上述的方法只是简单的添加之前轮的问题和答案，而忽略了在回答之前轮问题时模型对整篇文章的推理过程状态，他们提出一种带有流机制的模型FlowQA，目的是将模型处理每一轮的问答过程下的对文章的语义理解状态流向下一轮的问答过程。FlowQA模型整体上利用双向循环神经网络编码文章，利用单向循环神经网络编码对话历史，对比之前的模型，FlowQA能够集成更加深层次的对话历史状态。
+
+%虽然预训练模型BERT\upcite{BERT}在自然语言理解任务上展现出其强大的性能，但是其数据输入形式只能是两个句子的拼接因此并不适合直接处理对话型任务。Qu等人\upcite{HAE}提出一种简单而有效的模型，仅仅需要在BERT模型的输入端为每一个单词添加两个额外的向量用来表明这个单词有没有在历史答案中出现过，文中称这两个向量为（History Answer Embedding，HAE）。实验表明BERT+HAE模型较之前的模型可以处理更多的历史对话信息。
+%Zhu等人\upcite{SDNet}
+%提出的SDNet模型，以基于特征的方式迁移BERT作为编码器，同时将之前轮次的问题和答案拼接到当前轮的问题上构成一个新问题。模型采用自注意力机制获得历史对话信息之间的交互语义，具体的计算方式采用FusionNet\upcite{Fusionnet}模型提出的融合方法。
+%Ohsugi等人\upcite{simpleqa}以基于微调的方式迁移BERT模型。
+%将历史对话信息每一轮的问题与答案分别与文章连接送入
+%BERT，将每一个BERT的输出连接作为输出层的输入。
+
+
+
+
+
+值得注意的是尽管CoQA数据集有部分答案是自由答案形式的，但是上面的模型大多是利用片段提取式的做法在CoQA数据集上实验，主要原因在于
+生成式模型的效果往往不如提取式模型的效果好，因为生成式模型对答案生成模块要求较高。
+因此如何提高模型的答案生成效果是值得进一步研究的方向。
+%由于预训练模型UNILM\upcite{UNILM}改进了BERT的训练任务，
+%增加了自回归语言模型以及seq2seq语言模型使得其
+%在生成式任务上的效果很好，在CoQA数据集上远远的超过于Reddy等\upcite{CoQA}提出的基准模型。
 
 %下面介绍神经机器阅读理解模型中基于注意力机制的模型和基于预训练的模型。
 %\input{embedding_layer.tex}
 
 
 
-\input{interaction_layer.tex}
+%\input{interaction_layer.tex}
 %
 %
 \input{pre_train.tex}
 %% %\input{model.tex}
 %
 %
-\input{output_layer.tex}
+%\input{output_layer.tex}
 
 \begin{table}[ht]
 	\centering
@@ -198,20 +808,20 @@ Rumelhart等人\upcite{Rumelhart}最早提出分布式表示的概念，
 	\end{tabular}
 \end{table}
 
-\subsection{小结}
-本章首先介绍了神经机器阅读理解模型的结构，
-涉及的技术如注意力机制以及相关的模型。
-然后介绍了目前流行的几种预训练模型，最后对于不同的MRC任务分别介绍了各自输出层的
-设计。
-
-在预训练模型的基础上利用具体任务的数据微调模型，
-即只需要稍微添加简单的输出层即可达到很好的效果。但是预训练模型只是给了更好的初始化参数，
-如果想要进一步提升模型的性能还需要在其基础上根据具体的任务设计一个更好的模型。
-%如Zhang等人\upcite{DCMN}
-%利用BERT\upcite{BERT}和XLNet\upcite{XLNet}作为编码器同时采用文献\cite{Co-matching}提出的co-matching方法提出了DCMN模型，在RACE\upcite{RACE}
-%数据集上达到了很高的准确率。而后在DCMN的基础上引入选项交互和段落选择任务使得
-如何利用预训练模型结合具体任务改进模型的结构是至关重要的。表8对比了本章所介绍的模型在三个常用数据集上的表现，可以看到基于预训练
-模型的效果要显著的优于其它模型，此外在其它数据集上排名靠前的模型几乎都是基于预训练模型的。
+%\subsection{小结}
+%本章首先介绍了神经机器阅读理解模型的结构，
+%涉及的技术如注意力机制以及相关的模型。
+%然后介绍了目前流行的几种预训练模型，最后对于不同的MRC任务分别介绍了各自输出层的
+%设计。
+%
+%在预训练模型的基础上利用具体任务的数据微调模型，
+%即只需要稍微添加简单的输出层即可达到很好的效果。但是预训练模型只是给了更好的初始化参数，
+%如果想要进一步提升模型的性能还需要在其基础上根据具体的任务设计一个更好的模型。
+%%如Zhang等人\upcite{DCMN}
+%%利用BERT\upcite{BERT}和XLNet\upcite{XLNet}作为编码器同时采用文献\cite{Co-matching}提出的co-matching方法提出了DCMN模型，在RACE\upcite{RACE}
+%%数据集上达到了很高的准确率。而后在DCMN的基础上引入选项交互和段落选择任务使得
+%如何利用预训练模型结合具体任务改进模型的结构是至关重要的。表8对比了本章所介绍的模型在三个常用数据集上的表现，可以看到基于预训练
+%模型的效果要显著的优于其它模型，此外在其它数据集上排名靠前的模型几乎都是基于预训练模型的。
 %\end{multicols}
 %\begin{table}[ht]
 %	\centering
@@ -250,29 +860,27 @@ Rumelhart等人\upcite{Rumelhart}最早提出分布式表示的概念，
 %	\end{tabular}
 %\end{table}
 
-\input{new_trend.tex}
+%\input{new_trend.tex}
 %
+\input{discussion.tex}
 \section{总结与展望}
-本文从机器阅读理解任务的定义出发，第二章介绍了不同任务下的数据集以及相应的评估标准。
-第三章对经典的神经机器阅读理解模型进行了分析与研究，主要涉及模型
-的整体框架以及所用到的方法如注意力机制、推理结构等。同时也总结了
+本文从机器阅读理解任务的定义出发，第二章概述了机器阅读理解任务以及介绍了不同任务下的数据集和相应的评估标准。
+第三章神经机器阅读理解模型进行了分析与研究，主要涉及经典模型
+的整体框架，其中详细分析了各个模型在交互层注意力机制的设计。此外还介绍了复杂任务下MRC模型的设计，同时也总结了
 目前一些主流的预训练模型，分析了它们之间的差异，列举了一些在预训练模型的基础上改进
-的模型。通过各个模型的实验对比结果可以看到基于预训练的模型性能要显著的优于传统的仅仅基于
-注意力机制的模型。第四章列举了一些目前MRC领域更加复杂的任务并且对每一种任务下相关的模型做了介绍。
+的MRC模型。通过各个模型的实验对比结果可以看到基于预训练的模型性能要显著的优于传统的仅仅基于
+注意力机制的模型。第四章回顾了MRC领域的发展并且指出了目前MRC领域存在的问题。
+%列举了一些目前MRC领域更加复杂的任务并且对每一种任务下相关的模型做了介绍。
 
 机器阅读理解赋予了计算机阅读理解文本的能力，在搜索、对话、医疗以及教育领域都有着广阔的应用空间。
-但是目前机器阅读理解仍然存在一些难题：
 
-1）基于注意力机制的匹配模型大多是浅层的语义匹配模型，基于多跳结构的推理模式还过于单一，而
-阅读理解是需要深层次的推理过程才能更好的理解文章，让模型具有较强的推理能力至关重要。
+1）可解释性
 
 2）目前机器阅读理解领域的数据集大多是通用领域方向的，而设计专业领域数据集也尤为重要，更重要的是
 这些适用于通用领域数据集的模型未必在专业领域有一样的性能。
 
-3）生成答案的技术还需要进一步提升，回顾目前机器阅读理解领域的数据集以及相应的模型，
-大多集中于片段选择式问答且模型准确度很高甚至超过人类水平。
-而对于自由答案型这种需要生成答案的模型效果很差，有些模型直接将生成式问题转为抽取式问题，主要原因
-在于生成答案模块的效果往往不好。
+3）常识能力
+
 
 4）目前机器阅读理解主要集中于非结构化的文本领域，而
 还有许多其它结构，不同模态的数据如表格、视频、音频、图片等，

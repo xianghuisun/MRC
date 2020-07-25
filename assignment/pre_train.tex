@@ -1,4 +1,4 @@
-\subsection{预训练模型}\label{pretrain}
+\subsection{基于预训练模型的MRC模型}
 % 使用预训练模型可以解决缺少标注数据的问题，因为预训练的模型已经在大量的无标签数据集上学习到了一些重要的特征等，因此应用到
 % 具体任务时不需要大量的标注数据，也不需要长时间的训练即可达到很好的效果。
 % 语言模型是NLP领域一个非常基础但同时也是非常
@@ -12,14 +12,15 @@
 目前最流行的几个预训练模型如ELMo\upcite{ELMo}，
 GPT\upcite{GPT}，BERT\upcite{BERT}以及基于BERT改进的预训练模型RoBERTa\upcite{RoBERTa}，UNILM\upcite{UNILM}，ALBERT\upcite{ALBERT}等
 全都是基于语言模型做预训练，因此也叫预训练语言模型。
-预训练的模型根据迁移方式的不同可以分为两种方式基于特征的方式（Feature-based）
-和基于微调的方式（Fine-tuning）。
-基于特征的方式是指对于预训练好的模型，应用到具体任务时固定模型的参数，将具体任务的数据通过预训练的模型得到数据的表示
-特征然后输入到根据具体任务设计的具体模型中。基于微调的方式是广泛采用的一种预训练模型的使用方式，具体的做法是在预训练模型的基础上加上少量的网络层，然后利用具体任务的
-标注数据训练整个网络模型。本节将主要概述NLP领域一些流行的预训练语言模型以及它们在MRC任务上的应用和效果对比。
+%预训练的模型根据迁移方式的不同可以分为两种方式基于特征的方式（Feature-based）
+%和基于微调的方式（Fine-tuning）。
+%基于特征的方式是指对于预训练好的模型，应用到具体任务时固定模型的参数，将具体任务的数据通过预训练的模型得到数据的表示
+%特征然后输入到根据具体任务设计的具体模型中。基于微调的方式是广泛采用的一种预训练模型的使用方式，具体的做法是在预训练模型的基础上加上少量的网络层，然后利用具体任务的
+%标注数据训练整个网络模型。
+下面将主要概述NLP领域一些流行的预训练模型以及它们在MRC任务上的应用和效果对比。
 
 \subsubsection{Transformer}\label{transformer}
-鉴于目前几乎所有的预训练模型都采用transformer\upcite{Transformer}结构或者其变体作为模型的特征提取器，因此本节介绍transformer结构。
+鉴于目前几乎所有的预训练模型都采用transformer\upcite{Transformer}结构或者其变体作为模型的特征提取器，因此本节首先介绍transformer结构。
 Transformer是由Vaswani等人提出了一种用于机器翻译的encoder-decoder结构。
 Encoder端由六个相同的层堆叠而成，每一层有两个子层，第一个子层采用多头（multi-head）自注意力机制，第二个子层采用前馈神经网络（Feed-Forward Network，FFN）构成。
 之所以用自注意力机制是因为它既可以捕获句子中每一个单词的全局依赖关系而不受距离影响又可以并行计算。
@@ -52,7 +53,7 @@ Transformer的encoder端和decoder端都可以做特征提取器如BERT\upcite{B
 基于RNN变体的编码器，目前几乎所有的NLP预训练模型都是利用transformer作为特征提取器。
 
 
-\subsubsection{相关模型}
+\subsubsection{预训练模型}\label{pretrain}
 %\subsubsection{相关预训练模型}
 ELMo\upcite{ELMo}是在2018年提出的一种预训练语言模型。
 传统的词嵌入模型如Word2Vec\upcite{word2vec},GloVe\upcite{GloVe}属于
@@ -141,8 +142,8 @@ BERT在整个预训练的流程上采用GPT的方式，即预训练然后微调�
 此外利用下一个句子预测（NSP）任务使得模型
 在诸如文本蕴含、问答这类需要判断两个句子关系的下游任务表现更好。
 BERT的预训练过程实质上是
-一个多任务学习的过程，通过同时训练掩码语言模型和下一个句子预测两个
-提高了预训练模型的语义表达能力。
+一个多任务学习的过程，通过MLM和NSP两个任务
+提高了预训练模型的语义表达能力，其中MLM任务用来学习句子中词与词之间的语义关联而NSP任务用来学习两个句子之间的逻辑关系。
 BERT在SQuAD 1.1\upcite{SQuAD1}数据集上的效果超过了人类的水平，在其它的NLP任务上也都有提升。
 %\subsubsection{UNILM}
 
@@ -187,7 +188,7 @@ SOP(sentence-order prediction)取代NSP任务，SOP是指句子顺序预测，�
 实验表明SOP任务使得模型的效果提升一个百分点。
 ALBERT的改进机制使得模型的预训练后的效果更好，在RACE\upcite{RACE}，SQuAD 2.0\upcite{SQuAD2}等
 机器阅读理解数据集上的准确率超过BERT以及其它的预训练模型。
-表7从预训练任务、模型采用的特征提取器等详细对比了本文介绍的所有预训练模型。
+表11从预训练任务、模型采用的特征提取器等详细对比了本文介绍的所有预训练模型。
 % \subsection{小结}
 % 传统的静态的预训练词向量虽然可以给模型性能带来一定程度的提升，但是这种提升非常有限。主要原因是
 % 其静态的性质无法解决多义词的
@@ -198,7 +199,7 @@ ALBERT的改进机制使得模型的预训练后的效果更好，在RACE\upcite
 % 预训练模型如ALBERT、UNILM也都是在BERT的基础上进行进一步优化如：引入生成任务、改进训练方式等。
 
 \begin{table}[ht]
-	\caption{预训练模型对比\\ Table 7 Comparison of pre-trained model}
+	\caption{预训练模型对比\\ Table 11 Comparison of pre-trained model}
 	\centering
 	%\vspace{10pt}
 	%表格超出页边距用resizebox
@@ -226,7 +227,33 @@ ALBERT的改进机制使得模型的预训练后的效果更好，在RACE\upcite
 \end{table}
 
 
+\subsubsection{更强大的MRC模型}
+在预训练模型出现后不仅仅在MRC任务上，在其它的NLP任务上模型的结构都发生了较大的变化，
+在模型的基础上利用具体任务的数据微调模型即可达到很好的效果。但是预训练模型毕竟是一个通用式的模型，
+它给了模型很好的初始化参数，但是仍然要根据具体任务的形式来设计模型才能达到更好的效果。
+下面列举几个MRC数据集上目前效果较好的基于预训练模型的MRC模型。
 
+人在做阅读理解问题的时候通常会先带着问题大致的浏览一下这篇文章，对这篇文章的含义有一个大致的了解。之后再根据问题详细的阅读文章寻找答案。受到这种阅读形式的启发，Zhang等人\upcite{Retrospective}提出一种回顾式阅读器（Retrospective Reader，Retro-Reader）模型。整个模型由两个步骤构成：（1）第一步先简要的略读文章，建模文章与问题的大致关联给出初步的判断该问题是否可以回答。（2）第二步是精读模块，目的是验证可回答性并且给出最终判断。模型的编码器采用强大的预训练模型ALBERT。Retro-Reader在SQuAD 2.0\upcite{SQuAD2}数据集上显著优于其它模型。
+
+%如何训练出一个性能更加强大的预训练模型成为近年来NLP领域的研究热点。
+Zhang等人\upcite{DCMN}
+利用BERT\upcite{BERT}和XLNet\upcite{XLNet}作为编码器同时采用文献\cite{Co-matching}提出的co-matching方法提出了DCMN模型，在RACE\upcite{RACE}
+数据集上达到了很高的准确率。
+而后在DCMN的基础上引入选项交互模块和段落选择模块提出DCMN+\cite{DCMN+}模型，模型的性能进一步提升。
+
+BERT以及基于BERT改进的预训练模型其数据输入形式只能是两个句子的拼接因此并不适合直接处理CoQA这种对话型阅读理解数据集。
+%Qu等人\upcite{HAE}提出一种简单而有效的模型，仅仅需要在BERT模型的输入端为每一个单词添加两个额外的向量用来表明这个单词有没有在历史答案中出现过，文中称这两个向量为（History Answer Embedding，HAE）。实验表明BERT+HAE模型较之前的模型可以处理更多的历史对话信息。
+Zhu等人\upcite{SDNet}
+提出SDNet模型，以基于特征的方式迁移BERT作为编码器，同时将之前轮次的问题和答案拼接到当前轮的问题上构成一个新问题。模型采用自注意力机制获得历史对话信息之间的交互语义，具体的计算方式采用FusionNet\upcite{Fusionnet}模型提出的融合方法。
+Ohsugi等人\upcite{simpleqa}以基于微调的方式迁移BERT模型。
+将历史对话信息每一轮的问题与答案分别与文章连接送入
+BERT，将每一个BERT的输出连接作为输出层的输入。两个模型在CoQA\upcite{CoQA}和QuAC\upcite{QuAC}上的效果均超过前面的BiDAF++\upcite{Clark}，FlowQA\upcite{FlowQA}等利用复杂交互机制的模型。
+%由于预训练模型UNILM\upcite{UNILM}改进了BERT的训练任务，
+%增加了自回归语言模型以及seq2seq语言模型使得其
+%在生成式任务上的效果很好，在CoQA数据集上远远的超过于Reddy等\upcite{CoQA}提出的基准模型。
+
+虽然设计一个强大的预训练模型具有更好的泛化型和应用价值，但是预训练模型所消耗的计算资源是巨大的，
+因此如何利用预训练模型结合具体任务改进模型的结构是至关重要的。
 % \begin{center}
 %     \begin{tabular}{l c}
 %         \toprule

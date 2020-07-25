@@ -1,19 +1,21 @@
 [0] Config.pm:302> INFO - This is Biber 2.9
 [0] Config.pm:305> INFO - Logfile is 'assignment.blg'
-[55] biber:313> INFO - === Fri Jul 17, 2020, 09:05:39
-[90] Biber.pm:371> INFO - Reading 'assignment.bcf'
-[173] Biber.pm:857> INFO - Found 64 citekeys in bib section 0
-[187] Biber.pm:3981> INFO - Processing section 0
-[198] Biber.pm:4154> INFO - Looking for bibtex format file 'ass.bib' for section 0
-[205] bibtex.pm:1468> INFO - LaTeX decoding ...
-[330] bibtex.pm:1294> INFO - Found BibTeX data source 'ass.bib'
-[334] Utils.pm:169> WARN - Duplicate entry key: 'SQuAD1' in file 'ass.bib', skipping ...
-[336] Utils.pm:169> WARN - Duplicate entry key: 'SQuAD2' in file 'ass.bib', skipping ...
-[980] Utils.pm:169> WARN - month field '10-11' in entry 'Ranking' is not an integer - this will probably not sort properly.
-[1121] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1121] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1122] Biber.pm:3809> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[1122] Biber.pm:3815> INFO - No sort tailoring available for locale 'en-US'
-[1194] bbl.pm:617> INFO - Writing 'assignment.bbl' with encoding 'UTF-8'
-[1233] bbl.pm:720> INFO - Output to assignment.bbl
-[1233] Biber.pm:110> INFO - WARNINGS: 3
+[27] biber:313> INFO - === Sat Jul 25, 2020, 16:52:42
+[49] Biber.pm:371> INFO - Reading 'assignment.bcf'
+[121] Biber.pm:857> INFO - Found 69 citekeys in bib section 0
+[134] Biber.pm:3981> INFO - Processing section 0
+[144] Biber.pm:4154> INFO - Looking for bibtex format file 'ass.bib' for section 0
+[150] bibtex.pm:1468> INFO - LaTeX decoding ...
+[275] bibtex.pm:1294> INFO - Found BibTeX data source 'ass.bib'
+[279] Utils.pm:169> WARN - Duplicate entry key: 'SQuAD1' in file 'ass.bib', skipping ...
+[281] Utils.pm:169> WARN - Duplicate entry key: 'SQuAD2' in file 'ass.bib', skipping ...
+[789] Utils.pm:169> WARN - month field '10-11' in entry 'Ranking' is not an integer - this will probably not sort properly.
+[928] Utils.pm:169> WARN - I didn't find a database entry for 'NNLM' (section 0)
+[929] Utils.pm:169> WARN - I didn't find a database entry for 'Survey' (section 0)
+[1002] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1002] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1002] Biber.pm:3809> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[1002] Biber.pm:3815> INFO - No sort tailoring available for locale 'en-US'
+[1076] bbl.pm:617> INFO - Writing 'assignment.bbl' with encoding 'UTF-8'
+[1115] bbl.pm:720> INFO - Output to assignment.bbl
+[1116] Biber.pm:110> INFO - WARNINGS: 5

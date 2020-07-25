@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.7.9)  22 JUL 2020 22:14
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.7.9)  25 JUL 2020 21:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1303,6 +1303,14 @@ for zhlipsum)
 \l__zhlipsum_end_int=\count281
 \l__zhlipsum_step_int=\count282
 )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: xetex.def on input line 147.
+)
 (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
 \multirow@colwidth=\skip67
@@ -1839,38 +1847,48 @@ File: english.lbx 2017/12/19 v3.10 biblatex localization (PK/JW/AB)
 \@quotelevel=\count439
 \@quotereset=\count440
 
-(./assignment.aux)
+(./assignment.aux
+! Undefined control sequence.
+l.102 \@write
+             
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+)
 \openout1 = `assignment.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 66.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 66.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 67.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 67.
  (/usr/share/texmf/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
 
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 66.
+LaTeX Info: Redefining \selectfont on input line 67.
 .................................................
 . fontspec info: "setup-math"
 . 
@@ -1878,56 +1896,56 @@ LaTeX Info: Redefining \selectfont on input line 66.
 .................................................
 \symlegacymaths=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 66.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 66.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 66.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 66.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 66.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 66.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 66.
-LaTeX Font Info:    Redeclaring math accent \check on input line 66.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 66.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 66.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 66.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 66.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 66.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 66.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 66.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 66.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 66.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 66.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 66.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 66.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 66.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 66.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 66.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 66.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 67.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 67.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 67.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 67.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 67.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 67.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 67.
+LaTeX Font Info:    Redeclaring math accent \check on input line 67.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 67.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 67.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 67.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 67.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 66.
+(Font)              `operators' in the math version `normal' on input line 67.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 66.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 67.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 66.
+(Font)              `operators' in the math version `bold' on input line 67.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 66.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 67.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 66.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 66.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/bx/n on input line 66.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/bx/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 66.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 66.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 67.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/bx/n on input line 66.
+(Font)                  TU/lmr/m/n --> TU/lmr/bx/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/bx/it on input line 66.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/bx/it on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 66.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 66.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 67.
 Package biblatex Info: XeTeX detected.
 (biblatex)             Assuming input encoding 'utf8'.
 Package biblatex Info: Automatic encoding selection.
@@ -1936,9 +1954,24 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'assignment.bbl' found.
- (./assignment.bbl)
-Package biblatex Info: Reference section=0 on input line 66.
-Package biblatex Info: Reference segment=0 on input line 66.
+ (./assignment.bbl
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                NNLM
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                Survey
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+)
+Package biblatex Info: Reference section=0 on input line 67.
+Package biblatex Info: Reference segment=0 on input line 67.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1975,7 +2008,7 @@ Package biblatex Info: Reference segment=0 on input line 66.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box93
-Package hyperref Info: Link coloring OFF on input line 66.
+Package hyperref Info: Link coloring OFF on input line 67.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -1984,9 +2017,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count441
 )
-LaTeX Info: Redefining \ref on input line 66.
-LaTeX Info: Redefining \pageref on input line 66.
-LaTeX Info: Redefining \nameref on input line 66.
+LaTeX Info: Redefining \ref on input line 67.
+LaTeX Info: Redefining \pageref on input line 67.
+LaTeX Info: Redefining \nameref on input line 67.
 
 (./assignment.out) (./assignment.out)
 \@outlinefile=\write5
@@ -2014,11 +2047,11 @@ Package caption Info: End \AtBeginDocument code.
 . - 'bold' (bx/n) with NFSS spec.: <->"[FandolHei-Bold.otf]/OT"
 . - 'bold small caps'  (bx/sc) with NFSS spec.: 
 .................................................
-LaTeX Font Info:    Try loading font information for U+msa on input line 68.
+LaTeX Font Info:    Try loading font information for U+msa on input line 69.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 68.
+LaTeX Font Info:    Try loading font information for U+msb on input line 69.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -2048,58 +2081,82 @@ Overfull \hbox (2.20313pt too wide) in paragraph at lines 49--51
 []|[]|  
  []
 
-
-Overfull \hbox (8.21059pt too wide) in paragraph at lines 97--99
-[]|[]|  
- []
-
 [3]
-Overfull \hbox (3.04631pt too wide) in paragraph at lines 149--151
+Overfull \hbox (8.21059pt too wide) in paragraph at lines 99--101
 []|[]|  
  []
 
 [4]
-Overfull \hbox (9.53856pt too wide) in paragraph at lines 201--202
+Overfull \hbox (3.04631pt too wide) in paragraph at lines 152--154
+[]|[]|  
+ []
+
+[5]
+Overfull \hbox (9.53856pt too wide) in paragraph at lines 204--205
 []|[]|  
  []
 
 
-Overfull \hbox (7.26207pt too wide) in paragraph at lines 206--208
+Overfull \hbox (7.26207pt too wide) in paragraph at lines 209--211
 []|[]|  
  []
 
 
-Overfull \hbox (4.10025pt too wide) in paragraph at lines 212--213
+Overfull \hbox (4.10025pt too wide) in paragraph at lines 215--216
 []|[]|  
  []
 
 
-Overfull \hbox (3.41516pt too wide) in paragraph at lines 221--222
+Overfull \hbox (3.41516pt too wide) in paragraph at lines 224--225
 []|[]|  
  []
 
 
-Overfull \hbox (2.00134pt too wide) in paragraph at lines 197--226
+Overfull \hbox (2.00134pt too wide) in paragraph at lines 200--229
  [][] 
  []
 
-[5]) [6] [7] (./interaction_layer.tex [8]
-File: picture/end2end.png Graphic file (type bmp)
-<picture/end2end.png>
- [9]
-Overfull \hbox (0.63858pt too wide) in paragraph at lines 74--76
-[]\TU/FandolSong-Regular(1)/m/n/10.53937 利 用 \TU/lmr/m/n/10.53937 RNNs \TU/Fand
-olSong-Regular(1)/m/n/10.53937 这 种 基 于 上 一 时 刻 隐 藏 状 态 更 新 下 一 时 刻 隐 藏 状 态 的 循 
-环 特 性 来 达 到 多 步 推 理，|  如 \TU/lmr/m/n/10.53937 Match-
- []
+) [6]
+File: picture/generic.png Graphic file (type bmp)
+<picture/generic.png>
+ [7]
 
-[10] [11]) (./pre_train.tex [12] [13] [14] [15]) (./output_layer.tex [16])
-[17] (./new_trend.tex [18]
-Overfull \hbox (6.99226pt too wide) in paragraph at lines 33--35
+LaTeX Warning: Reference `pretrain' on page 8 undefined on input line 162.
+
+
+LaTeX Warning: Reference `transformer' on page 8 undefined on input line 181.
+
+[8] [9]
+Overfull \hbox (56.20691pt too wide) in paragraph at lines 280--281
 []|[]|  
  []
 
-[19] [20] [21] [22])
+
+Overfull \hbox (109.15668pt too wide) in paragraph at lines 284--286
+[]|[]|  
+ []
+
+
+Overfull \hbox (50.03082pt too wide) in paragraph at lines 288--289
+[]|[]|  
+ []
+
+
+Overfull \hbox (2.00134pt too wide) in paragraph at lines 275--296
+ [][] 
+ []
+
+[10] [11] [12] [13]
+
+LaTeX Warning: Reference `unknown' on page 14 undefined on input line 524.
+
+[14]
+Overfull \hbox (6.99226pt too wide) in paragraph at lines 591--593
+[]|[]|  
+ []
+
+[15] [16] [17] [18] (./pre_train.tex [19] [20] [21]) (./discussion.tex [22]
+[23])
 *************************************************
 * fontspec warning: "script-not-exist"
 * 
@@ -2118,69 +2175,85 @@ Overfull \hbox (6.99226pt too wide) in paragraph at lines 33--35
 . - 'small caps'  (m/sc) with NFSS spec.: 
 .................................................
 
-Overfull \hbox (3.91078pt too wide) in paragraph at lines 284--284
+Overfull \hbox (3.91078pt too wide) in paragraph at lines 892--892
 []\TU/lmr/m/n/10.53937 Danqi Chen, Jason Bolton, and Christopher D. Manning. “A
  Thorough Examination of the CNN/Daily
  []
 
-
-Overfull \hbox (1.61687pt too wide) in paragraph at lines 284--284
+[24]
+Overfull \hbox (1.61687pt too wide) in paragraph at lines 892--892
 []\TU/lmr/m/n/10.53937 Danqi Chen et al. “Reading Wikipedia to Answer Open-Doma
 in Questions”. In: \TU/lmr/m/it/10.53937 CoRR \TU/lmr/m/n/10.53937 abs/1704.000
 51
  []
 
-[23]
-Overfull \hbox (1.1215pt too wide) in paragraph at lines 284--284
+
+Overfull \hbox (1.1215pt too wide) in paragraph at lines 892--892
 []\TU/lmr/m/n/10.53937 Bhuwan Dhingra et al. “Gated-Attention Readers for Text 
 Comprehension”. In: \TU/lmr/m/it/10.53937 CoRR \TU/lmr/m/n/10.53937 abs/1606.01
 549
  []
 
 
-Overfull \hbox (0.40482pt too wide) in paragraph at lines 284--284
+Overfull \hbox (0.40482pt too wide) in paragraph at lines 892--892
 []\TU/lmr/m/n/10.53937 Karl Moritz Hermann et al. “Teaching Machines to Read an
 d Comprehend”. In: \TU/lmr/m/it/10.53937 CoRR \TU/lmr/m/n/10.53937 abs/1506.033
 40
  []
 
 
-Overfull \hbox (0.40482pt too wide) in paragraph at lines 284--284
+Overfull \hbox (0.40482pt too wide) in paragraph at lines 892--892
 []\TU/lmr/m/n/10.53937 Karl Moritz Hermann et al. “Teaching Machines to Read an
 d Comprehend”. In: \TU/lmr/m/it/10.53937 CoRR \TU/lmr/m/n/10.53937 abs/1506.033
 40
  []
 
-[24] [25]
-Overfull \hbox (11.96544pt too wide) in paragraph at lines 284--284
+[25] [26]
+Overfull \hbox (11.96544pt too wide) in paragraph at lines 892--892
 \TU/lmr/m/it/10.53937 https://s3-us-west-2. amazonaws. com/openai-assets/resear
 ch-covers/language-unsupervised/language_
  []
 
-[26] [27]
-Overfull \hbox (25.53024pt too wide) in paragraph at lines 284--284
-[]\TU/lmr/m/n/10.53937 Jason Weston, Sumit Chopra, and Antoine Bordes. “Memory 
-networks”. In: \TU/lmr/m/it/10.53937 arXiv preprint arXiv:1410.3916
- []
+[27] [28] [29]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 897.
+ [30]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 897.
+ (./assignment.aux
+! Extra }, or forgotten \endgroup.
+<recently read> }
+                 
+l.426 Net}
+          {nty/global//global/global}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
 
-[28]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 289.
- [29]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 289.
- (./assignment.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 289.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 289.
+)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 897.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 897.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package biblatex Warning: Please rerun LaTeX.
+
 Package logreq Info: Writing requests to 'assignment.run.xml'.
 \openout1 = `assignment.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36289 strings out of 493007
- 715944 string characters out of 6136720
- 1263042 words of memory out of 5000000
- 39852 multiletter control sequences out of 15000+600000
+ 36345 strings out of 493007
+ 718532 string characters out of 6136720
+ 1262718 words of memory out of 5000000
+ 39911 multiletter control sequences out of 15000+600000
  541653 words of font info for 107 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 57i,16n,82p,10437b,4564s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,16n,82p,10437b,4565s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on assignment.pdf (29 pages).
+Output written on assignment.pdf (30 pages).
