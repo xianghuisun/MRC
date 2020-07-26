@@ -1,0 +1,41 @@
+\section{引言}
+
+%\vspace{10cm}在垂直方向上，两行之间的距离
+机器阅读理解（Machine Reading Comprehension，MRC）作为一项衡量计算机阅读理解文本能力的任务，是自然语言处理领域（Natural Language Processing，NLP）
+十分重要也是具有挑战性的研究方向。通常情况下，MRC任务就是
+给定一篇或多篇段落文本（passage），要求模型阅读这些段落后回答相关的问题（question）。
+早期的MRC系统主要是基于规则和模式匹配的方法，或者通过概率统计的方式计算问题与文章之间的相似程度。这很难达到深层次的理解文本，
+而且数据集规模比较小，系统难以获得期望的性能也不能实际的应用。
+随着深度学习的兴起以及NLP领域出现的一些经典技术
+如Word2Vec\upcite{word2vec}以及注意力（Attention）机制在NLP领域的应用\upcite{Bahdanau}等，这些技术的发展使得研究人员开始利用神经网络
+构建机器阅读理解模型，
+因此也叫神经机器阅读理解。
+
+Hermann等人\upcite{Hermann}在2015年发布了规模比以往数据集都要大的阅读理解数据集CNN\&Daily Mail，并且提出两个基于神经网络和注意力机制构建的模型（Attentive Reader，Impatient Reader），这项工作可以视为机器阅读理解领域的奠基性工作。此后越来越多的学者在这两个模型的基础上构建效果更好的神经机器阅读理解模型，
+Chen等人\upcite{AR}使用双线性函数以及Kadlec等人\upcite{ASR}采用点积运算的计算方式取代Attentive Reader的加法形式。Sordoni等人\upcite{IAReader}提出IA Reader模型利用循环神经网络的循环计算机制以及Dhingra等人\upcite{GAReader}提出的GA Reader模型通过加深网络的层次达到Impatient Reader模型多步推理的效果。
+
+%而且规模越来越大，形式越来越复杂的数据集也相继发布。
+SQuAD\upcite{SQuAD1}是由斯坦福大学在2016年发布的大规模数据集，问题的答案来源于原文中某一片段而不像CNN\& Daily Mail数据集仅仅是某个实体单词。
+SQuAD数据集的发布极大地推动了MRC领域的发展，很多经典的神经机器阅读理解模型都是在SQuAD数据集上构建出来的。Wang等人\upcite{MatchLSTM}提出Match-LSTM模型，通过计算段落到问题的注意力将问题的语义融合到段落文本中，并且利用指针网络的机制预测答案在原文中的位置。在这之后很多模型受到Match-LSTM的启发，如Wang等人\upcite{RNet}在其基础上添加一层自注意力机制用来加强模型对段落的理解，Xiong等人\upcite{DCN}采用一种动态迭代指针网络的机制来多次迭代预测答案的位置。在2018年
+斯坦福大学又发布了SQuAD 2.0\upcite{SQuAD2}数据集，在SQuAD的基础上增加了五万多个不可回答的问题。
+
+
+在SQuAD发布不久后微软研究院发布了来源于真实场景下的数据集MS MARCO\upcite{MSmarco}，数据集的问题来源于必应搜索日志上用户搜索的问题，从必应搜索的返回结果中选取10篇最相关的段落作为问题的答案依据，答案是人工生成的而不限于某段文本，因此数据集难度更大。类似的数据集还有TriviaQA\upcite{TriviaQA}，DuReader\upcite{DuReader}等。针对这种多段落自由答案形式的任务，Tan等人\upcite{SNet}提出S-Net模型,先
+通过片段抽取模块提取出一段文本作为答案的预测依据,然后利用生成模块生成答案。
+
+然而以上大部分的数据集，与问题相关的答案通常集中在单个句子的局部上下文
+这类数据集对模型的推理能力要求不高。
+为了考察模型的推理能力，HotpotQA\upcite{HotpotQA}，WIKIHOP\upcite{WIKIHOP}，Narrative\upcite{NarrativeQA}等数据集相继发布，这些数据集中的问题要求模型从多个段落中逐步检索推理才能找到答案。此外还有多轮对话形式的阅读理解任务，相关的数据集如CoQA\upcite{CoQA}，QuAC\upcite{QuAC}等。
+
+每一个新的数据集都会在原有数据集的基础上增加各种各样的难度,从而不得不设计更加优秀的模型处理这些任
+务，MRC领域也因此快速发展。
+自2018年随着ELMo\upcite{ELMo}、GPT\upcite{GPT}、BERT\upcite{BERT}等预训练模型的出现，
+再一次提升了机器阅读理解模型的性能，甚至在某些数据集上模型的表现超过人类水平。
+%目前几乎所有数据集上表现最好的模型都是基于预训练模型的。
+
+本文主要从MRC的具体任务概述出发，总共分5章，结构安排如下：
+第2章介绍机器阅读理解的具体任务以及相应的评估指标；第3章
+介绍神经机器阅读理解模型，包括经典的基于抽取式任务的MRC模型，复杂任务下的MRC模型以及基于预训练模型的MRC模型，对比它们的差异以及优缺点。
+%同时介绍近年来NLP领域最受关注的预训练模型以及如何应用在MRC任务上。
+第4章主要讨论MRC领域的发展历史和目前MRC领域存在的主要问题。
+第5章对MRC领域做总结与展望。

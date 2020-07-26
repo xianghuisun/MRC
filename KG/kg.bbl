@@ -1,0 +1,654 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{SSE}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=f7cc212ac95e56051137f219849679fc}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Shu},
+           giveni={S\bibinitperiod}}}%
+        {{hash=e2068259fc5297e154f92a417136c922}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Quan},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=dc58cd6a24a023ce7177d8f199d47875}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Bin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=095bc0833aebe9ab588687a191c68351}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Lihong},
+           giveni={L\bibinitperiod}}}%
+        {{hash=cbbe0aee45b05ee2e216204167adfdac}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The Association for Computer Linguistics}%
+      }
+      \strng{namehash}{026cbf34f12127f25e66b45474379765}
+      \strng{fullhash}{dcf34606226ad68088960912b69a84a3}
+      \strng{bibnamehash}{026cbf34f12127f25e66b45474379765}
+      \strng{authorbibnamehash}{026cbf34f12127f25e66b45474379765}
+      \strng{authornamehash}{026cbf34f12127f25e66b45474379765}
+      \strng{authorfullhash}{dcf34606226ad68088960912b69a84a3}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 53rd Annual Meeting of the Association for Computational Linguistics and the 7th International Joint Conference on Natural Language Processing of the Asian Federation of Natural Language Processing, {ACL} 2015, July 26-31, 2015, Beijing, China, Volume 1: Long Papers}
+      \field{title}{Semantically Smooth Knowledge Graph Embedding}
+      \field{year}{2015}
+      \field{pages}{84\bibrangedash 94}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.3115/v1/p15-1009
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.3115/v1/p15-1009
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.3115/v1/p15-1009
+      \endverb
+    \endentry
+    \entry{typeconstrain}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=22c543f453cb75b0cee7913c90b1f46e}{%
+           family={Krompaß},
+           familyi={K\bibinitperiod},
+           given={Denis},
+           giveni={D\bibinitperiod}}}%
+        {{hash=f2531176227cb2901eac64bb0b7225a1}{%
+           family={Baier},
+           familyi={B\bibinitperiod},
+           given={Stephan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=7b4bb47afe2e1fc9925f6178ea46b207}{%
+           family={Tresp},
+           familyi={T\bibinitperiod},
+           given={Volker},
+           giveni={V\bibinitperiod}}}%
+      }
+      \name{editor}{11}{}{%
+        {{hash=9282d63c7c5bda72aad9b39bc68fddeb}{%
+           family={Arenas},
+           familyi={A\bibinitperiod},
+           given={Marcelo},
+           giveni={M\bibinitperiod}}}%
+        {{hash=6ae3a88bcffa4b783b438b5c6cb1aca6}{%
+           family={Corcho},
+           familyi={C\bibinitperiod},
+           given={{Ó}scar},
+           giveni={Ó\bibinitperiod}}}%
+        {{hash=4621d81ed922e0ed3b21620163a3e4a6}{%
+           family={Simperl},
+           familyi={S\bibinitperiod},
+           given={Elena},
+           giveni={E\bibinitperiod}}}%
+        {{hash=a886f243c9ad0d58b6297daa714e4d89}{%
+           family={Strohmaier},
+           familyi={S\bibinitperiod},
+           given={Markus},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2f01d721dcc602d27c7c37545717589c}{%
+           family={d'Aquin},
+           familyi={d\bibinitperiod},
+           given={Mathieu},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4c5c4af363dc6a764d2a2dfbcec42355}{%
+           family={Srinivas},
+           familyi={S\bibinitperiod},
+           given={Kavitha},
+           giveni={K\bibinitperiod}}}%
+        {{hash=6cb8e4c44f3f1fcb07128788acdc23c9}{%
+           family={Groth},
+           familyi={G\bibinitperiod},
+           given={Paul\bibnamedelima T.},
+           giveni={P\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=93badcbcd9ff0747849763affb474199}{%
+           family={Dumontier},
+           familyi={D\bibinitperiod},
+           given={Michel},
+           giveni={M\bibinitperiod}}}%
+        {{hash=fd09a476f27d1e25d5bbe5a8e7fed1a7}{%
+           family={Heflin},
+           familyi={H\bibinitperiod},
+           given={Jeff},
+           giveni={J\bibinitperiod}}}%
+        {{hash=ea7f6b8608f3f8184da826a07f1e1233}{%
+           family={Thirunarayan},
+           familyi={T\bibinitperiod},
+           given={Krishnaprasad},
+           giveni={K\bibinitperiod}}}%
+        {{hash=3489f3873d85937d1977e3a21e5e76a7}{%
+           family={Staab},
+           familyi={S\bibinitperiod},
+           given={Steffen},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{35ed429396a1d33a6609b26fa8579061}
+      \strng{fullhash}{35ed429396a1d33a6609b26fa8579061}
+      \strng{bibnamehash}{35ed429396a1d33a6609b26fa8579061}
+      \strng{authorbibnamehash}{35ed429396a1d33a6609b26fa8579061}
+      \strng{authornamehash}{35ed429396a1d33a6609b26fa8579061}
+      \strng{authorfullhash}{35ed429396a1d33a6609b26fa8579061}
+      \strng{editorbibnamehash}{a4cd35a330e4b085a5eced1860096b4c}
+      \strng{editornamehash}{a4cd35a330e4b085a5eced1860096b4c}
+      \strng{editorfullhash}{990a4e6a77d235ac61d9ffbc1396a611}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{The Semantic Web - {ISWC} 2015 - 14th International Semantic Web Conference, Bethlehem, PA, USA, October 11-15, 2015, Proceedings, Part I}
+      \field{series}{Lecture Notes in Computer Science}
+      \field{title}{Type-Constrained Representation Learning in Knowledge Graphs}
+      \field{volume}{9366}
+      \field{year}{2015}
+      \field{pages}{640\bibrangedash 655}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1007/978-3-319-25007-6\_37
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-319-25007-6\_37
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-319-25007-6%5C_37
+      \endverb
+    \endentry
+    \entry{PTransE}{inproceedings}{}
+      \name{author}{6}{}{%
+        {{hash=e2994df0daa7033ced5356a51eed0321}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Yankai},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=5b9a54b9d83697231299711961622ab8}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Zhiyuan},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=d05ad9c39355a6f91caf3054635b11fd}{%
+           family={Luan},
+           familyi={L\bibinitperiod},
+           given={Huan{-}Bo},
+           giveni={H\bibinitperiod}}}%
+        {{hash=faa6f5041a22004ca0dd547c03476790}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Maosong},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4e35b272f7ad4aa528e44531900fe45a}{%
+           family={Rao},
+           familyi={R\bibinitperiod},
+           given={Siwei},
+           giveni={S\bibinitperiod}}}%
+        {{hash=34bf72bd7ebc345cbf0228777c850699}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Song},
+           giveni={S\bibinitperiod}}}%
+      }
+      \name{editor}{5}{}{%
+        {{hash=5fbfbd8b34f08bca6461323026d1fc66}{%
+           family={M{à}rquez},
+           familyi={M\bibinitperiod},
+           given={Llu{ı́}s},
+           giveni={L\bibinitperiod}}}%
+        {{hash=4e3074cc12a7e0b8eac98732b6756f74}{%
+           family={Callison{-}Burch},
+           familyi={C\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=db4d1a8f4e413bf3334d60a4e29c64e0}{%
+           family={Su},
+           familyi={S\bibinitperiod},
+           given={Jian},
+           giveni={J\bibinitperiod}}}%
+        {{hash=36e045a68a9d3d8b340acae37a536064}{%
+           family={Pighin},
+           familyi={P\bibinitperiod},
+           given={Daniele},
+           giveni={D\bibinitperiod}}}%
+        {{hash=c4042dc77515c20a4bdffa2e05c51b60}{%
+           family={Marton},
+           familyi={M\bibinitperiod},
+           given={Yuval},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The Association for Computational Linguistics}%
+      }
+      \strng{namehash}{f8ea2ca3c913483883f66e2f1f82347a}
+      \strng{fullhash}{64e5b12f5dd15ded36292d5b14c9c8bd}
+      \strng{bibnamehash}{f8ea2ca3c913483883f66e2f1f82347a}
+      \strng{authorbibnamehash}{f8ea2ca3c913483883f66e2f1f82347a}
+      \strng{authornamehash}{f8ea2ca3c913483883f66e2f1f82347a}
+      \strng{authorfullhash}{64e5b12f5dd15ded36292d5b14c9c8bd}
+      \strng{editorbibnamehash}{30050071bef18a45e30061defc6734a6}
+      \strng{editornamehash}{30050071bef18a45e30061defc6734a6}
+      \strng{editorfullhash}{6cd095f637977edc39b6ee5f301439c3}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2015, Lisbon, Portugal, September 17-21, 2015}
+      \field{title}{Modeling Relation Paths for Representation Learning of Knowledge Bases}
+      \field{year}{2015}
+      \field{pages}{705\bibrangedash 714}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.18653/v1/d15-1082
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.18653/v1/d15-1082
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.18653/v1/d15-1082
+      \endverb
+    \endentry
+    \entry{Wang}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=d23f8780b31a9738eb2ec5f9c954bcb4}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Zhen},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=8523cf05a337ae3f69b20974da48ce9a}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Jianwen},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4435206f0ab50c344ea575c22c9465fb}{%
+           family={Feng},
+           familyi={F\bibinitperiod},
+           given={Jianlin},
+           giveni={J\bibinitperiod}}}%
+        {{hash=05694d0c858ee219eae7bb764b27b7f6}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Zheng},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Doha, Qatar}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{bcc0ee0115ca53333821bd83b79eadf2}
+      \strng{fullhash}{75e9f72d345c40d5f36d96336a6504ea}
+      \strng{bibnamehash}{bcc0ee0115ca53333821bd83b79eadf2}
+      \strng{authorbibnamehash}{bcc0ee0115ca53333821bd83b79eadf2}
+      \strng{authornamehash}{bcc0ee0115ca53333821bd83b79eadf2}
+      \strng{authorfullhash}{75e9f72d345c40d5f36d96336a6504ea}
+      \field{sortinit}{W}
+      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing ({EMNLP})}
+      \field{month}{10}
+      \field{title}{Knowledge Graph and Text Jointly Embedding}
+      \field{year}{2014}
+      \field{pages}{1591\bibrangedash 1601}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.3115/v1/D14-1167
+      \endverb
+      \verb{urlraw}
+      \verb https://www.aclweb.org/anthology/D14-1167
+      \endverb
+      \verb{url}
+      \verb https://www.aclweb.org/anthology/D14-1167
+      \endverb
+    \endentry
+    \entry{TEKE}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=9f4446a6d583221d3d173f806ecf8627}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Zhigang},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=6481a409f25149856f92334de6776655}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Juan{-}Zi},
+           giveni={J\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=7b2a9fc9e6a7ab9c84859fc6b27855a5}{%
+           family={Kambhampati},
+           familyi={K\bibinitperiod},
+           given={Subbarao},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {{IJCAI/AAAI} Press}%
+      }
+      \strng{namehash}{8ac332b4ca4df78cd80d087d5e8fa12a}
+      \strng{fullhash}{8ac332b4ca4df78cd80d087d5e8fa12a}
+      \strng{bibnamehash}{8ac332b4ca4df78cd80d087d5e8fa12a}
+      \strng{authorbibnamehash}{8ac332b4ca4df78cd80d087d5e8fa12a}
+      \strng{authornamehash}{8ac332b4ca4df78cd80d087d5e8fa12a}
+      \strng{authorfullhash}{8ac332b4ca4df78cd80d087d5e8fa12a}
+      \strng{editorbibnamehash}{7b2a9fc9e6a7ab9c84859fc6b27855a5}
+      \strng{editornamehash}{7b2a9fc9e6a7ab9c84859fc6b27855a5}
+      \strng{editorfullhash}{7b2a9fc9e6a7ab9c84859fc6b27855a5}
+      \field{sortinit}{W}
+      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Twenty-Fifth International Joint Conference on Artificial Intelligence, {IJCAI} 2016, New York, NY, USA, 9-15 July 2016}
+      \field{title}{Text-Enhanced Representation Learning for Knowledge Graph}
+      \field{year}{2016}
+      \field{pages}{1293\bibrangedash 1299}
+      \range{pages}{7}
+      \verb{urlraw}
+      \verb http://www.ijcai.org/Abstract/16/187
+      \endverb
+      \verb{url}
+      \verb http://www.ijcai.org/Abstract/16/187
+      \endverb
+    \endentry
+    \entry{TKRL}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=d8c0cb21d4e7e6ecf863adbaa85b2668}{%
+           family={Xie},
+           familyi={X\bibinitperiod},
+           given={Ruobing},
+           giveni={R\bibinitperiod}}}%
+        {{hash=5b9a54b9d83697231299711961622ab8}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Zhiyuan},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=faa6f5041a22004ca0dd547c03476790}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Maosong},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=7b2a9fc9e6a7ab9c84859fc6b27855a5}{%
+           family={Kambhampati},
+           familyi={K\bibinitperiod},
+           given={Subbarao},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {{IJCAI/AAAI} Press}%
+      }
+      \strng{namehash}{f3e85404b2b98cd6ce68bc97f5b9fca3}
+      \strng{fullhash}{f3e85404b2b98cd6ce68bc97f5b9fca3}
+      \strng{bibnamehash}{f3e85404b2b98cd6ce68bc97f5b9fca3}
+      \strng{authorbibnamehash}{f3e85404b2b98cd6ce68bc97f5b9fca3}
+      \strng{authornamehash}{f3e85404b2b98cd6ce68bc97f5b9fca3}
+      \strng{authorfullhash}{f3e85404b2b98cd6ce68bc97f5b9fca3}
+      \strng{editorbibnamehash}{7b2a9fc9e6a7ab9c84859fc6b27855a5}
+      \strng{editornamehash}{7b2a9fc9e6a7ab9c84859fc6b27855a5}
+      \strng{editorfullhash}{7b2a9fc9e6a7ab9c84859fc6b27855a5}
+      \field{sortinit}{X}
+      \field{sortinithash}{b0b62a29ee4a21a0e618fed53a0313cc}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Twenty-Fifth International Joint Conference on Artificial Intelligence, {IJCAI} 2016, New York, NY, USA, 9-15 July 2016}
+      \field{title}{Representation Learning of Knowledge Graphs with Hierarchical Types}
+      \field{year}{2016}
+      \field{pages}{2965\bibrangedash 2971}
+      \range{pages}{7}
+      \verb{urlraw}
+      \verb http://www.ijcai.org/Abstract/16/421
+      \endverb
+      \verb{url}
+      \verb http://www.ijcai.org/Abstract/16/421
+      \endverb
+    \endentry
+    \entry{DKRL}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=d8c0cb21d4e7e6ecf863adbaa85b2668}{%
+           family={Xie},
+           familyi={X\bibinitperiod},
+           given={Ruobing},
+           giveni={R\bibinitperiod}}}%
+        {{hash=5b9a54b9d83697231299711961622ab8}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Zhiyuan},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=44cb5a3c9420ff47c04a065d96b70ef8}{%
+           family={Jia},
+           familyi={J\bibinitperiod},
+           given={Jia},
+           giveni={J\bibinitperiod}}}%
+        {{hash=50eaf66be809038f280fba2e360b456b}{%
+           family={Luan},
+           familyi={L\bibinitperiod},
+           given={Huanbo},
+           giveni={H\bibinitperiod}}}%
+        {{hash=faa6f5041a22004ca0dd547c03476790}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Maosong},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Phoenix, Arizona}%
+      }
+      \list{publisher}{1}{%
+        {AAAI Press}%
+      }
+      \strng{namehash}{18118074accd7f07f2a874ad55bf9769}
+      \strng{fullhash}{b26cbc510869256edc9ac9ea5e5a1e22}
+      \strng{bibnamehash}{18118074accd7f07f2a874ad55bf9769}
+      \strng{authorbibnamehash}{18118074accd7f07f2a874ad55bf9769}
+      \strng{authornamehash}{18118074accd7f07f2a874ad55bf9769}
+      \strng{authorfullhash}{b26cbc510869256edc9ac9ea5e5a1e22}
+      \field{sortinit}{X}
+      \field{sortinithash}{b0b62a29ee4a21a0e618fed53a0313cc}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Thirtieth AAAI Conference on Artificial Intelligence}
+      \field{series}{AAAI’16}
+      \field{title}{Representation Learning of Knowledge Graphs with Entity Descriptions}
+      \field{year}{2016}
+      \field{pages}{2659\bibrangedash 2665}
+      \range{pages}{7}
+    \endentry
+    \entry{HRS}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=56bda333ab85070cdf1934ac222e12aa}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Zhao},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=f80c633bdaeb37dfe8ee7a8562a118b0}{%
+           family={Zhuang},
+           familyi={Z\bibinitperiod},
+           given={Fuzhen},
+           giveni={F\bibinitperiod}}}%
+        {{hash=be51ffe8f55f70ee4360e3e6a1a4216e}{%
+           family={Qu},
+           familyi={Q\bibinitperiod},
+           given={Meng},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c1260c38f1e6db351187741571ece6bd}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Fen},
+           giveni={F\bibinitperiod}}}%
+        {{hash=7c27f1b2b48feefb0593a05e9c6a8b12}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Qing},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=d937431d4d41abf0c2b023f2c1b7f031}{%
+           family={Riloff},
+           familyi={R\bibinitperiod},
+           given={Ellen},
+           giveni={E\bibinitperiod}}}%
+        {{hash=9c563343fc0981dcd795ba5e1e8a61ae}{%
+           family={Chiang},
+           familyi={C\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=8f50d484fe9aa72236fb5a3585d3048b}{%
+           family={Hockenmaier},
+           familyi={H\bibinitperiod},
+           given={Julia},
+           giveni={J\bibinitperiod}}}%
+        {{hash=9ce2e89d153692432a2eccda125d6eb5}{%
+           family={Tsujii},
+           familyi={T\bibinitperiod},
+           given={Jun'ichi},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{413d78571605e7be95b276066c2baf5c}
+      \strng{fullhash}{453fe2d44035a58c77387ccc5fa6ff2b}
+      \strng{bibnamehash}{413d78571605e7be95b276066c2baf5c}
+      \strng{authorbibnamehash}{413d78571605e7be95b276066c2baf5c}
+      \strng{authornamehash}{413d78571605e7be95b276066c2baf5c}
+      \strng{authorfullhash}{453fe2d44035a58c77387ccc5fa6ff2b}
+      \strng{editorbibnamehash}{c27fe85ef91a622b9d234b9819edde46}
+      \strng{editornamehash}{c27fe85ef91a622b9d234b9819edde46}
+      \strng{editorfullhash}{b2e5384e3dd737e1c34ce701e2f925d2}
+      \field{sortinit}{Z}
+      \field{sortinithash}{156173bd08b075d7295bc3e0f4735a04}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing, Brussels, Belgium, October 31 - November 4, 2018}
+      \field{title}{Knowledge Graph Embedding with Hierarchical Relation Structure}
+      \field{year}{2018}
+      \field{pages}{3198\bibrangedash 3207}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.18653/v1/d18-1358
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.18653/v1/d18-1358
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.18653/v1/d18-1358
+      \endverb
+    \endentry
+    \entry{Zhong}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=5455032e33194fcb655669ba2525b3c5}{%
+           family={Zhong},
+           familyi={Z\bibinitperiod},
+           given={Huaping},
+           giveni={H\bibinitperiod}}}%
+        {{hash=8523cf05a337ae3f69b20974da48ce9a}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Jianwen},
+           giveni={J\bibinitperiod}}}%
+        {{hash=d23f8780b31a9738eb2ec5f9c954bcb4}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Zhen},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=e51ac9f559a5a0f1a2c440cb400f58b4}{%
+           family={Wan},
+           familyi={W\bibinitperiod},
+           given={Hai},
+           giveni={H\bibinitperiod}}}%
+        {{hash=05694d0c858ee219eae7bb764b27b7f6}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Zheng},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \name{editor}{5}{}{%
+        {{hash=5fbfbd8b34f08bca6461323026d1fc66}{%
+           family={M{à}rquez},
+           familyi={M\bibinitperiod},
+           given={Llu{ı́}s},
+           giveni={L\bibinitperiod}}}%
+        {{hash=4e3074cc12a7e0b8eac98732b6756f74}{%
+           family={Callison{-}Burch},
+           familyi={C\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=db4d1a8f4e413bf3334d60a4e29c64e0}{%
+           family={Su},
+           familyi={S\bibinitperiod},
+           given={Jian},
+           giveni={J\bibinitperiod}}}%
+        {{hash=36e045a68a9d3d8b340acae37a536064}{%
+           family={Pighin},
+           familyi={P\bibinitperiod},
+           given={Daniele},
+           giveni={D\bibinitperiod}}}%
+        {{hash=c4042dc77515c20a4bdffa2e05c51b60}{%
+           family={Marton},
+           familyi={M\bibinitperiod},
+           given={Yuval},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The Association for Computational Linguistics}%
+      }
+      \strng{namehash}{8d5fea039b4e206f159288ab27a17151}
+      \strng{fullhash}{aab59d59f293507c2b67992e8c09e67e}
+      \strng{bibnamehash}{8d5fea039b4e206f159288ab27a17151}
+      \strng{authorbibnamehash}{8d5fea039b4e206f159288ab27a17151}
+      \strng{authornamehash}{8d5fea039b4e206f159288ab27a17151}
+      \strng{authorfullhash}{aab59d59f293507c2b67992e8c09e67e}
+      \strng{editorbibnamehash}{30050071bef18a45e30061defc6734a6}
+      \strng{editornamehash}{30050071bef18a45e30061defc6734a6}
+      \strng{editorfullhash}{6cd095f637977edc39b6ee5f301439c3}
+      \field{sortinit}{Z}
+      \field{sortinithash}{156173bd08b075d7295bc3e0f4735a04}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing, {EMNLP} 2015, Lisbon, Portugal, September 17-21, 2015}
+      \field{title}{Aligning Knowledge and Text Embeddings by Entity Descriptions}
+      \field{year}{2015}
+      \field{pages}{267\bibrangedash 272}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.18653/v1/d15-1031
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.18653/v1/d15-1031
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.18653/v1/d15-1031
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

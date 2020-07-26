@@ -188,7 +188,7 @@ SOP(sentence-order prediction)取代NSP任务，SOP是指句子顺序预测，�
 实验表明SOP任务使得模型的效果提升一个百分点。
 ALBERT的改进机制使得模型的预训练后的效果更好，在RACE\upcite{RACE}，SQuAD 2.0\upcite{SQuAD2}等
 机器阅读理解数据集上的准确率超过BERT以及其它的预训练模型。
-表11从预训练任务、模型采用的特征提取器等详细对比了本文介绍的所有预训练模型。
+表11从预训练任务、模型采用的特征提取器等详细对比了本文介绍的所有预训练模型。表12对比了几个预训练模型在两个常用的MRC数据集上的表现。
 % \subsection{小结}
 % 传统的静态的预训练词向量虽然可以给模型性能带来一定程度的提升，但是这种提升非常有限。主要原因是
 % 其静态的性质无法解决多义词的
@@ -226,11 +226,33 @@ ALBERT的改进机制使得模型的预训练后的效果更好，在RACE\upcite
 	}
 \end{table}
 
+ \begin{table}[ht]
+     \centering
+     \caption{预训练模型对比}
+     \begin{tabular}{l c c}
+         \toprule
+         \multirow{2}{*}{模型}& SQuAD 2.0\upcite{SQuAD2} & RACE\upcite{RACE}\\
+         \cmidrule(lr){2-2} \cmidrule(lr){3-3} 
+         &EM/F1& Acc \\
+         \midrule
+         $\text{GPT}_{v1}$\upcite{GPT}&-&59.0\\
+         \midrule
+         $\text{BERT}_{large}$\upcite{BERT}& 80.0/83.1&72.0\\
+         \midrule
+         XLNet\upcite{XLNet}&86.4/89.1 &81.8\\
+         \midrule
+         RoBERTa\upcite{RoBERTa}&86.8/89.8 &83.2\\
+         \midrule
+         ALBERT\upcite{ALBERT}&88.1/90.9 &86.5\\
+         \bottomrule
+     \end{tabular}
+ \end{table}
+
 
 \subsubsection{更强大的MRC模型}
 在预训练模型出现后不仅仅在MRC任务上，在其它的NLP任务上模型的结构都发生了较大的变化，
 在模型的基础上利用具体任务的数据微调模型即可达到很好的效果。但是预训练模型毕竟是一个通用式的模型，
-它给了模型很好的初始化参数，但是仍然要根据具体任务的形式来设计模型才能达到更好的效果。
+它给了模型很好的初始化参数，不过要想达到更好的效果仍然要根据具体任务的形式来设计模型。
 下面列举几个MRC数据集上目前效果较好的基于预训练模型的MRC模型。
 
 人在做阅读理解问题的时候通常会先带着问题大致的浏览一下这篇文章，对这篇文章的含义有一个大致的了解。之后再根据问题详细的阅读文章寻找答案。受到这种阅读形式的启发，Zhang等人\upcite{Retrospective}提出一种回顾式阅读器（Retrospective Reader，Retro-Reader）模型。整个模型由两个步骤构成：（1）第一步先简要的略读文章，建模文章与问题的大致关联给出初步的判断该问题是否可以回答。（2）第二步是精读模块，目的是验证可回答性并且给出最终判断。模型的编码器采用强大的预训练模型ALBERT。Retro-Reader在SQuAD 2.0\upcite{SQuAD2}数据集上显著优于其它模型。
@@ -239,7 +261,7 @@ ALBERT的改进机制使得模型的预训练后的效果更好，在RACE\upcite
 Zhang等人\upcite{DCMN}
 利用BERT\upcite{BERT}和XLNet\upcite{XLNet}作为编码器同时采用文献\cite{Co-matching}提出的co-matching方法提出了DCMN模型，在RACE\upcite{RACE}
 数据集上达到了很高的准确率。
-而后在DCMN的基础上引入选项交互模块和段落选择模块提出DCMN+\cite{DCMN+}模型，模型的性能进一步提升。
+而后在DCMN的基础上引入选项交互模块和段落选择模块提出DCMN+\upcite{DCMN+}模型，模型的性能进一步提升。
 
 BERT以及基于BERT改进的预训练模型其数据输入形式只能是两个句子的拼接因此并不适合直接处理CoQA这种对话型阅读理解数据集。
 %Qu等人\upcite{HAE}提出一种简单而有效的模型，仅仅需要在BERT模型的输入端为每一个单词添加两个额外的向量用来表明这个单词有没有在历史答案中出现过，文中称这两个向量为（History Answer Embedding，HAE）。实验表明BERT+HAE模型较之前的模型可以处理更多的历史对话信息。
@@ -247,10 +269,17 @@ Zhu等人\upcite{SDNet}
 提出SDNet模型，以基于特征的方式迁移BERT作为编码器，同时将之前轮次的问题和答案拼接到当前轮的问题上构成一个新问题。模型采用自注意力机制获得历史对话信息之间的交互语义，具体的计算方式采用FusionNet\upcite{Fusionnet}模型提出的融合方法。
 Ohsugi等人\upcite{simpleqa}以基于微调的方式迁移BERT模型。
 将历史对话信息每一轮的问题与答案分别与文章连接送入
-BERT，将每一个BERT的输出连接作为输出层的输入。两个模型在CoQA\upcite{CoQA}和QuAC\upcite{QuAC}上的效果均超过前面的BiDAF++\upcite{Clark}，FlowQA\upcite{FlowQA}等利用复杂交互机制的模型。
+BERT，将每一个BERT的输出连接作为输出层的输入。两个模型在CoQA\upcite{CoQA}和QuAC\upcite{QuAC}两个对话型数据集上的效果均超过前面的BiDAF++\upcite{Clark}，FlowQA\upcite{FlowQA}等利用复杂交互机制的模型。
 %由于预训练模型UNILM\upcite{UNILM}改进了BERT的训练任务，
 %增加了自回归语言模型以及seq2seq语言模型使得其
 %在生成式任务上的效果很好，在CoQA数据集上远远的超过于Reddy等\upcite{CoQA}提出的基准模型。
+
+
+
+
+
+
+
 
 虽然设计一个强大的预训练模型具有更好的泛化型和应用价值，但是预训练模型所消耗的计算资源是巨大的，
 因此如何利用预训练模型结合具体任务改进模型的结构是至关重要的。
