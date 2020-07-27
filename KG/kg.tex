@@ -107,6 +107,8 @@
 	\end{equation}
 	其中$E_c\in E$代表的一个实体集合，其中所有实体都有类型$c$，$k$是一个超参数，含义是选取在$E_c$集合中的实体作为负例三元组的几率是选取那些不在$E_c$集合中的实体几率的$k$倍。
 	
+	在测试时对于给定的一种关系，TKRL模型限定这种关系的头尾实体的具体类别。Jin等人\upcite{TEKRL}提出的TEKRL模型解决了其它模型在引入实体类别信息时额外添加规则的问题。TEKRL模型同样为每一个实体构建基于结构和基于类别的两种实体表示
+	
 	除了考虑实体类型信息外，Zhang等人\upcite{HRS}提出一种利用关系层次结构的知识表示模型HRS（Hierarchical Relation Structure）。HRS将知识图谱中的关系划分为一个三层的层次结构，顶层关系$r_c$是由语义相近的关系聚类而成，中间层指特定的关系$r'$，底层关系$r_s$是将每一个关系再进一步的划分成多个子关系。
 	在训练时，对于每一个三元组$(h,r,t)$，其中关系$r$的嵌入表示$\textbf{r}$为三层关系的嵌入表示之和
 	$\textbf{r}=\textbf{r}_c+\textbf{r}'+\textbf{r}_s$。
@@ -195,6 +197,14 @@
 	\end{gather}
 	其中$A,B$是映射矩阵，$\textbf{h},\textbf{r},\textbf{t}$是偏置项，它们都是可学习的参数，词向量利用Word2Vec工具预训练。模型的得分函数定义为$f(h,r,t)=||\widehat{h}+\widehat{r}-\widehat{t}||_2^2$，损失函数采用最大间隔函数（公式1）。
 	
+	上述的模型并没有考虑到实体和关系的模糊性，所谓模糊性是指诸如parentof这种关系，这种关系所表达的语义依靠于头实体的性别属性。此外TEKE模型在两个实体的上下文集合中共同出现的单词并不能总是表达两个实体之间的关系，因此这种方式会给特定三元组带来噪声信息。An等人\upcite{ATEKE}提出ATEKE模型，利用实体描述和特定三元组的涉及（relation mention）来增强实体和关系的表示。为了处理噪声的问题，首先利用特定的约束条件来提取准确的关系提及。为了保证准确性，添加两个约束条件：（1）包含特定三元组的两个实体以及关系的下一词或同义词；（2）关系和句子中某一单词的相似性超过阈值。给定一特定三元组$（h,r,t）$，选择出关系提及后，与实体的描述文本通过BiLSTM编码它们的表示，通过注意力机制计算得到
+	$（h,r,t）$的文本表示$（\textbf{h}_e,\textbf{r}_e,\textbf{t}_e）$。将$（h,r,t）$的文本表示与知识图谱中的结构化表示$（\textbf{h}_{kg},\textbf{r}_{kg},\textbf{t}_{kg}）$加权求和作为三元组$（h,r,t）$准确的文本增强型表示。
+	\begin{gather}
+		Re(\textbf{h}_{ate})=\alpha Re(\textbf{h}_{kg})+(1-\alpha)\textbf{h}_e \notag \\
+		Re(\textbf{r}_{ate})=\alpha Re(\textbf{r}_{kg})+(1-\alpha)\textbf{r}_e \notag \\
+		Re(\textbf{t}_{ate})=\alpha Re(\textbf{t}_{kg})+(1-\alpha)\textbf{t}_e \notag
+	\end{gather}
+	其中$0\leq \alpha \leq 1$，$Re(\textbf{h}_{ate})$代表头实体准确的文本增强型（accurate text-enhanced，ate）向量表示$\textbf{h}_{ate}$的实值部分。
 	
 \subsection{关系路径}
 

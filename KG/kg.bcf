@@ -1926,12 +1926,14 @@
     <bcf:citekey order="1">SSE</bcf:citekey>
     <bcf:citekey order="2">TKRL</bcf:citekey>
     <bcf:citekey order="3">typeconstrain</bcf:citekey>
-    <bcf:citekey order="4">HRS</bcf:citekey>
-    <bcf:citekey order="5">Wang</bcf:citekey>
-    <bcf:citekey order="6">Zhong</bcf:citekey>
-    <bcf:citekey order="7">DKRL</bcf:citekey>
-    <bcf:citekey order="8">TEKE</bcf:citekey>
-    <bcf:citekey order="9">PTransE</bcf:citekey>
+    <bcf:citekey order="4">TEKRL</bcf:citekey>
+    <bcf:citekey order="5">HRS</bcf:citekey>
+    <bcf:citekey order="6">Wang</bcf:citekey>
+    <bcf:citekey order="7">Zhong</bcf:citekey>
+    <bcf:citekey order="8">DKRL</bcf:citekey>
+    <bcf:citekey order="9">TEKE</bcf:citekey>
+    <bcf:citekey order="10">ATEKE</bcf:citekey>
+    <bcf:citekey order="11">PTransE</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

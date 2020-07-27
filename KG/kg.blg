@@ -1,15 +1,17 @@
 [0] Config.pm:302> INFO - This is Biber 2.9
 [0] Config.pm:305> INFO - Logfile is 'kg.blg'
-[27] biber:313> INFO - === Sun Jul 26, 2020, 19:54:04
-[50] Biber.pm:371> INFO - Reading 'kg.bcf'
-[117] Biber.pm:857> INFO - Found 9 citekeys in bib section 0
-[131] Biber.pm:3981> INFO - Processing section 0
-[145] Biber.pm:4154> INFO - Looking for bibtex format file 'kgref.bib' for section 0
-[146] bibtex.pm:1468> INFO - LaTeX decoding ...
-[168] bibtex.pm:1294> INFO - Found BibTeX data source 'kgref.bib'
-[342] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[343] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[343] Biber.pm:3809> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[343] Biber.pm:3815> INFO - No sort tailoring available for locale 'en-US'
-[358] bbl.pm:617> INFO - Writing 'kg.bbl' with encoding 'UTF-8'
-[366] bbl.pm:720> INFO - Output to kg.bbl
+[93] biber:313> INFO - === Mon Jul 27, 2020, 20:40:31
+[207] Biber.pm:371> INFO - Reading 'kg.bcf'
+[278] Biber.pm:857> INFO - Found 11 citekeys in bib section 0
+[291] Biber.pm:3981> INFO - Processing section 0
+[411] Biber.pm:4154> INFO - Looking for bibtex format file 'kgref.bib' for section 0
+[436] bibtex.pm:1468> INFO - LaTeX decoding ...
+[460] bibtex.pm:1294> INFO - Found BibTeX data source 'kgref.bib'
+[726] Utils.pm:169> WARN - I didn't find a database entry for 'TEKRL' (section 0)
+[748] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[748] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[748] Biber.pm:3809> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[748] Biber.pm:3815> INFO - No sort tailoring available for locale 'en-US'
+[820] bbl.pm:617> INFO - Writing 'kg.bbl' with encoding 'UTF-8'
+[828] bbl.pm:720> INFO - Output to kg.bbl
+[828] Biber.pm:110> INFO - WARNINGS: 1

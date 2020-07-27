@@ -19,6 +19,62 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{ATEKE}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=96a30a4deee57f534cac5fa8cea3ae4f}{%
+           family={An},
+           familyi={A\bibinitperiod},
+           given={Bo},
+           giveni={B\bibinitperiod}}}%
+        {{hash=31960f03389184b7f052f5b197cc9fdf}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Bo},
+           giveni={B\bibinitperiod}}}%
+        {{hash=42c1a9ce9afd2af45cb34fbf4194d3f9}{%
+           family={Han},
+           familyi={H\bibinitperiod},
+           given={Xianpei},
+           giveni={X\bibinitperiod}}}%
+        {{hash=41535dc71798b1229b7cd375aceb2495}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Le},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New Orleans, Louisiana}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{c5e763ccf02e432a9a42ae758617d980}
+      \strng{fullhash}{9dca635035466c02b0b0e4238ad8c755}
+      \strng{bibnamehash}{c5e763ccf02e432a9a42ae758617d980}
+      \strng{authorbibnamehash}{c5e763ccf02e432a9a42ae758617d980}
+      \strng{authornamehash}{c5e763ccf02e432a9a42ae758617d980}
+      \strng{authorfullhash}{9dca635035466c02b0b0e4238ad8c755}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Previous representation learning techniques for knowledge graph representation usually represent the same entity or relation in different triples with the same representation, without considering the ambiguity of relations and entities. To appropriately handle the semantic variety of entities/relations in distinct triples, we propose an accurate text-enhanced knowledge graph representation learning method, which can represent a relation/entity with different representations in different triples by exploiting additional textual information. Specifically, our method enhances representations by exploiting the entity descriptions and triple-specific relation mention. And a mutual attention mechanism between relation mention and entity description is proposed to learn more accurate textual representations for further improving knowledge graph representation. Experimental results show that our method achieves the state-of-the-art performance on both link prediction and triple classification tasks, and significantly outperforms previous text-enhanced knowledge representation models.}
+      \field{booktitle}{Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long Papers)}
+      \field{month}{6}
+      \field{title}{Accurate Text-Enhanced Knowledge Graph Representation Learning}
+      \field{year}{2018}
+      \field{pages}{745\bibrangedash 755}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.18653/v1/N18-1068
+      \endverb
+      \verb{urlraw}
+      \verb https://www.aclweb.org/anthology/N18-1068
+      \endverb
+      \verb{url}
+      \verb https://www.aclweb.org/anthology/N18-1068
+      \endverb
+    \endentry
     \entry{SSE}{inproceedings}{}
       \name{author}{5}{}{%
         {{hash=f7cc212ac95e56051137f219849679fc}{%
@@ -649,6 +705,7 @@
       \endverb
     \endentry
   \enddatalist
+  \missing{TEKRL}
 \endrefsection
 \endinput
 
