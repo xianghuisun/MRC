@@ -51,8 +51,8 @@
 	\section{融合多源信息}
 	多源信息能够帮助构建更加精准的知识表示，
 	经典的知识表示学习模型往往仅关注知识图谱自身的三元组结构信息，而忽略了蕴含在多源信息中的丰富知识。
-	这些多源信息包括：类型信息（实体类型，关系类型等），文本描述信息以及关系路径等，本章中将讨论如何将
-	各种外部融合进知识表示空间中共同学习。
+	这些多源信息包括：类型信息（实体类型，关系类型等），实体描述信息以及关系路径等，本章中将讨论如何将
+	外部信息源融合进知识表示空间中学习以增强知识图谱中知识的表示。
 	\begin{equation}
 		L=\sum_{(h,r,t)\in \mathcal{S}}\sum_{(h',r,t')\in \mathcal{S}'}\max (0,f(h,r,t)+\gamma-f(h'+r-t'))
 	\end{equation}
@@ -234,6 +234,35 @@ $E(h,p,t)$代表给定实体$h$和$t$以及多跳关系路径$p$的能量函数�
 \end{gather}
 ADD表示将路径上所有关系的向量表示相加，MUL表示相乘，RNN代表利用循环神经网络，此时$\textbf{p}$为最后时刻的隐藏状态。
 顺序有问题，不需要介绍$E(h,P,t)$，直接$E(h,p,t)$，然后过渡到$L(h,p,t)$，最后解释$R(p|h,t)$
+
+Guu等人\upcite{Guu}提出利用多步关系路径构建新的三元组并且对TransE模型和RESCAL模型进行了扩展。给定头实体$h$和尾实体$t$以及长度为$l$的多跳关系路径$p$，则扩展TransE模型后的得分函数为
+\begin{equation}
+	f(h,p,t)=\left \| \textbf{h}+\textbf{r}_1+\cdots+\textbf{r}_l-\textbf{t} \right \| \notag
+\end{equation}
+扩展RESCAL模型后的得分函数为：
+\begin{equation}
+	f(h,p,t)=\textbf{h}^T(\textbf{M}_1\circ\cdots\circ\textbf{M}_l)\textbf{t} \notag
+\end{equation}
+%文献\cite{DPpath}利用动态规划算法建模两个实体之间所有可能的关系路径。
+
+两条头尾实体相同的多步关系路径，即使路径中间的关系也相同但是由于路径中间实体的不同，两条路径表达的也可能是不同的含义。基于这个问题
+Seo等人\upcite{RKRL}同时考虑了关系路径上中间的实体和关系的信息提出RKRL模型。给定三元组$(h,r,t)$以及$h$和$t$之间的某条多步关系路径$p=\{r_1,e_1,\cdots,r_{n-1},e_{n-1},r_n\}$。
+得分函数定义如下：
+\begin{gather}
+	f(h,p,t)=\left \|\textbf{h}+\textbf{p}-\textbf{t} \right \| \notag \\
+	\textbf{p}=W_{e_1}\textbf{r}_1+\cdots+W_{e_{n-1}}\textbf{r}_{n-1}+\textbf{r}_n \notag
+\end{gather}
+其中$\textbf{r}_i$代表多步关系路径上第$i$个关系的表示。
+RKRL模型的能量函数与PTransE模型一致：
+\begin{gather}
+	G(h,r,t)=f(h,r,t)+f(h,P,t)  \notag \\ 
+	f(h,P,t)=\frac{1}{Z}\sum_{p\in P}R(p|h,t)f(h,p,t) \notag
+\end{gather}
+其中$R(p|h,t)$代表给定实体$h$和$t$的条件下多跳关系路径$p$的可靠性，
+$Z$是规范化因子，它是$h$和$t$的所有多跳关系路径的可靠性之和。
+RKRL采用两种特征来衡量路径$p$的可靠性，第一种特征是TKRL中提出的资源分配算法，但是由于该算法仅仅依靠资源流动的量来衡量可靠性可能不足以判别路径的语义关系，因此额外添加路径上与实体相连的关系出现的频率这一特征。
+
+模型的能量函数定义如下：
 
 
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.7.9)  27 JUL 2020 22:23
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.7.9)  28 JUL 2020 19:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2084,6 +2084,13 @@ Missing character: There is no ） in font [lmroman10-regular]:mapping=tex-text;
 Missing character: There is no （ in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no ） in font [lmroman10-regular]:mapping=tex-text;!
 
+
+LaTeX Warning: Citation 'Guu' on page 4 undefined on input line 238.
+
+
+LaTeX Warning: Citation 'RKRL' on page 4 undefined on input line 249.
+
+[4]
 *************************************************
 * fontspec warning: "script-not-exist"
 * 
@@ -2102,57 +2109,65 @@ Missing character: There is no ） in font [lmroman10-regular]:mapping=tex-text;
 . - 'small caps'  (m/sc) with NFSS spec.: 
 .................................................
 
-Underfull \hbox (badness 1708) in paragraph at lines 241--241
+Underfull \hbox (badness 1708) in paragraph at lines 270--270
 \TU/lmr/m/n/10.53937 edge Graph Representation Learning”. In:
  []
 
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 241--241
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--270
 \TU/lmr/m/n/10.53937 Tresp. “Type-Constrained Representation
  []
 
 
-Underfull \hbox (badness 1867) in paragraph at lines 241--241
+Underfull \hbox (badness 1867) in paragraph at lines 270--270
 \TU/lmr/m/n/10.53937 Learning in Knowledge Graphs”. In: \TU/lmr/m/it/10.53937 T
 he
  []
 
 
-Underfull \hbox (badness 1701) in paragraph at lines 241--241
+Underfull \hbox (badness 1701) in paragraph at lines 270--270
 \TU/lmr/m/it/10.53937 PA, USA, October 11-15, 2015, Proceed-
  []
 
 
-Underfull \hbox (badness 1694) in paragraph at lines 241--241
+Underfull \hbox (badness 1694) in paragraph at lines 270--270
 \TU/lmr/m/it/10.53937 ings, Part I\TU/lmr/m/n/10.53937 . Ed. by Marcelo Arenas 
 et
  []
 
 
-Underfull \hbox (badness 7504) in paragraph at lines 241--241
+Underfull \hbox (badness 7504) in paragraph at lines 270--270
 []\TU/lmr/m/n/10.53937 Zhigang Wang and Juan-Zi Li. “Text-
  []
 
 
-Underfull \hbox (badness 1158) in paragraph at lines 241--241
+Underfull \hbox (badness 1158) in paragraph at lines 270--270
 \TU/lmr/m/n/10.53937 1299. \TU/lmr/m/sc/10.53937 url\TU/lmr/m/n/10.53937 : []$[
 ][][][] [] [] [] [][][] [] [][][][][] [] [][][] []
  []
 
-
-Underfull \hbox (badness 1990) in paragraph at lines 241--241
+[5]
+Underfull \hbox (badness 1990) in paragraph at lines 270--270
 []\TU/lmr/m/n/10.53937 Ruobing Xie, Zhiyuan Liu, and Maosong
  []
 
-[5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 243.
- [6
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 272.
+[6
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 243.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 272.
  (./kg.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 243.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 243.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 272.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 272.
+
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                kg
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'kg.run.xml'.
 \openout1 = `kg.run.xml'.
 
@@ -2160,10 +2175,10 @@ Package logreq Info: Writing requests to 'kg.run.xml'.
 Here is how much of TeX's memory you used:
  35822 strings out of 493007
  690046 string characters out of 6136720
- 1252487 words of memory out of 5000000
+ 1252505 words of memory out of 5000000
  39430 multiletter control sequences out of 15000+600000
  533809 words of font info for 65 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 57i,17n,93p,10429b,4572s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,17n,93p,10429b,4574s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on kg.pdf (6 pages).
