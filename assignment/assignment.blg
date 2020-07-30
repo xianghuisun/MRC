@@ -1,21 +1,21 @@
 [0] Config.pm:302> INFO - This is Biber 2.9
 [0] Config.pm:305> INFO - Logfile is 'assignment.blg'
-[26] biber:313> INFO - === Sat Jul 25, 2020, 21:33:55
-[48] Biber.pm:371> INFO - Reading 'assignment.bcf'
-[117] Biber.pm:857> INFO - Found 69 citekeys in bib section 0
-[130] Biber.pm:3981> INFO - Processing section 0
-[140] Biber.pm:4154> INFO - Looking for bibtex format file 'ass.bib' for section 0
-[146] bibtex.pm:1468> INFO - LaTeX decoding ...
-[280] bibtex.pm:1294> INFO - Found BibTeX data source 'ass.bib'
-[284] Utils.pm:169> WARN - Duplicate entry key: 'SQuAD1' in file 'ass.bib', skipping ...
-[286] Utils.pm:169> WARN - Duplicate entry key: 'SQuAD2' in file 'ass.bib', skipping ...
-[799] Utils.pm:169> WARN - month field '10-11' in entry 'Ranking' is not an integer - this will probably not sort properly.
-[938] Utils.pm:169> WARN - I didn't find a database entry for 'NNLM' (section 0)
-[938] Utils.pm:169> WARN - I didn't find a database entry for 'Survey' (section 0)
-[1011] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1011] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1011] Biber.pm:3809> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[1012] Biber.pm:3815> INFO - No sort tailoring available for locale 'en-US'
-[1098] bbl.pm:617> INFO - Writing 'assignment.bbl' with encoding 'UTF-8'
-[1135] bbl.pm:720> INFO - Output to assignment.bbl
-[1135] Biber.pm:110> INFO - WARNINGS: 5
+[47] biber:313> INFO - === Thu Jul 30, 2020, 22:17:25
+[83] Biber.pm:371> INFO - Reading 'assignment.bcf'
+[180] Biber.pm:857> INFO - Found 73 citekeys in bib section 0
+[194] Biber.pm:3981> INFO - Processing section 0
+[205] Biber.pm:4154> INFO - Looking for bibtex format file 'ass.bib' for section 0
+[212] bibtex.pm:1468> INFO - LaTeX decoding ...
+[414] bibtex.pm:1294> INFO - Found BibTeX data source 'ass.bib'
+[417] Utils.pm:169> WARN - Possible typo (case mismatch) between datasource keys: 'FastQA' and 'fastqa' in file 'ass.bib'
+[422] Utils.pm:169> WARN - Duplicate entry key: 'SQuAD1' in file 'ass.bib', skipping ...
+[425] Utils.pm:169> WARN - Duplicate entry key: 'SQuAD2' in file 'ass.bib', skipping ...
+[1628] Utils.pm:169> WARN - I didn't find a database entry for 'NNLM' (section 0)
+[1629] Utils.pm:169> WARN - I didn't find a database entry for 'Survey' (section 0)
+[1709] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1709] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1709] Biber.pm:3809> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[1709] Biber.pm:3815> INFO - No sort tailoring available for locale 'en-US'
+[1808] bbl.pm:617> INFO - Writing 'assignment.bbl' with encoding 'UTF-8'
+[1864] bbl.pm:720> INFO - Output to assignment.bbl
+[1865] Biber.pm:110> INFO - WARNINGS: 5

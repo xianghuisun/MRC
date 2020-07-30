@@ -1924,18 +1924,33 @@
   </bcf:bibdata>
   <bcf:section number="0">
     <bcf:citekey order="1">SSE</bcf:citekey>
-    <bcf:citekey order="2">TKRL</bcf:citekey>
-    <bcf:citekey order="3">typeconstrain</bcf:citekey>
-    <bcf:citekey order="4">TEKRL</bcf:citekey>
-    <bcf:citekey order="5">HRS</bcf:citekey>
-    <bcf:citekey order="6">Wang</bcf:citekey>
-    <bcf:citekey order="7">Zhong</bcf:citekey>
-    <bcf:citekey order="8">DKRL</bcf:citekey>
-    <bcf:citekey order="9">TEKE</bcf:citekey>
-    <bcf:citekey order="10">ATEKE</bcf:citekey>
-    <bcf:citekey order="11">PTransE</bcf:citekey>
-    <bcf:citekey order="12">Guu</bcf:citekey>
-    <bcf:citekey order="13">RKRL</bcf:citekey>
+    <bcf:citekey order="2">TransE</bcf:citekey>
+    <bcf:citekey order="3">TKRL</bcf:citekey>
+    <bcf:citekey order="4">TKRL</bcf:citekey>
+    <bcf:citekey order="5">TKRL</bcf:citekey>
+    <bcf:citekey order="6">typeconstrain</bcf:citekey>
+    <bcf:citekey order="7">TEKRL</bcf:citekey>
+    <bcf:citekey order="8">HRS</bcf:citekey>
+    <bcf:citekey order="9">EAR</bcf:citekey>
+    <bcf:citekey order="10">DKRL</bcf:citekey>
+    <bcf:citekey order="11">DKRL</bcf:citekey>
+    <bcf:citekey order="12">Wang</bcf:citekey>
+    <bcf:citekey order="13">TransE</bcf:citekey>
+    <bcf:citekey order="14">Skipgram</bcf:citekey>
+    <bcf:citekey order="15">Zhong</bcf:citekey>
+    <bcf:citekey order="16">JointS</bcf:citekey>
+    <bcf:citekey order="17">DKRL</bcf:citekey>
+    <bcf:citekey order="18">SSP</bcf:citekey>
+    <bcf:citekey order="19">TEKE</bcf:citekey>
+    <bcf:citekey order="20">ATEKE</bcf:citekey>
+    <bcf:citekey order="21">PTransE</bcf:citekey>
+    <bcf:citekey order="22">Guu</bcf:citekey>
+    <bcf:citekey order="23">RESCAL</bcf:citekey>
+    <bcf:citekey order="24">Toutanova</bcf:citekey>
+    <bcf:citekey order="25">RKRL</bcf:citekey>
+    <bcf:citekey order="26">IKRL</bcf:citekey>
+    <bcf:citekey order="27">Alexnet</bcf:citekey>
+    <bcf:citekey order="28">GAKE</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

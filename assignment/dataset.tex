@@ -332,37 +332,37 @@ ROUGE-L\upcite{Rouge}和BLEU\upcite{BLEU}。ROUGE-L用来计算标准答案和�
 	\caption{MRC常用数据集对比，Acc代表准确率 \\ Table 5 Comparison of common dataset in MRC}
 	%\vspace{5pt}
 	\resizebox{\textwidth}{!}{
-		\begin{tabular}{l c c c c c c}
+		\begin{tabular}{l c c c c c c c}
 			\toprule
-			数据集&发布时间&文章来源&文章类型&问题特征&答案类型&评估指标 \\
+			数据集&发布时间&文章来源/数量&文章类型&问题来源/数量&答案类型&评估指标 \\
 			\midrule
-			CNN\&Daily Mail\upcite{CNNDailyMail}&2015&新闻&单段落型&自动生成&填空式&Acc \\
+			CNN\&Daily Mail\upcite{CNNDailyMail}&2015&新闻/$3\times 10^5$&单段落型&人工合成/$1.4\times 10^6$&填空式&Acc \\
 			\midrule
-			CBT\upcite{CBT}&2015&儿童读物&单段落型&自动生成&填空式&Acc \\
+			CBT\upcite{CBT}&2015&儿童读物/$108$&单段落型&人工合成/$6.8\times 10^5$&填空式&Acc \\
 			\midrule
-			CLOTH\upcite{CLOTH}&2016&英语考试&单段落型&人工生成&填空式&Acc \\
+			CLOTH\upcite{CLOTH}&2016&英语考试&单段落型&英语考试/$1\times 10^5$&填空式&Acc \\
 			\midrule
-			MCTest\upcite{MCTest}&2013&儿童读物&单段落型&众包生成&多项选择式&Acc \\
+			MCTest\upcite{MCTest}&2013&儿童读物/$500$&单段落型&众包/$2\times 10^3$&多项选择式&Acc \\
 			\midrule
-			RACE\upcite{RACE}&2018&英语考试&单段落型&人工生成&多项选择式&Acc\\
+			RACE\upcite{RACE}&2018&英语考试/$5\times 10^4$&单段落型&英语考试/$8.7\times 10^5$&多项选择式&Acc\\
 			\midrule
-			SQuAD\upcite{SQuAD1}&2016&维基百科&单段落型&众包生成&抽取式&EM/F1\\
+			SQuAD\upcite{SQuAD1}&2016&维基百科/$536$&单段落型&众包/$1\times 10^5$&抽取式&EM/F1\\
 			\midrule
-			TriviaQA\upcite{TriviaQA}&2017&网页搜索&多段落型&收集于网站上的问题-答案对&抽取式&EM/F1\\
+			TriviaQA\upcite{TriviaQA}&2017&网页搜索/$6.6\times 10^5$&多段落型&搜索日志/$4\times 10^4$&抽取式&EM/F1\\
 			\midrule
-			SQuAD 2.0\upcite{SQuAD2}&2018&维基百科&单段落型&新增无答案问题&抽取式&EM/F1\\
+			SQuAD 2.0\upcite{SQuAD2}&2018&维基百科/$536$&单段落型&众包/$1.5\times 10^5$&抽取式&EM/F1\\
 			\midrule
-			NewsQA\upcite{NewsQA}&2017&新闻&单段落型&众包生成，包含无答案问题&抽取式&EM/F1\\
+			NewsQA\upcite{NewsQA}&2017&新闻/$1\times 10^4$&单段落型&众包/$1\times 10^5$&抽取式&EM/F1\\
 			\midrule
-			HotpotQA\upcite{HotpotQA}&2018&维基百科&多段落型&众包生成，需多步推理&抽取式&EM/F1\\
+			HotpotQA\upcite{HotpotQA}&2018&维基百科&多段落型/&众包/$1.13\times 10^5$&抽取式&EM/F1\\
 			\midrule
-			WIKIHOP\upcite{WIKIHOP}&2018&维基百科&多段落型&自动生成，需多步推理&抽取式&EM/F1 \\
+			WIKIHOP\upcite{WIKIHOP}&2018&维基百科&多段落型/&自动生成，需多步推理&抽取式&EM/F1 \\
 			\midrule
-			MS MARCO\upcite{MSmarco}&2016&搜素引擎&多段落型&收集于搜索引擎&自由答案式&ROUGE-L/BLEU\\
+			MS MARCO\upcite{MSmarco}&2016&搜素引擎/$2\times 10^5$&多段落型&搜索日志/$1\times 10^5$&自由答案式&ROUGE-L/BLEU\\
 			\midrule
-			DuReader\upcite{DuReader}&2018&搜索引擎&多段落型&收集于搜索引擎&自由答案式&ROUGE-L/BLEU\\
+			DuReader\upcite{DuReader}&2018&搜索引擎/$1\times 10^6$&多段落型&搜索日志/$2\times 10^5$&自由答案式&ROUGE-L/BLEU\\
 			\midrule
-			NarrativeQA\upcite{NarrativeQA}&2017&小说和电影剧本&多段落型&众包生成&自由答案式&ROUGE-L/BLEU\\
+			NarrativeQA\upcite{NarrativeQA}&2017&小说和电影剧本/$1.5\times 10^3$&多段落型&众包/$4.6\times 10^4$&自由答案式&ROUGE-L/BLEU\\
 %			\midrule
 %			CoQA\upcite{CoQA}&2018&维基百科/127K&单段落型&提问者和回答者以对话形式生成问题和答案&自由答案型\\
 %			\midrule
