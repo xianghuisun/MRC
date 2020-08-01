@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.7.9)  30 JUL 2020 22:36
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.7.9)  31 JUL 2020 18:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1944,22 +1944,7 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'assignment.bbl' found.
- (./assignment.bbl
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                NNLM
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                Survey
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-)
+ (./assignment.bbl)
 Package biblatex Info: Reference section=0 on input line 67.
 Package biblatex Info: Reference segment=0 on input line 67.
 
@@ -2049,201 +2034,93 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 LaTeX Warning: No \author given.
 
-(./abstract_part.tex
-*************************************************
-* fontspec warning: "script-not-exist"
-* 
-* Font 'FandolSong-Regular' does not contain script 'CJK'.
-*************************************************
-.................................................
-. fontspec info: "defining-font"
-. 
-. Font family 'FandolSong-Regular(1)' created for font 'FandolSong-Regular'
-. with options [Script={CJK},Extension={.otf},BoldFont={FandolSong-Bold}].
-.  
-.  This font family consists of the following NFSS series/shapes:
-.  
-. - 'normal' (m/n) with NFSS spec.: <->"[FandolSong-Regular.otf]/OT"
-. - 'small caps'  (m/sc) with NFSS spec.: 
-. - 'bold' (bx/n) with NFSS spec.: <->"[FandolSong-Bold.otf]/OT"
-. - 'bold small caps'  (bx/sc) with NFSS spec.: 
-.................................................
-) (./introduction.tex [1
+(./abstract_part.tex) (./introduction.tex [1
 
-]
-Overfull \hbox (10.63629pt too wide) in paragraph at lines 16--19
-[]\TU/FandolSong-Regular(1)/m/n/10.53937 随 着 深 度 学 习 的 兴 起 以 及 \TU/lmr/m/n/10.5
-3937 NLP \TU/FandolSong-Regular(1)/m/n/10.53937 领 域 预 训 练 词 向 量 如 \TU/lmr/m/n/1
-0.53937 Word2Vec$[]$\TU/FandolSong-Regular(1)/m/n/10.53937 、| \TU/lmr/m/n/10.53
-937 GloVe$[]$ \TU/FandolSong-Regular(1)/m/n/10.53937 的 发 展 以 及 注 意 力  |（\TU/lmr
-/m/n/10.53937 Attention\TU/FandolSong-Regular(1)/m/n/10.53937 ）|
+]) (./dataset.tex [2]
+Overfull \hbox (2.20313pt too wide) in paragraph at lines 51--53
+[]|[]|  
  []
 
-) (./dataset.tex [2]
-Overfull \hbox (2.20313pt too wide) in paragraph at lines 49--51
+
+Overfull \hbox (8.21059pt too wide) in paragraph at lines 103--105
 []|[]|  
  []
 
 [3]
-Overfull \hbox (8.21059pt too wide) in paragraph at lines 99--101
+Overfull \hbox (3.04631pt too wide) in paragraph at lines 159--161
 []|[]|  
  []
 
 [4]
-Overfull \hbox (3.04631pt too wide) in paragraph at lines 153--155
-[]|[]|  
- []
-
-[5]
-Overfull \hbox (9.53856pt too wide) in paragraph at lines 205--206
+Overfull \hbox (9.53856pt too wide) in paragraph at lines 215--216
 []|[]|  
  []
 
 
-Overfull \hbox (7.26207pt too wide) in paragraph at lines 210--212
+Overfull \hbox (7.26207pt too wide) in paragraph at lines 220--222
 []|[]|  
  []
 
 
-Overfull \hbox (4.10025pt too wide) in paragraph at lines 216--217
+Overfull \hbox (4.10025pt too wide) in paragraph at lines 226--227
 []|[]|  
  []
 
 
-Overfull \hbox (3.41516pt too wide) in paragraph at lines 225--226
+Overfull \hbox (3.41516pt too wide) in paragraph at lines 235--236
 []|[]|  
  []
 
 
-Overfull \hbox (2.00134pt too wide) in paragraph at lines 201--230
+Overfull \hbox (2.00134pt too wide) in paragraph at lines 211--240
  [][] 
  []
 
-[6]) (./based_extrc.tex
+[5]) (./based_extrc.tex [6]
 File: picture/generic.png Graphic file (type bmp)
 <picture/generic.png>
- [7] [8] [9]
-Overfull \hbox (56.20691pt too wide) in paragraph at lines 180--181
-[]|[]|  
+ [7] [8]
+Overfull \hbox (8.19699pt too wide) in paragraph at lines 127--136
+[]\TU/lmr/m/n/10.53937 MRC \TU/FandolSong-Regular(0)/m/n/10.53937 模 型 做 注 意 力 运
+ 算 有 两 个 方 向：|  从 问 题 到 段 落  |（\TU/lmr/m/n/10.53937 Question-to-Context,Q2C\TU/
+FandolSong-Regular(0)/m/n/10.53937 ） ，|  从 段 落 到 问 题  |（\TU/lmr/m/n/10.53937 Co
+ntext-
  []
 
-
-Overfull \hbox (109.15668pt too wide) in paragraph at lines 184--186
-[]|[]|  
- []
-
-
-Overfull \hbox (50.03082pt too wide) in paragraph at lines 188--189
-[]|[]|  
- []
-
-
-Overfull \hbox (2.00134pt too wide) in paragraph at lines 175--196
- [][] 
- []
-
-[10] [11] [12] [13] [14])
+[9] [10] [11] [12])
 File: picture/classicTopre.png Graphic file (type bmp)
 <picture/classicTopre.png>
- (./pre_train.tex [15]
-Overfull \hbox (15.88449pt too wide) in paragraph at lines 13--23
-\TU/FandolSong-Regular(1)/m/n/10.53937 目 前 流 行 的 几 个 预 训 练 模 型 如，| \TU/lmr/m/n/
-10.53937 GPT$[]$\TU/FandolSong-Regular(1)/m/n/10.53937 ，| \TU/lmr/m/n/10.53937 
-BERT$[]$ \TU/FandolSong-Regular(1)/m/n/10.53937 以 及 基 于 \TU/lmr/m/n/10.53937 BE
-RT \TU/FandolSong-Regular(1)/m/n/10.53937 改 进 的 预 训 练 模 型 \TU/lmr/m/n/10.53937 
-RoBERTa$[]$\TU/FandolSong-Regular(1)/m/n/10.53937 ，| \TU/lmr/m/n/10.53937 UNILM
-$[]$\TU/FandolSong-Regular(1)/m/n/10.53937 ，|
- []
-
-[16] [17]) (./new_trend.tex
+ (./pre_train.tex [13] [14]) (./new_trend.tex
 Overfull \hbox (6.80191pt too wide) in paragraph at lines 2--5
-\TU/lmr/m/n/10.53937 SQuAD$[]$ \TU/FandolSong-Regular(1)/m/n/10.53937 等 抽 取 式 阅
- 读 理 解 数 据 集。| \TU/lmr/m/n/10.53937 Weissenborn \TU/FandolSong-Regular(1)/m/n/1
+\TU/lmr/m/n/10.53937 SQuAD$[]$ \TU/FandolSong-Regular(0)/m/n/10.53937 等 抽 取 式 阅
+ 读 理 解 数 据 集。| \TU/lmr/m/n/10.53937 Weissenborn \TU/FandolSong-Regular(0)/m/n/1
 0.53937 等 人$[]$ 专 门 设 计 了 一 个 不 包 含 交 互 层 的 网 络 模 型 \TU/lmr/m/n/10.53937 FastQA
-\TU/FandolSong-Regular(1)/m/n/10.53937 ，|
+\TU/FandolSong-Regular(0)/m/n/10.53937 ，|
  []
 
-[18]
+[15] [16]
 Overfull \hbox (6.99226pt too wide) in paragraph at lines 35--37
 []|[]|  
  []
 
-[19] [20]) (./discussion.tex [21] [22])
-*************************************************
-* fontspec warning: "script-not-exist"
-* 
-* Font 'FandolFang-Regular' does not contain script 'CJK'.
-*************************************************
-\g__fontspec_family_FandolFang-Regular_int=\count443
-.................................................
-. fontspec info: "defining-font"
-. 
-. Font family 'FandolFang-Regular(0)' created for font 'FandolFang-Regular'
-. with options [Script={CJK},Extension={.otf}].
-.  
-.  This font family consists of the following NFSS series/shapes:
-.  
-. - 'normal' (m/n) with NFSS spec.: <->"[FandolFang-Regular.otf]/OT"
-. - 'small caps'  (m/sc) with NFSS spec.: 
-.................................................
-[23]
-Overfull \hbox (0.40482pt too wide) in paragraph at lines 130--130
-[]\TU/lmr/m/n/10.53937 Karl Moritz Hermann et al. “Teaching Machines to Read an
-d Comprehend”. In: \TU/lmr/m/it/10.53937 CoRR \TU/lmr/m/n/10.53937 abs/1506.033
-40
- []
-
-
-Overfull \hbox (3.91078pt too wide) in paragraph at lines 130--130
-[]\TU/lmr/m/n/10.53937 Danqi Chen, Jason Bolton, and Christopher D. Manning. “A
- Thorough Examination of the CNN/Daily
- []
-
-[24]
-Overfull \hbox (11.96544pt too wide) in paragraph at lines 130--130
-\TU/lmr/m/it/10.53937 https://s3-us-west-2. amazonaws. com/openai-assets/resear
-ch-covers/language-unsupervised/language_
- []
-
-
-Overfull \hbox (0.40482pt too wide) in paragraph at lines 130--130
-[]\TU/lmr/m/n/10.53937 Karl Moritz Hermann et al. “Teaching Machines to Read an
-d Comprehend”. In: \TU/lmr/m/it/10.53937 CoRR \TU/lmr/m/n/10.53937 abs/1506.033
-40
- []
-
-[25]
-Overfull \hbox (1.61687pt too wide) in paragraph at lines 130--130
-[]\TU/lmr/m/n/10.53937 Danqi Chen et al. “Reading Wikipedia to Answer Open-Doma
-in Questions”. In: \TU/lmr/m/it/10.53937 CoRR \TU/lmr/m/n/10.53937 abs/1704.000
-51
- []
-
-[26]
-Overfull \hbox (1.1215pt too wide) in paragraph at lines 130--130
-[]\TU/lmr/m/n/10.53937 Bhuwan Dhingra et al. “Gated-Attention Readers for Text 
-Comprehension”. In: \TU/lmr/m/it/10.53937 CoRR \TU/lmr/m/n/10.53937 abs/1606.01
-549
- []
-
-[27] [28]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 135.
- [29]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 135.
+[17] [18]) (./discussion.tex [19] [20])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 110.
+ [21]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 110.
  (./assignment.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 135.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 135.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 110.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 110.
 Package logreq Info: Writing requests to 'assignment.run.xml'.
 \openout1 = `assignment.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36350 strings out of 493007
- 717302 string characters out of 6136720
- 1268213 words of memory out of 5000000
- 39904 multiletter control sequences out of 15000+600000
- 541645 words of font info for 106 fonts, out of 8000000 for 9000
+ 36136 strings out of 493007
+ 705164 string characters out of 6136720
+ 1262140 words of memory out of 5000000
+ 39699 multiletter control sequences out of 15000+600000
+ 541605 words of font info for 101 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 57i,17n,93p,10437b,4578s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,17n,74p,10437b,1613s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on assignment.pdf (29 pages).
+Output written on assignment.pdf (21 pages).

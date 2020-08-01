@@ -71,49 +71,24 @@
 %----------------------正文-----------------------
 %\begin{multicols}{2}
 \input{introduction}
-
-% \end{multicols}
-% %在你想要分栏的段落上下加上begin end columns{2}
-
-
-																																	
-
 \input{dataset.tex}
 
 \section{神经机器阅读理解模型}
 %随着大规模机器阅读理解数据集如CNN\&Daily Mail\upcite{CNNDailyMail}，SQuAD\upcite{SQuAD1}等的发布以及
 %深度学习技术的发展，神经机器阅读理解模型的性能显著的超过传统的基于规则和特征的模型，随着NLP领域预训练模型的发展，基于预训练模型
 %来做MRC任务的模型性能再一次的提升。
-Hermann等人\upcite{Hermann}发布的CNN\&Daily Mail数据集以及他们所设计的两个基于神经网络和注意力机制的模型可以看作是MRC领域的奠基性工作，开创了神经机器阅读理解模型。Rajpurkar等人\cite{SQuAD1}在2016年发布的SQuAD数据集是MRC领域里程碑式的数据集，在2016-2018年期间掀起了一阵热潮，很多的神经机器阅读理解模型都是在此期间构建出来的。
-填空式数据集本质上可以认为是抽取式数据集的简化形式，而后续的很多任务如对话形式、开放领域形式、多段落形式的阅读理解任务也都是在抽取式任务的形式上设计模型。因此抽取式阅读理解任务是MRC领域的核心，本章主要以抽取式任务的MRC模型为出发点，
-安排如下：3.1节分析经典的基于抽取式任务的MRC模型通用架构，3.2节介绍复杂任务下的MRC模型，3.3节介绍目前流行的预训练模型以及如何利用预训练模型设计性能更强大的MRC模型。
+Hermann等人\upcite{Hermann}%发布的CNN\&Daily Mail数据集以及他们
+所设计的两个基于神经网络和注意力机制的模型可以看作是MRC领域的奠基性工作，开创了神经机器阅读理解模型。
+%Rajpurkar等人\upcite{SQuAD1}在2016年发布的SQuAD数据集是MRC领域里程碑式的数据集，在2016-2018年期间掀起了一阵热潮，很多的神经机器阅读理解模型都是在此期间构建出来的。
+填空式阅读理解任务本质上可以认为是抽取式阅读理解任务的简化形式，而后续的很多任务如对话形式、开放领域形式、多段落形式的阅读理解任务也都是在抽取式任务的形式上设计模型。抽取式阅读理解任务是机器阅读理解领域的核心问题，本章主要以抽取式任务的MRC模型为出发点，安排如下（最后写）。
+%安排如下：3.1节分析经典的基于抽取式任务的MRC模型通用架构，3.2节介绍复杂任务下的MRC模型，3.3节介绍目前流行的预训练模型以及如何利用预训练模型设计性能更强大的MRC模型。
 \input{based_extrc}
-
-%\input{complicated_task.tex}
-%由于预训练模型UNILM\upcite{UNILM}改进了BERT的训练任务，
-%增加了自回归语言模型以及seq2seq语言模型使得其
-%在生成式任务上的效果很好，在CoQA数据集上远远的超过于Reddy等\upcite{CoQA}提出的基准模型。
-
-%下面介绍神经机器阅读理解模型中基于注意力机制的模型和基于预训练的模型。
-%\input{embedding_layer.tex}
-
-
-
-%\input{interaction_layer.tex}
-%
-%
-
 \begin{figure}
 	\centering
 	\includegraphics[width=5cm,height=4cm]{classicTopre}
 \end{figure}
 \input{pre_train.tex}
-%% %\input{model.tex}
-
-
-
 \input{new_trend.tex}
-%
 \input{discussion.tex}
 \section{总结}
 最后写。。。
@@ -127,7 +102,7 @@ Hermann等人\upcite{Hermann}发布的CNN\&Daily Mail数据集以及他们所设
 
 
 
-\printbibliography[title={参考文献}]
+%\printbibliography[title={参考文献}]
 
 
 
