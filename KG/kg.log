@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.7.9)  29 JUL 2020 16:11
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.7.9)  2 AUG 2020 15:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2037,37 +2037,9 @@ Overfull \hbox (10.14012pt too wide) detected at line 58
 OT1/cmr/m/n/10.53937 ))
  []
 
-File: TKRL.png Graphic file (type bmp)
-<TKRL.png>
-*************************************************
-* fontspec warning: "script-not-exist"
-* 
-* Font 'FandolHei-Regular' does not contain script 'CJK'.
-*************************************************
-\g__fontspec_family_FandolHei-Regular_int=\count442
-.................................................
-. fontspec info: "defining-font"
-. 
-. Font family 'FandolHei-Regular(0)' created for font 'FandolHei-Regular' with
-. options [Script={CJK},Extension={.otf},BoldFont={FandolHei-Bold}].
-.  
-.  This font family consists of the following NFSS series/shapes:
-.  
-. - 'normal' (m/n) with NFSS spec.: <->"[FandolHei-Regular.otf]/OT"
-. - 'small caps'  (m/sc) with NFSS spec.: 
-. - 'bold' (bx/n) with NFSS spec.: <->"[FandolHei-Bold.otf]/OT"
-. - 'bold small caps'  (bx/sc) with NFSS spec.: 
-.................................................
+[1
 
-Underfull \vbox (badness 2970) has occurred while \output is active []
-
- [1
-
-]
-File: dkrl.png Graphic file (type bmp)
-<dkrl.png>
-
-[2]
+] [2]
 Underfull \hbox (badness 2142) in paragraph at lines 200--203
 []\TU/FandolSong-Regular(0)/m/n/10.53937 以 上 的 模 型 考 虑 的 是 单 词 级 别 的 文 本 信
  []
@@ -2078,112 +2050,39 @@ Underfull \hbox (badness 1412) in paragraph at lines 200--203
 lmr/m/n/10.53937 Xie
  []
 
-[3]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[3] [4]
 
- [4]
-*************************************************
-* fontspec warning: "script-not-exist"
-* 
-* Font 'FandolFang-Regular' does not contain script 'CJK'.
-*************************************************
-\g__fontspec_family_FandolFang-Regular_int=\count443
-.................................................
-. fontspec info: "defining-font"
-. 
-. Font family 'FandolFang-Regular(0)' created for font 'FandolFang-Regular'
-. with options [Script={CJK},Extension={.otf}].
-.  
-.  This font family consists of the following NFSS series/shapes:
-.  
-. - 'normal' (m/n) with NFSS spec.: <->"[FandolFang-Regular.otf]/OT"
-. - 'small caps'  (m/sc) with NFSS spec.: 
-.................................................
+LaTeX Warning: Citation 'MTKGNN' on page 5 undefined on input line 309.
 
-Underfull \hbox (badness 1708) in paragraph at lines 311--311
-\TU/lmr/m/n/10.53937 edge Graph Representation Learning”. In:
- []
 
+LaTeX Warning: Citation 'AKRL' on page 5 undefined on input line 310.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 335.
 [5]
-Underfull \hbox (badness 3386) in paragraph at lines 311--311
-\TU/lmr/m/n/10.53937 “Traversing Knowledge Graphs in Vector
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 311--311
-\TU/lmr/m/n/10.53937 Tresp. “Type-Constrained Representation
- []
-
-
-Underfull \hbox (badness 1867) in paragraph at lines 311--311
-\TU/lmr/m/n/10.53937 Learning in Knowledge Graphs”. In: \TU/lmr/m/it/10.53937 T
-he
- []
-
-
-Underfull \hbox (badness 1701) in paragraph at lines 311--311
-\TU/lmr/m/it/10.53937 PA, USA, October 11-15, 2015, Proceed-
- []
-
-
-Underfull \hbox (badness 1694) in paragraph at lines 311--311
-\TU/lmr/m/it/10.53937 ings, Part I\TU/lmr/m/n/10.53937 . Ed. by Marcelo Arenas 
-et
- []
-
-[6]
-Underfull \hbox (badness 2591) in paragraph at lines 311--311
-[]\TU/lmr/m/n/10.53937 Kristina Toutanova et al. “Compositional
- []
-
-
-Underfull \hbox (badness 7504) in paragraph at lines 311--311
-[]\TU/lmr/m/n/10.53937 Zhigang Wang and Juan-Zi Li. “Text-
- []
-
-
-Underfull \hbox (badness 1158) in paragraph at lines 311--311
-\TU/lmr/m/n/10.53937 1299. \TU/lmr/m/sc/10.53937 url\TU/lmr/m/n/10.53937 : []$[
-][][][] [] [] [] [][][] [] [][][][][] [] [][][] []
- []
-
-
-Underfull \hbox (badness 1210) in paragraph at lines 311--311
-\TU/lmr/m/n/10.53937 Text Descriptions”. In: \TU/lmr/m/it/10.53937 Proceedings 
-of the
- []
-
-
-Underfull \hbox (badness 1990) in paragraph at lines 311--311
-[]\TU/lmr/m/n/10.53937 Ruobing Xie, Zhiyuan Liu, and Maosong
- []
-
-
-Underfull \hbox (badness 2027) in paragraph at lines 311--311
-\TU/lmr/m/n/10.53937 edge Representation Learning”. In: \TU/lmr/m/it/10.53937 C
-oRR
- []
-
-[7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 313.
- [8
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 313.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 335.
  (./kg.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 313.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 313.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 335.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 335.
+
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                kg
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'kg.run.xml'.
 \openout1 = `kg.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35871 strings out of 493007
- 691484 string characters out of 6136720
- 1254934 words of memory out of 5000000
- 39468 multiletter control sequences out of 15000+600000
- 536927 words of font info for 79 fonts, out of 8000000 for 9000
+ 35761 strings out of 493007
+ 688276 string characters out of 6136720
+ 1252398 words of memory out of 5000000
+ 39391 multiletter control sequences out of 15000+600000
+ 533745 words of font info for 57 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 57i,17n,93p,10429b,4574s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,17n,74p,10429b,1203s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on kg.pdf (8 pages).
+Output written on kg.pdf (5 pages).

@@ -56,7 +56,7 @@
 	\begin{equation}
 		L=\sum_{(h,r,t)\in \mathcal{S}}\sum_{(h',r,t')\in \mathcal{S}'}\max (0,f(h,r,t)+\gamma-f(h'+r-t'))
 	\end{equation}
-	\subsection{类别信息}
+	\subsection{实体类别}
 	最常用的类别信息就是实体类别，Guo等人\upcite{SSE}提出语义平滑嵌入模型（Semantically Smooth Embedding，SSE），基于的思想是属于同一语义类型的实体在嵌入空间中距离比较近。SSE利用两种流行学算法Laplacian eigenmaps和Locally linear embedding来约束这种平滑性假设。Lacian eigenmaps算法要求一个实体与它具有同类别的实体在嵌入空间中距离更近，这种约束形式用公式表示为：
 	\begin{equation}
 		\mathcal{R}_1 =\left \| \textbf{h}-\textbf{t} \right \|_2^2w_{ht}^{(1)}
@@ -72,11 +72,11 @@
 	将$\mathcal{R}_1$，$\mathcal{R}_2$加到最大间隔方法里作为整个模型损失函数的一个正则化项从而达到约束嵌入空间语义平滑的作用。实验表明，SSE模型学习后的嵌入空间中，语义类别一致的实体很好的聚在了一起。
 	
 	SSE模型的缺点在于默认所有实体只有一个类别，而现实世界中的实体不仅有多个类别而且每一个类别是有层次结构的。如图1所示，
-	\begin{figure}[ht]
-		\centering
-		\includegraphics[width=\linewidth]{TKRL.png}
-		\caption{取自TKRL\upcite{TKRL}}
-	\end{figure}
+%	\begin{figure}[ht]
+%		\centering
+%		\includegraphics[width=\linewidth]{TKRL.png}
+%		\caption{取自TKRL\upcite{TKRL}}
+%	\end{figure}
 	从图中可以看到头实体William Shakespeare存在很多实体类型，而且每一个实体类型都有子类型。
 	基于以上问题，Xie等人\upcite{TKRL}提出一种融合实体层次类型信息的模型TKRL（type-embodied knowledge representation learning），引入具有层次结构的实体类别信息以及与关系之间的约束信息，
 	TKRL模型的能量函数定义为：
@@ -124,29 +124,29 @@
 	\end{gather}
 	$\textbf{h}_s$和$\textbf{t}_s$是基于结构的实体表示，它们通过知识图谱中结构化信息学习。$\textbf{h}_c$和$\textbf{t}_c$是基于类别的实体表示，通过注意力机制得到实体类别表示与三元组中关系的相关性，然后对所有类别的表示加权求和作为实体的基于类别的表示。
 	
-	除了考虑实体类别信息外，Zhang等人\upcite{HRS}提出一种利用关系层次结构的知识表示模型HRS（Hierarchical Relation Structure）。HRS将知识图谱中的关系划分为一个三层的层次结构，顶层关系$r_c$是由语义相近的关系聚类而成，中间层指特定的关系$r'$，底层关系$r_s$是将每一个关系再进一步的划分成多个子关系。
-	在训练时，对于每一个三元组$(h,r,t)$，其中关系$r$的嵌入表示$\textbf{r}$为三层关系的嵌入表示之和
-	$\textbf{r}=\textbf{r}_c+\textbf{r}'+\textbf{r}_s$。
-	HRS模型的损失函数定义为
-	\begin{equation}
-		L=L_{Orig}+L_{HRS}
-	\end{equation}
-	其中$L_{Orig}$采用经典模型TransE，TransR等的最大间隔方法，$L_{HRS}$作为正则化项约束模型学习层次关系的表示。
+%	除了考虑实体类别信息外，Zhang等人\upcite{HRS}提出一种利用关系层次结构的知识表示模型HRS（Hierarchical Relation Structure）。HRS将知识图谱中的关系划分为一个三层的层次结构，顶层关系$r_c$是由语义相近的关系聚类而成，中间层指特定的关系$r'$，底层关系$r_s$是将每一个关系再进一步的划分成多个子关系。
+%	在训练时，对于每一个三元组$(h,r,t)$，其中关系$r$的嵌入表示$\textbf{r}$为三层关系的嵌入表示之和
+%	$\textbf{r}=\textbf{r}_c+\textbf{r}'+\textbf{r}_s$。
+%	HRS模型的损失函数定义为
+%	\begin{equation}
+%		L=L_{Orig}+L_{HRS}
+%	\end{equation}
+%	其中$L_{Orig}$采用经典模型TransE，TransR等的最大间隔方法，$L_{HRS}$作为正则化项约束模型学习层次关系的表示。
 	\begin{equation}
 		L_{HRS}=\lambda_1\sum_{\textbf{r}_c\in \mathcal{C}}\left \| \textbf{r}_c \right \|_2^2+\lambda_2\sum_{\textbf{r}'\in \mathcal{R}}\left \| \textbf{r}' \right \|_2^2+\lambda_3\sum_{\textbf{r}_s\in\mathcal{S}}\left \| \textbf{r}_s \right \|_2^2
 	\end{equation}
 	其中$\mathcal{C}$，$\mathcal{R}$，$\mathcal{S}$分别代表关系聚类集合，关系集合，子关系聚类集合。
-	此外在知识图谱中某些关系代表的是实体的属性信息，而属性与关系的区别在于属性有明显的一对多关系。Lin等人\upcite{EAR}提出一种知识表示模型从所有的关系分离出关系与属性，然后再建模实体表示、关系表示、属性表示。
+%	此外在知识图谱中某些关系代表的是实体的属性信息，而属性与关系的区别在于属性有明显的一对多关系。Lin等人\upcite{EAR}提出一种知识表示模型从所有的关系分离出关系与属性，然后再建模实体表示、关系表示、属性表示。
 	
 	
 \subsection{文本描述}
 	知识图谱中很多实体都是带有描述信息的，这些信息能够作为知识图谱中结构化信息的辅助，帮助模型学习更精准的知识表示，知识库的构建资源也往往是从文本中获取，因此实体描述文本能天然的与知识空间进行交互。
 	如图2所示。
-	\begin{figure}[ht]
-		\centering
-		\includegraphics[width=0.8\linewidth]{dkrl.png}
-		\caption{取自DKRL\upcite{DKRL}}
-\end{figure}
+%	\begin{figure}[ht]
+%		\centering
+%		\includegraphics[width=0.8\linewidth]{dkrl.png}
+%		\caption{取自DKRL\upcite{DKRL}}
+%\end{figure}
 	这些描述文本是对实体相关信息的详细描述。
 %	这些文本可以认为是对知识图谱中结构化信息的补充，利用这些实体的文本信息有助于建模知识图谱的语义关系从而得到更加精准的知识表示。
 	那些仅仅基于知识图谱结构化信息的知识表示模型无法处理不在知识图谱中的实体（out of KG），而联合文本嵌入的方式可以做到互补使得模型学习到那些在文本中出现而不在知识图谱中的实体。
@@ -302,17 +302,42 @@ RKRL采用两种特征来衡量路径$p$的可靠性，第一种特征是PTransE
 
 \subsection{其它信息}
 除了可以融入上面三种信息源外，还有一些其它的信息也可以融入到知识图谱的语义空间中，增强知识的语义表示。
+
+\noindent\textbf{实体属性} \quad 
+KG中的三元组不仅包含关系三元组，还有大量的属性三元组，
+某些关系代表的是实体的属性信息，目前很多的表示学习模型将两种三元组混杂在一起。属性与关系的区别在于属性有明显的一对多关系，而且实体的属性值往往包含这个实体精确的语义信息，这些语义信息对实体消歧或增强知识表示有重要的作用。
+Lin等人\upcite{EAR}提出一种知识表示模型KR-EAR，从所有的关系中分离出关系与属性，然后再建模实体表示、关系表示、属性表示。MT-KGNN\upcite{MTKGNN}模型采用多任务学习的方式为关系和属性分别训练一个神经网络（RelNet和AttrNet），
+其中RelNet采用交叉商损失函数，建模实体与关系之间的联系；AttrNet采用均方误差损失函数，建模实体与其属性之间的联系。AKRL\upcite{AKRL}模型与DKRL和TKRL类似，为每一个实体构造两种表示，一种是基于结构化的表示，另一种是基于属性的表示，使用卷积神经网路编码。
+
+\noindent\textbf{图像信息} \quad
 如Xie等人\upcite{IKRL}提出的IKRL模型，尝试融合实体图像信息学习实体跨模态的知识表示，与TKRL模型类似仍然是为每一个实体设置两种知识表示，基于结构的和基于图像的表示，采用AlexNet\upcite{Alexnet}网络作为图像的特征提取器，模型的能量函数和损失函数与TKRL一致。
 
 以上介绍的知识表示学习模型都是将知识图谱看做三元组的集合，孤立的学习每个三元组的表示，尽管融合多步关系路径的模型引入了其它的实体和关系，但是绝大部分模型也只是将关系路径看做是两个实体之间的新关系，知识图谱的图结构信息并没有被完全利用。Feng等人\upcite{GAKE}提出一种图感知的表示学习模型GAKE（graph aware knowledge embedding），模型给出一个新的概念graph context。Graph context定义为知识图谱中与一个实体有关联的三种集合：neighbor context，path context和edge context。Neighbor context是一个实体的三元组集合
 ，path context是与一个实体相连的关系路径集合，edge context是一个实体所有的关系集合。由于不同的实体和关系对于一个实体的影响不同，GAKE利用注意力机制赋予不同关系和实体不同的权重。实验证明这种考虑图结构的知识表示模型在元组分类和链接预测任务上达到很好的效果。
 
+\noindent\textbf{关系层次} \quad
+	除了考虑实体类别信息外，Zhang等人\upcite{HRS}提出一种利用关系层次结构的知识表示模型HRS（Hierarchical Relation Structure）。HRS将知识图谱中的关系划分为一个三层的层次结构，顶层关系$r_c$是由语义相近的关系聚类而成，中间层指特定的关系$r'$，底层关系$r_s$是将每一个关系再进一步的划分成多个子关系。
+在训练时，对于每一个三元组$(h,r,t)$，其中关系$r$的嵌入表示$\textbf{r}$为三层关系的嵌入表示之和
+$\textbf{r}=\textbf{r}_c+\textbf{r}'+\textbf{r}_s$。
+HRS模型的损失函数定义为
+\begin{equation}
+L=L_{Orig}+L_{HRS}
+\end{equation}
+其中$L_{Orig}$采用经典模型TransE，TransR等的最大间隔方法，$L_{HRS}$作为正则化项约束模型学习层次关系的表示。
+
+\noindent\textbf{逻辑规则} \quad
+逻辑规则包含丰富的背景信息，$\forall x,y: \text{HasWife}(x,y) \Rightarrow \text{HasSpouse}(x,y)$，表明任何有两个HasWife关系相连的实体，都有HasSpouse关系。像WARMR,ALEPH,AMIE这些系统可以从知识图中提取逻辑规则。最近的RLvLR提出一种利用规则搜索与裁剪的规则挖掘算法为链接预测任务提取逻辑规则。
+
+KALE提出将三元组看做原子，给定一个逻辑规则，利用实体集合中的实体初始化为具体规则。KALE采用t-norm fuzzy logics，它将复杂公式的真值定义为其成分真值的组合，公有三种组合方式：conjunction($\wedge $),disjunction($\vee$),negation()。
 %\printbibliography
 
 
 \end{document}
 
 
+%文本描述：Jointly name and anchors,DKRL,SSP,TEKE
+%关系路径：PTransE，Guu,DP
+%实体类别：SSE，TKRL
 
 
 

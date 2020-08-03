@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.7.9)  31 JUL 2020 18:50
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.7.9)  3 AUG 2020 22:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2036,50 +2036,19 @@ LaTeX Warning: No \author given.
 
 (./abstract_part.tex) (./introduction.tex [1
 
-]) (./dataset.tex [2]
-Overfull \hbox (2.20313pt too wide) in paragraph at lines 51--53
-[]|[]|  
+]) (./dataset.tex
+Overfull \hbox (6.42395pt too wide) in paragraph at lines 32--35
+[]\TU/lmr/bx/n/10.53937 CBT\TU/lmr/m/n/10.53937 :  Hill \TU/FandolSong-Regular(
+0)/m/n/10.53937 等 人$[]$ 发 布 的  |（\TU/lmr/m/n/10.53937 Children’s Book Test\TU/F
+andolSong-Regular(0)/m/n/10.53937 ，| \TU/lmr/m/n/10.53937 CBT\TU/FandolSong-Reg
+ular(0)/m/n/10.53937 ）|  数 据 集，|  语 料 库 来 源 于 儿 童 读 物  |（\TU/lmr/m/n/10.53937 G
+utenberg[][][]\TU/FandolSong-Regular(0)/m/n/10.53937 工
  []
 
-
-Overfull \hbox (8.21059pt too wide) in paragraph at lines 103--105
-[]|[]|  
- []
-
-[3]
-Overfull \hbox (3.04631pt too wide) in paragraph at lines 159--161
-[]|[]|  
- []
-
-[4]
-Overfull \hbox (9.53856pt too wide) in paragraph at lines 215--216
-[]|[]|  
- []
-
-
-Overfull \hbox (7.26207pt too wide) in paragraph at lines 220--222
-[]|[]|  
- []
-
-
-Overfull \hbox (4.10025pt too wide) in paragraph at lines 226--227
-[]|[]|  
- []
-
-
-Overfull \hbox (3.41516pt too wide) in paragraph at lines 235--236
-[]|[]|  
- []
-
-
-Overfull \hbox (2.00134pt too wide) in paragraph at lines 211--240
- [][] 
- []
-
-[5]) (./based_extrc.tex [6]
+[2] [3]) (./based_extrc.tex [4]
 File: picture/generic.png Graphic file (type bmp)
 <picture/generic.png>
- [7] [8]
+ [5] [6]
 Overfull \hbox (8.19699pt too wide) in paragraph at lines 127--136
 []\TU/lmr/m/n/10.53937 MRC \TU/FandolSong-Regular(0)/m/n/10.53937 模 型 做 注 意 力 运
  算 有 两 个 方 向：|  从 问 题 到 段 落  |（\TU/lmr/m/n/10.53937 Question-to-Context,Q2C\TU/
@@ -2087,10 +2056,10 @@ FandolSong-Regular(0)/m/n/10.53937 ） ，|  从 段 落 到 问 题  |（\TU/lm
 ntext-
  []
 
-[9] [10] [11] [12])
+[7] [8] [9])
 File: picture/classicTopre.png Graphic file (type bmp)
 <picture/classicTopre.png>
- (./pre_train.tex [13] [14]) (./new_trend.tex
+ (./pre_train.tex [10] [11] [12]) (./new_trend.tex
 Overfull \hbox (6.80191pt too wide) in paragraph at lines 2--5
 \TU/lmr/m/n/10.53937 SQuAD$[]$ \TU/FandolSong-Regular(0)/m/n/10.53937 等 抽 取 式 阅
  读 理 解 数 据 集。| \TU/lmr/m/n/10.53937 Weissenborn \TU/FandolSong-Regular(0)/m/n/1
@@ -2098,14 +2067,14 @@ Overfull \hbox (6.80191pt too wide) in paragraph at lines 2--5
 \TU/FandolSong-Regular(0)/m/n/10.53937 ，|
  []
 
-[15] [16]
+[13] [14]
 Overfull \hbox (6.99226pt too wide) in paragraph at lines 35--37
 []|[]|  
  []
 
-[17] [18]) (./discussion.tex [19] [20])
+[15] [16]) (./discussion.tex [17] [18])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 110.
- [21]
+ [19]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 110.
  (./assignment.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 110.
@@ -2115,12 +2084,12 @@ Package logreq Info: Writing requests to 'assignment.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36136 strings out of 493007
- 705164 string characters out of 6136720
- 1262140 words of memory out of 5000000
- 39699 multiletter control sequences out of 15000+600000
+ 36127 strings out of 493007
+ 704400 string characters out of 6136720
+ 1261964 words of memory out of 5000000
+ 39690 multiletter control sequences out of 15000+600000
  541605 words of font info for 101 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 57i,17n,74p,10437b,1613s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,17n,74p,10437b,1614s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on assignment.pdf (21 pages).
+Output written on assignment.pdf (19 pages).

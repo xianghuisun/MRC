@@ -1926,31 +1926,29 @@
     <bcf:citekey order="1">SSE</bcf:citekey>
     <bcf:citekey order="2">TransE</bcf:citekey>
     <bcf:citekey order="3">TKRL</bcf:citekey>
-    <bcf:citekey order="4">TKRL</bcf:citekey>
-    <bcf:citekey order="5">TKRL</bcf:citekey>
-    <bcf:citekey order="6">typeconstrain</bcf:citekey>
-    <bcf:citekey order="7">TEKRL</bcf:citekey>
-    <bcf:citekey order="8">HRS</bcf:citekey>
-    <bcf:citekey order="9">EAR</bcf:citekey>
-    <bcf:citekey order="10">DKRL</bcf:citekey>
+    <bcf:citekey order="4">typeconstrain</bcf:citekey>
+    <bcf:citekey order="5">TEKRL</bcf:citekey>
+    <bcf:citekey order="6">Wang</bcf:citekey>
+    <bcf:citekey order="7">TransE</bcf:citekey>
+    <bcf:citekey order="8">Skipgram</bcf:citekey>
+    <bcf:citekey order="9">Zhong</bcf:citekey>
+    <bcf:citekey order="10">JointS</bcf:citekey>
     <bcf:citekey order="11">DKRL</bcf:citekey>
-    <bcf:citekey order="12">Wang</bcf:citekey>
-    <bcf:citekey order="13">TransE</bcf:citekey>
-    <bcf:citekey order="14">Skipgram</bcf:citekey>
-    <bcf:citekey order="15">Zhong</bcf:citekey>
-    <bcf:citekey order="16">JointS</bcf:citekey>
-    <bcf:citekey order="17">DKRL</bcf:citekey>
-    <bcf:citekey order="18">SSP</bcf:citekey>
-    <bcf:citekey order="19">TEKE</bcf:citekey>
-    <bcf:citekey order="20">ATEKE</bcf:citekey>
-    <bcf:citekey order="21">PTransE</bcf:citekey>
-    <bcf:citekey order="22">Guu</bcf:citekey>
-    <bcf:citekey order="23">RESCAL</bcf:citekey>
-    <bcf:citekey order="24">Toutanova</bcf:citekey>
-    <bcf:citekey order="25">RKRL</bcf:citekey>
-    <bcf:citekey order="26">IKRL</bcf:citekey>
-    <bcf:citekey order="27">Alexnet</bcf:citekey>
-    <bcf:citekey order="28">GAKE</bcf:citekey>
+    <bcf:citekey order="12">SSP</bcf:citekey>
+    <bcf:citekey order="13">TEKE</bcf:citekey>
+    <bcf:citekey order="14">ATEKE</bcf:citekey>
+    <bcf:citekey order="15">PTransE</bcf:citekey>
+    <bcf:citekey order="16">Guu</bcf:citekey>
+    <bcf:citekey order="17">RESCAL</bcf:citekey>
+    <bcf:citekey order="18">Toutanova</bcf:citekey>
+    <bcf:citekey order="19">RKRL</bcf:citekey>
+    <bcf:citekey order="20">EAR</bcf:citekey>
+    <bcf:citekey order="21">MTKGNN</bcf:citekey>
+    <bcf:citekey order="22">AKRL</bcf:citekey>
+    <bcf:citekey order="23">IKRL</bcf:citekey>
+    <bcf:citekey order="24">Alexnet</bcf:citekey>
+    <bcf:citekey order="25">GAKE</bcf:citekey>
+    <bcf:citekey order="26">HRS</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
@@ -1982,13 +1980,4 @@
     </bcf:sort>
   </bcf:sortingtemplate>
   <!-- DATALISTS -->
-  <bcf:datalist section="0"
-                name="nty/global//global/global"
-                type="entry"
-                sortingtemplatename="nty"
-                sortingnamekeytemplatename="global"
-                labelprefix=""
-                uniquenametemplatename="global"
-                labelalphanametemplatename="global">
-  </bcf:datalist>
 </bcf:controlfile>

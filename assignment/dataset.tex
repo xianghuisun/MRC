@@ -19,155 +19,164 @@ MRC任务已经从早期的需要阅读一篇文章，答案是单个单词的�
 \subsection{填空式}
 填空式阅读理解是指给定一篇文章$D$和一个与文章相关的问题$Q$，$Q$是通过删除
 掉句子中某一个单词构成，要求模型根据$D$能够
-正确的填写出$Q$缺失的单词$a$，且$a\in D$。填空型数据集的一个样例见表1。
+正确的填写出$Q$缺失的单词$a$，且$a\in D$。
+%填空型数据集的一个样例见表1。
+相关数据集如下：
 
-典型的填空式数据集是由Google DeepMind和牛津大学发布于2015年的CNN\&Daily Mail\upcite{CNNDailyMail}数据集，
-这是第一个较大规模的完形填空型阅读理解型数据集。从CNN\footnote{www.cnn.com\label{cnn}}中收集93k篇文章，从
+\textbf{CNN\&Daily Mail}: \quad 典型的填空式数据集是由Google DeepMind和牛津大学发布于2015年的CNN\&Daily Mail\upcite{CNNDailyMail}数据集，
+%这是第一个较大规模的完形填空型阅读理解型数据集。
+从CNN\footnote{www.cnn.com\label{cnn}}中收集93k篇文章，从
 Daily Mail\footnote{www.dailymail.co.uk\label{daily mail}}上收集220k篇文章。删去句子中的一个命名实体单词，
 以此作为问题，构建了(文章-问题-答案)的三元组形式的语料库作为填空式的阅读理解任务。
 
-相关的数据集还有
-Hill等人\upcite{CBT}发布了（Children's Book Test，CBT）数据集，语料库来源于儿童读物（Gutenberg\footnote{https://www.gutenberg.org/\label{cbt}}工程）。与CNN\&Daily Mail的不同之处是删除的单词不局限于命名实体，还可能删除句子中的名词、动词和介词。
+\textbf{CBT}: \quad 
+Hill等人\upcite{CBT}发布的（Children's Book Test，CBT）数据集，语料库来源于儿童读物（Gutenberg\footnote{https://www.gutenberg.org/\label{cbt}}工程），与CNN\&Daily Mail的不同之处是删除的单词不局限于命名实体，还可能删除句子中的名词、动词和介词。
 %每一篇文章是由20个连续的句子构成，删除第21个句子中的某个单词作为问题。
-CLOTH\upcite{CLOTH}数据集是收集自中国中学生的英语考试试题中的完型填空题型。
+
+\textbf{CLOTH}: \quad CLOTH\upcite{CLOTH}数据集是收集自中国中学生的英语考试试题中的完型填空题型。
 %与之前的填空型数据集最大的不同是问题中删除的单词不像之前数据集的构建方式那样是由系统根据规则自动构建的，这样生成的问题往往没有目的性并且答案可能会出现歧义。
 每一个问题是由专家为了测验学生英语水平而精心设计的，空白处位置的单词通常会考察学生的词汇、语法以及推理能力，因此CLOTH数据集相比于CNN\&Daily和CBT更具有挑战性。
 
 %\begin{center}
-\begin{table}[ht]
-    %\centering
-    %表格超出页边距用resizebox
-    %\resizebox{\textwidth}{!}{
-    \caption{CNN\&Daily Mail\upcite{CNNDailyMail}数据集的一个样例 \\ Table 1 An example of CNN\&Daily Mail dataset}
-    %\vspace{5pt}
-
-    \begin{tabular}{l p{15.0cm}<{\raggedright}}
-        \toprule
-        文章：&\tabincell{l}{What was supposed to be a fantasy sports car ride at Walt Disney World Speedway turned \\ 
-                           deadly when a Lamborghini crashed into a guardrail. The crash took place Sunday at the \\ 
-                           Exotic Driving Experience, which bills itself as a chance to drive your dream car on a race-\\ 
-                           track. The Lamborghini’s passenger, 36-year-old Gary Terry of Davenport, Florida, died at \\ the
-                           scene, Florida Highway Patrol said. The driver of the \textbf{Lamborghini}, 24-year-old Tavon \\ Watson
-                            of Kissimmee, Florida, lost control of the vehicle, the Highway Patrol said. (...)} \\
-        %\cmidrule(l){2-3}
-        \midrule
-        问题：&\tabincell{l}{Officials say the driver, 24-year-old Tavon Watson, lost control of a\_\_\_} \\
-        %\cmidrule(l){2-3}
-        \midrule
-        答案：&Lamborghini \\
-        \bottomrule
-    \end{tabular}
-    %}
-    %\textbf{表1：CNN\& Daily Mail\upcite{Teaching Machines to Read and Comprehend}的一个样例}
-\end{table}
-%\end{center}
+%\begin{table}[ht]
+%    %\centering
+%    %表格超出页边距用resizebox
+%    %\resizebox{\textwidth}{!}{
+%    \caption{CNN\&Daily Mail\upcite{CNNDailyMail}数据集的一个样例 \\ Table 1 An example of CNN\&Daily Mail dataset}
+%    %\vspace{5pt}
+%
+%    \begin{tabular}{l p{15.0cm}<{\raggedright}}
+%        \toprule
+%        文章：&\tabincell{l}{What was supposed to be a fantasy sports car ride at Walt Disney World Speedway turned \\ 
+%                           deadly when a Lamborghini crashed into a guardrail. The crash took place Sunday at the \\ 
+%                           Exotic Driving Experience, which bills itself as a chance to drive your dream car on a race-\\ 
+%                           track. The Lamborghini’s passenger, 36-year-old Gary Terry of Davenport, Florida, died at \\ the
+%                           scene, Florida Highway Patrol said. The driver of the \textbf{Lamborghini}, 24-year-old Tavon \\ Watson
+%                            of Kissimmee, Florida, lost control of the vehicle, the Highway Patrol said. (...)} \\
+%        %\cmidrule(l){2-3}
+%        \midrule
+%        问题：&\tabincell{l}{Officials say the driver, 24-year-old Tavon Watson, lost control of a\_\_\_} \\
+%        %\cmidrule(l){2-3}
+%        \midrule
+%        答案：&Lamborghini \\
+%        \bottomrule
+%    \end{tabular}
+%    %}
+%    %\textbf{表1：CNN\& Daily Mail\upcite{Teaching Machines to Read and Comprehend}的一个样例}
+%\end{table}
+%%\end{center}
 
 \subsection{多项选择式}
 多项选择式这类任务是对于给定的文章$D$和问题$Q$以及多个
 候选答案$A=\{A_1,A_2,\cdots,A_n\}$，
 从$A$中选择正确的答案，建模概率：$P(A_i|D,Q)$，其中$A_i \in A$。
-相关的数据集如MCTest\upcite{MCTest}和RACE\upcite{RACE}。多项选择型数据集的一个样例见表2。
+相关数据集如下：
 
-MCTest是一个早期提出来的多项选择式数据集，问题形式为四选一。
+\textbf{MCTest}:\quad MCTest\upcite{MCTest}是一个早期提出来的多项选择式数据集，问题形式为四选一。
 %数据集收集自儿童故事语料库，类似这种基于故事文章的语料库
 %构建数据集的还有上面提到的CBT\upcite{CBT}。
 但是由于其规模比较小仅仅包含500篇故事文章很难利用神经网络模型来学习，因此MCTest通常用来作为验证集或测试集。
 
-RACE\footnote{www.cs.cmu.edu/glail/data/race/\label{race}}数据集是从中
+\textbf{RACE}:\quad RACE\upcite{RACE}数据集是从中
+%\footnote{www.cs.cmu.edu/glail/data/race/\label{race}}
 国中学生英语考试题中的阅读理解题型
-建立的数据集。共有将近2.8万篇文章以及10万个问题，
+建立的数据集，共有将近2.8万篇文章以及10万个问题，
 %答案并不是简单的限制于
 %文章中的单词，而且答案和问题中单词可能
 %从没有在文章中出现过，利用单词匹配方式并不能达到很好的效果。
-这些问题和候选答案都是由专家生成的，
+这些问题和候选答案都是由专家编写。
 %更加的接近真实世界的语义。
 %RACE数据集中文章主题的覆盖度比其它的数据集更广泛，比如CNN\&Daily\upcite{CNNDailyMail}
 %所有文章全都是来源于CNN新闻，SQuAD\upcite{SQuAD1}数据集所有的文章全都是来源于维基百科。
 此外RACE数据集涵盖多个领域如新闻、故事、广告、传记等等，由于其类型的多样性因此可以更好的评估机器的阅读理解
 能力。
 
-
-\begin{table}[ht]
-    %\centering
-    %表格超出页边距用resizebox
-    %\resizebox{\textwidth}{!}{
-    \caption{RACE\upcite{RACE}数据集的一个样例 \\ Table 2 An example of RACE dataset}
-    %\vspace{5pt}
-
-    \begin{tabular}{l p{15.0cm}<{\raggedright}}
-        \toprule
-        文章：&\tabincell{l}{Runners in a relay race pass a stick in one direction. However, merchants passed silk, gold, \\ 
-                           fruit, and glass along the Silk Road in more than one direction. They earned their living by \\ 
-                           traveling the famous Silk Road. .. The Silk Road was made up of many routes, not one smo- \\oth 
-                           path. They passed through what are now 18 countries. The routes crossed mountains and \\ deserts  
-                           and had many dangers of hot sun, deep snow and even battles...}\\
-        %\cmidrule(l){2-3}
-        \midrule
-        问题：&\tabincell{l}{The Silk Road became less important because\_\_\_} \\
-        %\cmidrule(l){2-3}
-        \midrule
-        选项：& \tabincell{l}{A. it was made up of different routes \\
-        B. silk trading became less popular \\
-        \textbf{C. sea travel provided easier routes} \\
-        D. people needed fewer foreign goods}\\
-        %\cmidrule(l){2-3}
-        \midrule
-        答案：&C \\
-        \bottomrule
-    \end{tabular}
-    %}
-    %\textbf{表1：CNN\& Daily Mail\upcite{Teaching Machines to Read and Comprehend}的一个样例}
-\end{table}
+%
+%\begin{table}[ht]
+%    %\centering
+%    %表格超出页边距用resizebox
+%    %\resizebox{\textwidth}{!}{
+%    \caption{RACE\upcite{RACE}数据集的一个样例 \\ Table 2 An example of RACE dataset}
+%    %\vspace{5pt}
+%
+%    \begin{tabular}{l p{15.0cm}<{\raggedright}}
+%        \toprule
+%        文章：&\tabincell{l}{Runners in a relay race pass a stick in one direction. However, merchants passed silk, gold, \\ 
+%                           fruit, and glass along the Silk Road in more than one direction. They earned their living by \\ 
+%                           traveling the famous Silk Road. .. The Silk Road was made up of many routes, not one smo- \\oth 
+%                           path. They passed through what are now 18 countries. The routes crossed mountains and \\ deserts  
+%                           and had many dangers of hot sun, deep snow and even battles...}\\
+%        %\cmidrule(l){2-3}
+%        \midrule
+%        问题：&\tabincell{l}{The Silk Road became less important because\_\_\_} \\
+%        %\cmidrule(l){2-3}
+%        \midrule
+%        选项：& \tabincell{l}{A. it was made up of different routes \\
+%        B. silk trading became less popular \\
+%        \textbf{C. sea travel provided easier routes} \\
+%        D. people needed fewer foreign goods}\\
+%        %\cmidrule(l){2-3}
+%        \midrule
+%        答案：&C \\
+%        \bottomrule
+%    \end{tabular}
+%    %}
+%    %\textbf{表1：CNN\& Daily Mail\upcite{Teaching Machines to Read and Comprehend}的一个样例}
+%\end{table}
 
 \subsection{抽取式}
 抽取式阅读理解任务可以看做是填空式任务的扩展，不像填空式任务仅仅要求答案是原文中的某个单词，抽取式任务要求模型从原文中抽取一段连续的文本作为答案，且答案的长度不固定。
 这类阅读理解任务是MRC领域较为流行的研究方向，主要原因在于从数据集的构建、评测指标以及应用价值等角度上看抽取式阅读理解是最合适的。
 给出文章$D$和问题$Q$，问题的答案是$D$中的一段连续的单词构成。可以表示为$P(A|D,Q)$，其中$A=\{t_i,t_{i+1},\cdots,t_{i+k}\}(1\leq i\leq i+k\leq n)$，$n$代表$D$中
-单词的个数，$k$代表答案的长度。抽取式阅读理解任务的样例见表3。
+单词的个数，$k$代表答案的长度。相关数据集如下：
 %抽取式阅读理解任务常用的数据集如SQuAD\upcite{SQuAD1}、
 %NewsQA\upcite{NewsQA}、TriviaQA\upcite{TriviaQA}等。片段选择型的一个样例见表3。
 
-SQuAD\upcite{SQuAD1}是抽取式阅读理解的代表性数据集，也是MRC领域最为
+\textbf{SQuAD}:\quad SQuAD\upcite{SQuAD1}是抽取式阅读理解的代表性数据集，也是MRC领域最为
 广泛使用的数据集之一，它的提出极大地推动了MRC领域的发展。
 数据集由众包工人根据维基百科上面的文章给出问题，答案来源于文章中某段连续的文本，长度并不固定。
 SQuAD含有536篇文章，总计十万多个问题-答案对
-。类似的数据集如NewsQA\upcite{NewsQA}，区别在于NewsQA文章来源于CNN新闻并且在NewsQA中某些问题
+。
+
+\textbf{NewsQA}:\quad NewsQA\upcite{NewsQA}与SQuAD数据集的构造方式类似，区别在于NewsQA文章来源于CNN新闻并且在NewsQA中某些问题
 是没有答案的，这也使得后来Rajpurkar等人在SQuAD版本上又增加了五万个不可回答的问题构建了数据集SQuAD 2.0\upcite{SQuAD2}。
 %对于这些带有不可回答问题的数据集，模型首先要清楚问题是否可以根据文章回答，在可回答的前提下给出答案，因此要求模型对文章的理解要更加的深刻。
 %实验表明，那些在SQuAD数据集上效果很好的模型在SQuAD 2.0数据集上性能显著下降，这也说明了目前很多MRC模型都是基于浅层的语义匹配来寻找答案而不是真正的理解了文章。
 
-之前的数据集都是给定文章后，由人工构造出与文章相关的问题和答案，但是现实世界中人们通常是先提出问题
+\textbf{TriviaQA}:\quad 之前的数据集都是给定文章后，由人工构造出与文章相关的问题和答案，但是现实世界中人们通常是先提出问题
 然后搜寻相关的文章再找到答案。基于这一思想，Joshi等人\upcite{TriviaQA}首先从trivia上收集大量的问题-答案对，然后为每一个问题从网页上或者维基百科上搜索出相关的文章，这些文章就是答案的依据。最后构建出包含65万多个（问题-答案-文章）三元组的抽取式阅读理解数据集TriviaQA，这种由问题找文章的数据集构造方式使得问题和文章在句法和词汇上都有着较大的差异性，
 这使得数据集难度更高。
 
-目前大部分的抽取式数据集对模型的推理能力要求不高，主要原因在于回答这些数据集的问题往往只需要集中于某个句子的上下文或者在一篇段落上推理即可。为了提高模型的多步推理能力，
-Yang等人\upcite{HotpotQA}发布了HotpotQA数据集，每一个问题对应多个段落，问题的答案往往需要在多个段落上逐步推理才能获得，同时要求模型预测回答问题所必须的线索句子（supporting facts）。
+此外还有一些典型的抽取式阅读理解数据集，不过这些数据集主要是考察模型的推理能力，如HotpotQA\upcite{HotpotQA}，每一个问题对应多个段落，问题的答案往往需要在多个段落上逐步推理才能获得，同时要求模型预测回答问题所必须的线索句子（supporting facts）。
 类似的数据集还有WIKIHOP\upcite{WIKIHOP}，每一个样本来源于知识库中的三元组，要求模型从多篇维基百科文章中推理然后从多个候选中选出正确的答案。
+%目前大部分的抽取式数据集对模型的推理能力要求不高，主要原因在于回答这些数据集的问题往往只需要集中于某个句子的上下文或者在一篇段落上推理即可。为了提高模型的多步推理能力，
+%Yang等人\upcite{HotpotQA}发布了HotpotQA数据集，每一个问题对应多个段落，问题的答案往往需要在多个段落上逐步推理才能获得，同时要求模型预测回答问题所必须的线索句子（supporting facts）。
+%类似的数据集还有WIKIHOP\upcite{WIKIHOP}，每一个样本来源于知识库中的三元组，要求模型从多篇维基百科文章中推理然后从多个候选中选出正确的答案。
 
-\begin{table}[ht]
-    %\centering
-    %表格超出页边距用resizebox
-    %\resizebox{\textwidth}{!}{
-    \caption{SQuAD 1.1\upcite{SQuAD1}数据集的一个样例 \\ Table 3 An example of SQuAD 1.1 dataset}
-    %\vspace{5pt}
-
-    \begin{tabular}{l p{15.0cm}<{\raggedright}}
-        \toprule
-        文章：&\tabincell{l}{In 1870, Tesla moved to Karlovac, to \textbf{attend school at the Higher Real Gymnasium},\\ where
-                            he was profoundly influenced by a math teacher Martin Sekulić. The classes were held\\ in German, 
-                            as it was a school within the Austro-Hungarian Military Frontier. Tesla was able \\to perform int
-                            egral calculus in his head, which prompted his teachers to believe that he was\\ cheating. He fini- shed a four-year term in three years, graduating in 1873. \\} \\
-        %\cmidrule(l){2-3}
-        \midrule
-        问题：&Why did Tesla go to Karlovac? \\
-        %\cmidrule(l){2-3}
-        \midrule
-        答案：&attend school at the Higher Real Gymnasium \\
-        \bottomrule
-    \end{tabular}
+%\begin{table}[ht]
+%    %\centering
+%    %表格超出页边距用resizebox
+%    %\resizebox{\textwidth}{!}{
+%    \caption{SQuAD 1.1\upcite{SQuAD1}数据集的一个样例 \\ Table 3 An example of SQuAD 1.1 dataset}
+%    %\vspace{5pt}
+%
+%    \begin{tabular}{l p{15.0cm}<{\raggedright}}
+%        \toprule
+%        文章：&\tabincell{l}{In 1870, Tesla moved to Karlovac, to \textbf{attend school at the Higher Real Gymnasium},\\ where
+%                            he was profoundly influenced by a math teacher Martin Sekulić. The classes were held\\ in German, 
+%                            as it was a school within the Austro-Hungarian Military Frontier. Tesla was able \\to perform int
+%                            egral calculus in his head, which prompted his teachers to believe that he was\\ cheating. He fini- shed a four-year term in three years, graduating in 1873. \\} \\
+%        %\cmidrule(l){2-3}
+%        \midrule
+%        问题：&Why did Tesla go to Karlovac? \\
+%        %\cmidrule(l){2-3}
+%        \midrule
+%        答案：&attend school at the Higher Real Gymnasium \\
+%        \bottomrule
+%    \end{tabular}
     %}
     %\textbf{表1：CNN\& Daily Mail\upcite{Teaching Machines to Read and Comprehend}的一个样例}
-\end{table}
+%\end{table}
 %\begin{multicols}{2}
 \subsection{自由答案式}
 抽取式任务这种从原文中抽取一段文本作为答案的约束并不能回答所有问题需要的答案，而且从文章中概括提炼出问题的答案也是更加的符合人们的阅读方式的。于是研究人员开始转向
@@ -178,66 +187,68 @@ Yang等人\upcite{HotpotQA}发布了HotpotQA数据集，每一个问题对应多
 %基于这些原因，自由回答式问答的数据集
 %也因此公布出来并且受到广泛的关注，
 %相关的数据集如MS MARCO\upcite{MSmarco}、DuReader\upcite{DuReader}和NarrativeQA\upcite{NarrativeQA}，
-自由答案式任务的一个样例见表4。
+相关数据集如下：
 
-MS MARCO\upcite{MSmarco}是自由答案式阅读理解数据集的代表之一，由微软通过在必应搜索引擎的日志上收集用户
+\textbf{MS MARCO}:\quad MS MARCO\upcite{MSmarco}是自由答案式阅读理解数据集的代表之一，由微软通过在必应搜索引擎的日志上收集用户
 提出的问题，段落是来源于必应搜索引擎的返回的10个最相关的
 查询段落，人工的从这些选择出来的段落中概括提炼出答案。
 %然后由标注人员从这10个文本段落中找出那些与这个问题有关的文本段落，
 %同时对于选出来的段落要标记为$\text{is\_select=1}$，表示这个段落和答
 %案相关，从而可
 %以训练模型。
-如果不能从给出的10个段落中推理出答案，
-那么这个问题就标记为无答案的问题。
+%如果不能从给出的10个段落中推理出答案，
+%那么这个问题就标记为无答案的问题。
+MS MARCO数据集中的问题可能有多个答案或没有答案。
 %同样要保留在数据集中，目的就是让模型能够判别出问题是否可以回答。
-DuReader\upcite{DuReader}是与MS MARCO类似的一个中文机器阅读理解数据集，类似于MS MARCO数据集的构造方式，问题和文章取自百度搜索和百度知道。
+
+\textbf{DuReader}: \quad DuReader\upcite{DuReader}是与MS MARCO类似的一个中文机器阅读理解数据集，类似于MS MARCO数据集的构造方式，问题和文章取自百度搜索和百度知道，此外问题类型还包括是非题（答案是Yes/No）。
 
 %答案同样是人工生成的，一个问题会给出5个相应的文本段落，很多问题需要推理多篇文章段落才能得到答案，甚至一些问题存在多个答案。
 %MS MARCO和DuReader数据集的问题都是收集自搜索引擎中用户提出的问题，因此这两个数据集也更加的贴近真实场景。
 
-%Kovcisky等人认为现在MRC领域大部分数据集的问题过于肤浅，而且答案往往只关注上下文信息，因此很多问题仅仅通过浅层的模式匹配
-%就可以找到答案，他们发布的NarrativeQA数据集，收集自小说和电影剧本，要求模型在理解整部小说或剧本的前提下才能回答问题，要求模型需要有更强的理解能力和推理能力。
+\textbf{NarrativeQA}:\quad Kovcisky等人\upcite{NarrativeQA}认为现在MRC领域大部分数据集的问题过于肤浅，而且答案往往只关注上下文信息，很多问题仅仅通过浅层的模式匹配
+就可以找到答案，他们发布的NarrativeQA数据集，收集自小说和电影剧本，有的问题甚至需要模型在理解整部小说或剧本的前提下才能找到答案，要求模型有更强的理解能力和推理能力。
 
 
 %\vspace{15\baselineskip}
 
-\begin{table}[ht]
-    %\centering
-    %表格超出页边距用resizebox
-    %\resizebox{\textwidth}{!}{
-    \caption{MS MARCO\upcite{MSmarco}数据集的一个样例 \\ Table 4 An example of MS MARCO dataset}
-    %\vspace{5pt}
-	\centering%p{15.5cm}<{\raggedright}
-    \begin{tabular}{l p{15.0cm}<{\raggedright}}
-        \toprule
-        文章1：&\tabincell{l}{Rachel Carson’s essay on The Obligation to Endure,is a very convincing argument about the \\
-        harmful uses of chemical, pesticides, herbicides and fertilizers
-        on the environment.} \\
-
-        $.......$ \\
-        文章5：&\tabincell{l}{Carson believes that as man tries to eliminate unwanted insects and weeds; however he is 
-        act-\\ually causing more problems by polluting the environmen with, 
-        for example, DDT and harm-\\ing living things}\\
-        %\cmidrule(l){2-3}
-        $.......$ \\
-        文章10：&\tabincell{l}{Carson subtly defers her writing in just the right
-        writing for it to not be subject to an induc-\\tion run
-        rampant style which grabs the readers interest without
-        biasing the whole article.}\\
-        \hline
-        问题：&Why did Rachel Carson write an obligation to endure? \\
-        %\cmidrule(l){2-3}
-        \midrule
-        答案：&\tabincell{l}{Rachel Carson writes The Obligation to Endure
-        because believes that 
-        as man tries to elimin-\\ate 
-        unwanted insects and weeds; however he is actually
-        causing more problems by polluting \\ the environment.} \\
-        \bottomrule
-    \end{tabular}
-    %}
-    %\textbf{表1：CNN\& Daily Mail\upcite{Teaching Machines to Read and Comprehend}的一个样例}
-\end{table}
+%\begin{table}[ht]
+%    %\centering
+%    %表格超出页边距用resizebox
+%    %\resizebox{\textwidth}{!}{
+%    \caption{MS MARCO\upcite{MSmarco}数据集的一个样例 \\ Table 4 An example of MS MARCO dataset}
+%    %\vspace{5pt}
+%	\centering%p{15.5cm}<{\raggedright}
+%    \begin{tabular}{l p{15.0cm}<{\raggedright}}
+%        \toprule
+%        文章1：&\tabincell{l}{Rachel Carson’s essay on The Obligation to Endure,is a very convincing argument about the \\
+%        harmful uses of chemical, pesticides, herbicides and fertilizers
+%        on the environment.} \\
+%
+%        $.......$ \\
+%        文章5：&\tabincell{l}{Carson believes that as man tries to eliminate unwanted insects and weeds; however he is 
+%        act-\\ually causing more problems by polluting the environmen with, 
+%        for example, DDT and harm-\\ing living things}\\
+%        %\cmidrule(l){2-3}
+%        $.......$ \\
+%        文章10：&\tabincell{l}{Carson subtly defers her writing in just the right
+%        writing for it to not be subject to an induc-\\tion run
+%        rampant style which grabs the readers interest without
+%        biasing the whole article.}\\
+%        \hline
+%        问题：&Why did Rachel Carson write an obligation to endure? \\
+%        %\cmidrule(l){2-3}
+%        \midrule
+%        答案：&\tabincell{l}{Rachel Carson writes The Obligation to Endure
+%        because believes that 
+%        as man tries to elimin-\\ate 
+%        unwanted insects and weeds; however he is actually
+%        causing more problems by polluting \\ the environment.} \\
+%        \bottomrule
+%    \end{tabular}
+%    %}
+%    %\textbf{表1：CNN\& Daily Mail\upcite{Teaching Machines to Read and Comprehend}的一个样例}
+%\end{table}
 
 %\subsection{对话型问答}
 %虽然本节介绍的对话型任务按照答案形式上划分仍然可以划分到那四种类型里面，但是由于对话型问答任务与其它任务在数据集构造方式以及任务形式上有较大不同，因此本节单独列出对话型问答任务。
@@ -300,7 +311,7 @@ DuReader\upcite{DuReader}是与MS MARCO类似的一个中文机器阅读理解�
 对于不同的MRC任务有不同的评估指标。
 对于填空式任务与多项选择式任务都是属于客观题型，用准确率就可以衡量模型的性能。
 例如对于测试集合中的所有问题$Q=\{Q_1,$$Q_2,\cdots,Q_m\}$，其中$m$代表问题的个数。如果模型预测出来的
-$m$个答案中有$n$个是正确的，那么模型的准确率是$n/m$。
+$m$个答案中有$n$个是正确的，模型的准确率是$n/m$。
 
 抽取式任务属于半客观题型，通常用精确匹配EM（Exact Match）和F1分数来评估模型。
 EM评估指标可以看做是准确率的扩展，就抽取式任务来讲，EM要求
@@ -363,10 +374,10 @@ ROUGE-L\upcite{Rouge}和BLEU\upcite{BLEU}。ROUGE-L用来计算标准答案和�
 			\midrule
 			NewsQA\upcite{NewsQA}&2017&新闻/$1\times 10^4$&单段落型&众包/$1\times 10^5$&抽取式&EM/F1\\
 			\midrule
-			HotpotQA\upcite{HotpotQA}&2018&维基百科&多段落型/&众包/$1.13\times 10^5$&抽取式&EM/F1\\
+			HotpotQA\upcite{HotpotQA}&2018&维基百科&多段落型&众包/$1.13\times 10^5$&抽取式&EM/F1\\
 			\midrule
-			WIKIHOP\upcite{WIKIHOP}&2018&维基百科&多段落型/&自动生成，需多步推理&抽取式&EM/F1 \\
-			\midrule
+%			WIKIHOP\upcite{WIKIHOP}&2018&维基百科&多段落型/&自动生成，需多步推理&抽取式&EM/F1 \\
+%			\midrule
 			MS MARCO\upcite{MSmarco}&2016&搜素引擎/$2\times 10^5$&多段落型&搜索日志/$1\times 10^5$&自由答案式&ROUGE-L/BLEU\\
 			\midrule
 			DuReader\upcite{DuReader}&2018&搜索引擎/$1\times 10^6$&多段落型&搜索日志/$2\times 10^5$&自由答案式&ROUGE-L/BLEU\\
